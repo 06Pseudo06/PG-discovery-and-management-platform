@@ -1,6 +1,6 @@
 # PGFinder
 
-PGFinder is a premium Java desktop application designed for finding and booking paying-guest (PG) accommodations. Built using JavaFX, JDBC, and MySQL as part of a 20-day academic team project, it supports role-based views for **Students** (browsing, filtering, requesting bookings, reviewing PGs) and **Owners** (managing PGs, rooms, beds, and approving/rejecting booking requests).
+PGFinder is a premium Java desktop application designed for finding and booking paying-guest (PG) accommodations. Built using JavaFX, JDBC, and MySQL, it supports role-based views for **Students** (browsing, filtering, requesting bookings, reviewing PGs) and **Owners** (managing PGs, rooms, beds, and approving/rejecting booking requests).
 
 ---
 
