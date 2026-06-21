@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="CENTER" spacing="10.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pgfinder.controller.OwnerDashboardController" prefHeight="400.0" prefWidth="600.0">
+    <children>
+        <Label fx:id="welcomeLabel" text="Welcome to Owner Dashboard" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+    </children>
+</VBox>
