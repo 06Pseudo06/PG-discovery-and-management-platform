@@ -3,13 +3,13 @@ package com.pgfinder.util;
 import org.mindrot.jbcrypt.BCrypt;
 
 public class BCryptUtil {
-    public static String hashPassword(String password) {
-        return BCrypt.hashpw(password, BCrypt.gensalt());
+    public static String hash(String plainPassword) {
+        return BCrypt.hashpw(plainPassword, BCrypt.gensalt());
     }
 
-    public static boolean checkPassword(String password, String hashed) {
+    public static boolean verify(String plainPassword, String hash) {
         try {
-            return BCrypt.checkpw(password, hashed);
+            return BCrypt.checkpw(plainPassword, hash);
         } catch (Exception e) {
             return false;
         }

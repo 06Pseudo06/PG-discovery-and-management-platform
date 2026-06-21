@@ -20,4 +20,8 @@ public class SessionManager {
     public static void logout() {
         currentUser = null;
     }
+
+    public static void clearSession() {
+        currentUser = null;
+    }
 }
