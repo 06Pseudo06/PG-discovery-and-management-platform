@@ -1,0 +1,160 @@
+.root {
+    -fx-background-color: #eef4f4;
+    -fx-font-family: "Segoe UI";
+}
+
+.sidebar {
+    background-color: #214f4b;
+    -fx-background-color: #214f4b;
+    -fx-padding: 25;
+}
+
+.logo {
+    -fx-text-fill: white;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+}
+
+.profile-card {
+    -fx-background-color: #2d5f5b;
+    -fx-background-radius: 15;
+    -fx-padding: 20;
+}
+
+.profile-icon {
+    -fx-font-size: 40px;
+}
+
+.profile-name {
+    -fx-text-fill: white;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+}
+
+.profile-subtitle {
+    -fx-text-fill: #d7e5e5;
+}
+
+.menu-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-size: 16;
+    -fx-cursor: hand;
+    -fx-background-radius: 12;
+    -fx-padding: 12 15;
+}
+
+.menu-button:hover {
+    -fx-background-color: #ffffff20;
+}
+
+.main-content {
+    -fx-padding: 30;
+}
+
+.heading {
+    -fx-font-size: 30px;
+    -fx-font-weight: bold;
+}
+
+.sub-heading {
+    -fx-text-fill: #777777;
+}
+
+.stat-card-yellow {
+    -fx-background-color: #d8a11e;
+    -fx-background-radius: 20;
+    -fx-padding: 20;
+    -fx-pref-width: 250;
+    -fx-pref-height: 120;
+}
+
+.stat-card-green {
+    -fx-background-color: #2d5f5b;
+    -fx-background-radius: 20;
+    -fx-padding: 20;
+    -fx-pref-width: 250;
+    -fx-pref-height: 120;
+}
+
+.stat-card-light {
+    -fx-background-color: #dce9e8;
+    -fx-background-radius: 20;
+    -fx-padding: 20;
+    -fx-pref-width: 250;
+    -fx-pref-height: 120;
+}
+
+.content-card {
+    -fx-background-color: white;
+    -fx-background-radius: 20;
+    -fx-padding: 20;
+    -fx-pref-height: 300;
+}
+
+.profile-card {
+    -fx-background-color: #2c6560;
+    -fx-background-radius: 20;
+    -fx-padding: 25;
+}
+
+.avatar-circle {
+    -fx-background-color: #ffffff22;
+    -fx-background-radius: 100;
+    -fx-min-width: 90;
+    -fx-min-height: 90;
+    -fx-max-width: 90;
+    -fx-max-height: 90;
+}
+
+.avatar-icon {
+    -fx-font-size: 40;
+}
+
+.content-card,
+.profile-card,
+.stat-card-yellow,
+.stat-card-green,
+.stat-card-light {
+
+    -fx-effect:
+        dropshadow(
+            gaussian,
+            rgba(0,0,0,0.08),
+            20,
+            0,
+            0,
+            4
+        );
+}
+
+.section-title {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+
+.pg-name {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+}
+
+.room-image {
+    -fx-min-width: 220;
+    -fx-max-width: 220;
+    -fx-min-height: 150;
+    -fx-max-height: 150;
+
+    -fx-background-color: #d9e5e5;
+    -fx-background-radius: 15;
+}
+
+.card-number {
+    -fx-font-size: 26px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+.stat-card-light .card-number {
+    -fx-text-fill: #214f4b;
+}
+

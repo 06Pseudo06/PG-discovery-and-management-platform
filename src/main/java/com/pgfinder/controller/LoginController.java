@@ -54,7 +54,7 @@ public class LoginController {
             if ("OWNER".equals(user.getRole())) {
                 SceneManager.switchTo("OwnerDashboard.fxml");
             } else if ("STUDENT".equals(user.getRole())) {
-                SceneManager.switchTo("StudentBrowse.fxml");
+                SceneManager.switchTo("StudentDashboard.fxml");
             } else {
                 errorLabel.setText("Unknown user role: " + user.getRole());
             }

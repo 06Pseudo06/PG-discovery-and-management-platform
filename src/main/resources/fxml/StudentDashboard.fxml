@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.pgfinder.controller.StudentDashboardController"
+            stylesheets="@../css/student-dashboard.css">
+
+    <!-- LEFT SIDEBAR -->
+    <left>
+        <VBox fx:id="sidebar"
+              prefWidth="250"
+              spacing="15"
+              styleClass="sidebar">
+
+            <Label text="PG FINDER"
+                   styleClass="logo"/>
+
+            <VBox spacing="12"
+      alignment="CENTER"
+      styleClass="profile-card">
+
+    <StackPane styleClass="avatar-circle">
+
+        <Label text="👨"
+               styleClass="avatar-icon"/>
+
+    </StackPane>
+
+    <Label text="Hi, Alex"
+           styleClass="profile-name"/>
+
+    <Label text="Welcome Back!"
+           styleClass="profile-subtitle"/>
+
+</VBox>
+
+            <Button text="🏠 Dashboard"
+                    styleClass="menu-button"/>
+
+            <Button text="🔍 Browse PGs"
+                    styleClass="menu-button"/>
+
+            <Button text="📍 My Stay"
+                    styleClass="menu-button"/>
+
+            <Button text="💬 Chat"
+                    styleClass="menu-button"/>
+
+            <Button text="📢 Announcements"
+                    styleClass="menu-button"/>
+
+            <Button text="📜 PG History"
+                    styleClass="menu-button"/>
+
+            <Button text="⭐ Reviews"
+                    styleClass="menu-button"/>
+
+            <Button text="⚙ Settings"
+                    styleClass="menu-button"/>
+
+        </VBox>
+    </left>
+
+    <!-- MAIN CONTENT -->
+    <center>
+
+        <ScrollPane fitToWidth="true"
+                    hbarPolicy="NEVER">
+
+            <VBox spacing="25"
+                  styleClass="main-content">
+
+                <!-- HEADER -->
+                <HBox alignment="CENTER_LEFT"
+                      spacing="20">
+
+                    <VBox HBox.hgrow="ALWAYS">
+
+                        <Label text="Good Morning, Alex!"
+                               styleClass="heading"/>
+
+                        <Label text="Here's what's happening in your stay."
+                               styleClass="sub-heading"/>
+
+                    </VBox>
+
+                    <Button text="🔔"/>
+
+                    <Button text="👤"/>
+
+                </HBox>
+
+                <!-- TOP CARDS -->
+                <HBox spacing="20">
+
+                    <VBox styleClass="stat-card-yellow">
+                        <Label text="Current PG"/>
+                        <Label text="Sunrise PG" styleClass="card-number"/>
+                    </VBox>
+
+                    <VBox styleClass="stat-card-green">
+                        <Label text="Days Remaining"/>
+                        <Label text="147" styleClass="card-number"/>
+                    </VBox>
+
+                    <VBox styleClass="stat-card-light">
+                        <Label text="Pending Requests"/>
+                        <Label text="1" styleClass="card-number"/>
+                    </VBox>
+
+                    <VBox styleClass="stat-card-green">
+                        <Label text="Announcements"/>
+                        <Label text="3 New" styleClass="card-number"/>
+                    </VBox>
+
+                </HBox>
+
+                <!-- ROW 2 -->
+                <!-- ROW 2 -->
+<HBox spacing="20">
+
+    <!-- Current Stay -->
+    <VBox styleClass="content-card"
+          prefWidth="600"
+          spacing="20">
+
+        <Label text="Current Stay"
+               styleClass="section-title"/>
+
+        <HBox spacing="20">
+
+            <StackPane styleClass="room-image">
+                <Label text="PG Image"/>
+            </StackPane>
+
+            <VBox spacing="10">
+
+                <Label text="Sunrise PG"
+                       styleClass="pg-name"/>
+
+                <Label text="📍 Model Town, Jalandhar"/>
+
+                <Label text="🛏 Room A1 • Bed B2"/>
+
+                <Separator/>
+
+                <Label text="Move In : 15 Jun 2026"/>
+
+                <Label text="Move Out : 15 Jun 2027"/>
+
+            </VBox>
+
+        </HBox>
+
+        <VBox spacing="10">
+
+            <Label text="147 Days Remaining"/>
+
+            <ProgressBar progress="0.65"
+                         prefWidth="500"/>
+
+        </VBox>
+
+    </VBox>
+
+    <!-- Announcements -->
+    <VBox styleClass="content-card"
+          prefWidth="500"
+          spacing="15">
+
+        <Label text="Latest Announcements"
+               styleClass="section-title"/>
+
+        <HBox styleClass="announcement-item">
+            <VBox>
+                <Label text="Water Maintenance"/>
+                <Label text="Tomorrow 10 AM - 12 PM"/>
+            </VBox>
+        </HBox>
+
+        <HBox styleClass="announcement-item">
+            <VBox>
+                <Label text="Rent Reminder"/>
+                <Label text="Please submit rent before 5th"/>
+            </VBox>
+        </HBox>
+
+        <HBox styleClass="announcement-item">
+            <VBox>
+                <Label text="WiFi Router Installed"/>
+                <Label text="Speed improved for all rooms"/>
+            </VBox>
+        </HBox>
+
+    </VBox>
+
+</HBox>
+
+                <!-- ROW 3 -->
+                <HBox spacing="20">
+
+                    <VBox styleClass="content-card">
+                        <Label text="Chat with Owner"/>
+                    </VBox>
+
+                    <VBox styleClass="content-card">
+                        <Label text="My PG History"/>
+                    </VBox>
+
+                    <VBox styleClass="content-card">
+                        <Label text="Recommended PGs"/>
+                    </VBox>
+
+                </HBox>
+
+            </VBox>
+
+        </ScrollPane>
+
+    </center>
+
+</BorderPane>
