@@ -41,7 +41,8 @@
                     styleClass="menu-button"/>
 
             <Button text="🔍 Browse PGs"
-                    styleClass="menu-button"/>
+                    styleClass="menu-button"
+                    onAction="#openBrowsePG"/>
 
             <Button text="📍 My Stay"
                     styleClass="menu-button"/>

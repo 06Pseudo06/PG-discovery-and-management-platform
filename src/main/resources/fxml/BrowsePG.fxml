@@ -3,8 +3,139 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox alignment="CENTER" spacing="10.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pgfinder.controller.StudentBrowseController" prefHeight="400.0" prefWidth="600.0">
-    <children>
-        <Label fx:id="welcomeLabel" text="Welcome to Student Browse" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
-    </children>
-</VBox>
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.pgfinder.controller.BrowsePGController"
+            stylesheets="@../css/browse-pg.css">
+
+    <top>
+
+        <Button text="← Dashboard"
+        onAction="#goBack"/>
+
+        <VBox spacing="20"
+      styleClass="search-section">
+
+    <Button text="← Dashboard"
+            onAction="#goBack"
+            styleClass="back-button"/>
+
+
+            <Label text="Browse PGs"
+                   styleClass="page-title"/>
+
+            <HBox spacing="15">
+
+               <TextField promptText="Search PGs, Areas, Locations..."
+           prefWidth="450"/>
+
+                <ComboBox promptText="Gender"/>
+
+                <ComboBox promptText="Budget"/>
+
+                <CheckBox text="WiFi"/>
+
+                <CheckBox text="Food"/>
+
+                <CheckBox text="AC"/>
+
+                <Button text="Search"
+                     styleClass="search-button"/>
+
+            </HBox>
+
+        </VBox>
+
+    </top>
+
+    <center>
+
+        <ScrollPane fitToWidth="true">
+
+            <TilePane hgap="20"
+          vgap="20"
+          prefColumns="3"
+          styleClass="pg-grid">
+
+    <VBox styleClass="pg-card">
+
+        <StackPane styleClass="pg-image">
+            <Label text="Image"/>
+        </StackPane>
+
+        <Label text="Sunrise PG" styleClass="pg-title"/>
+        <Label text="Model Town, Jalandhar"/>
+        <Label text="⭐ 4.5"/>
+        <HBox spacing="10">
+
+    <Label text="GIRLS"
+           styleClass="gender-tag"/>
+
+    <Label text="LIMITED"
+           styleClass="status-tag-warning"/>
+
+</HBox>
+        <Label text="WiFi • Food • AC"/>
+        <Label text="2 Beds Available" styleClass="availability"/>
+        <Label text="₹6500/month" styleClass="price"/>
+        <Button text="View Details"/>
+
+    </VBox>
+
+    <VBox styleClass="pg-card">
+
+        <StackPane styleClass="pg-image">
+            <Label text="Image"/>
+        </StackPane>
+
+        <Label text="Green Residency" styleClass="pg-title"/>
+        <Label text="Urban Estate"/>
+        <Label text="⭐ 4.7"/>
+        <HBox spacing="10">
+
+    <Label text="BOYS"
+           styleClass="gender-tag"/>
+
+    <Label text="AVAILABLE"
+           styleClass="status-tag"/>
+
+</HBox>
+        <Label text="WiFi • Food"/>
+        <Label text="5 Beds Available" styleClass="availability"/>
+        <Label text="₹7000/month" styleClass="price"/>
+        <Button text="View Details"/>
+
+    </VBox>
+
+    <VBox styleClass="pg-card">
+
+        <StackPane styleClass="pg-image">
+            <Label text="Image"/>
+        </StackPane>
+
+        <Label text="Student Hub" styleClass="pg-title"/>
+        <Label text="Near University"/>
+        <Label text="⭐ 4.4"/>
+        <HBox spacing="10">
+
+    <Label text="GIRLS"
+           styleClass="gender-tag"/>
+
+    <Label text="LIMITED"
+           styleClass="status-tag-warning"/>
+
+</HBox>
+        <Label text="WiFi • AC"/>
+        <Label text="1 Bed Available" styleClass="availability"/>
+        <Label text="₹6200/month" styleClass="price"/>
+        <Button text="View Details"/>
+
+    </VBox>
+
+</TilePane>
+
+        </ScrollPane>
+
+    </center>
+
+</BorderPane>
