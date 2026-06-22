@@ -158,3 +158,25 @@
     -fx-text-fill: #214f4b;
 }
 
+.mini-avatar {
+    -fx-background-color: #dce9e8;
+    -fx-background-radius: 50;
+    -fx-min-width: 40;
+    -fx-min-height: 40;
+}
+
+.chat-name {
+    -fx-font-weight: bold;
+}
+
+.chat-time {
+    -fx-text-fill: gray;
+    -fx-font-size: 11;
+}
+
+.recommendation-card {
+    -fx-background-color: #f7f9f9;
+    -fx-background-radius: 12;
+    -fx-padding: 12;
+}
+

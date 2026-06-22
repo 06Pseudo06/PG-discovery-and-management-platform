@@ -202,17 +202,85 @@
                 <!-- ROW 3 -->
                 <HBox spacing="20">
 
-                    <VBox styleClass="content-card">
-                        <Label text="Chat with Owner"/>
-                    </VBox>
+                    <VBox styleClass="content-card"
+      spacing="15"
+      prefWidth="300">
 
-                    <VBox styleClass="content-card">
-                        <Label text="My PG History"/>
-                    </VBox>
+    <Label text="Chat with Owner"
+           styleClass="section-title"/>
 
-                    <VBox styleClass="content-card">
-                        <Label text="Recommended PGs"/>
-                    </VBox>
+    <HBox spacing="10">
+
+        <StackPane styleClass="mini-avatar">
+            <Label text="👨"/>
+        </StackPane>
+
+        <VBox spacing="5">
+
+            <Label text="Mr. Rohit Sharma"
+                   styleClass="chat-name"/>
+
+            <Label text="Owner: Technician will visit today."/>
+
+            <Label text="10:30 AM"
+                   styleClass="chat-time"/>
+
+        </VBox>
+
+    </HBox>
+
+</VBox>
+
+                    <VBox styleClass="content-card"
+      spacing="12"
+      prefWidth="280">
+
+    <Label text="My PG History"
+           styleClass="section-title"/>
+
+    <Label text="● Sunrise PG (Current)"/>
+
+    <Label text="● Comfort Living (2025-2026)"/>
+
+    <Label text="● Student Nest (2024-2025)"/>
+
+</VBox>
+
+                    <VBox styleClass="content-card"
+      spacing="15"
+      prefWidth="320">
+
+    <Label text="Recommended PGs"
+           styleClass="section-title"/>
+
+    <VBox spacing="10"
+          styleClass="recommendation-card">
+
+        <Label text="Green Residency"/>
+
+        <Label text="₹6500/month"/>
+
+    </VBox>
+
+    <VBox spacing="10"
+          styleClass="recommendation-card">
+
+        <Label text="Student Hub"/>
+
+        <Label text="₹7000/month"/>
+
+    </VBox>
+
+    <VBox spacing="10"
+          styleClass="recommendation-card">
+
+        <Label text="Elite Stay"/>
+
+        <Label text="₹7500/month"/>
+
+    </VBox>
+
+</VBox>
 
                 </HBox>
 
