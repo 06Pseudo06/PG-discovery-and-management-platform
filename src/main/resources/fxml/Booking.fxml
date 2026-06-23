@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.pgfinder.controller.BookingController"
+            stylesheets="@../css/booking.css">
+
+    <top>
+
+        <VBox spacing="15"
+              styleClass="header-section">
+
+            <Button text="← PG Details"
+                    onAction="#goBack"
+                    styleClass="back-button"/>
+
+            <Label text="Book Your Stay"
+                   styleClass="page-title"/>
+
+        </VBox>
+
+    </top>
+
+    <center>
+
+        <VBox spacing="20"
+              styleClass="booking-container">
+
+            <VBox styleClass="summary-card"
+                  spacing="10">
+
+                <Label text="Booking Summary"
+                       styleClass="section-title"/>
+
+                <Label text="PG: Sunrise PG"/>
+
+                <Label text="Location: Model Town, Jalandhar"/>
+
+                <Label text="Rent: ₹6500/month"/>
+
+            </VBox>
+
+            <VBox spacing="10">
+
+                <Label text="Select Room"/>
+
+                <ComboBox promptText="Choose Room"/>
+
+            </VBox>
+
+            <VBox spacing="10">
+
+                <Label text="Select Bed"/>
+
+                <ComboBox promptText="Choose Bed"/>
+
+            </VBox>
+
+            <VBox spacing="10">
+
+                <Label text="Move-in Date"/>
+
+                <DatePicker/>
+            </VBox>
+
+            <VBox spacing="10">
+
+                <Label text="Additional Notes"/>
+
+                <TextArea prefRowCount="4"/>
+            </VBox>
+
+            <Button text="Confirm Booking"
+                    styleClass="confirm-button"/>
+
+        </VBox>
+
+    </center>
+
+</BorderPane>
