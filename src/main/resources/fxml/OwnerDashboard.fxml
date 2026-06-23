@@ -2,9 +2,254 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.Circle?>
 
-<VBox alignment="CENTER" spacing="10.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pgfinder.controller.OwnerDashboardController" prefHeight="400.0" prefWidth="600.0">
-    <children>
-        <Label fx:id="welcomeLabel" text="Welcome to Owner Dashboard" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
-    </children>
-</VBox>
+
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.pgfinder.controller.OwnerDashboardController"
+            stylesheets="@../css/owner-dashboard.css"
+            prefWidth="1280" prefHeight="800">
+
+    <left>
+        <VBox prefWidth="240" styleClass="owner-sidebar" spacing="8">
+            <HBox alignment="CENTER_LEFT" spacing="12" styleClass="logo-container">
+                <StackPane styleClass="logo-icon-bg">
+                    <Label text="🏠" styleClass="logo-icon"/>
+                </StackPane>
+                <VBox>
+                    <Label text="PGFinder" styleClass="owner-logo"/>
+                    <Label text="Owner Panel" styleClass="owner-subtitle"/>
+                </VBox>
+            </HBox>
+
+            <Region prefHeight="20"/>
+
+            <Button text="📁  Dashboard" styleClass="owner-menu-active" maxWidth="Infinity"/>
+            <Button text="🏢  My PGs" styleClass="owner-menu" maxWidth="Infinity"/>
+            <Button text="🛏  Rooms &amp; Beds" styleClass="owner-menu" maxWidth="Infinity"/>
+            
+            <HBox alignment="CENTER_LEFT" styleClass="menu-item-with-badge">
+                <Button text="📋  Requests" styleClass="owner-menu" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                <Label text="5" styleClass="menu-badge"/>
+            </HBox>
+            
+            <Button text="👥  Tenants" styleClass="owner-menu" maxWidth="Infinity"/>
+            <Button text="📢  Announcements" styleClass="owner-menu" maxWidth="Infinity"/>
+            
+            <HBox alignment="CENTER_LEFT" styleClass="menu-item-with-badge">
+                <Button text="💬  Chats" styleClass="owner-menu" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                <Label text="3" styleClass="menu-badge"/>
+            </HBox>
+            
+            <Button text="⭐  Reviews" styleClass="owner-menu" maxWidth="Infinity"/>
+            <Button text="📊  Reports" styleClass="owner-menu" maxWidth="Infinity"/>
+            <Button text="👤  Profile" styleClass="owner-menu" maxWidth="Infinity"/>
+            <Button text="⚙  Settings" styleClass="owner-menu" maxWidth="Infinity"/>
+
+            <Region VBox.vgrow="ALWAYS"/>
+
+            <Button text="↪  Logout" styleClass="logout-button" maxWidth="Infinity"/>
+        </VBox>
+    </left>
+
+    <center>
+        <ScrollPane fitToWidth="true" fitToHeight="true" styleClass="main-scrollpane">
+            <VBox spacing="25" styleClass="owner-main-content">
+                
+                <HBox alignment="CENTER_LEFT">
+                    <VBox spacing="5" HBox.hgrow="ALWAYS">
+                        <Label text="Welcome back, Owner! 👋" styleClass="welcome-title"/>
+                        <Label text="Manage your PGs, bookings and tenants from here." styleClass="welcome-subtitle"/>
+                    </VBox>
+                    <HBox styleClass="date-card" alignment="CENTER" spacing="10">
+                        <Label text="📅" styleClass="date-icon"/>
+                        <VBox alignment="CENTER_LEFT">
+                            <Label text="18 May 2025, Sunday" styleClass="date-text"/>
+                            <Label text="10:30 AM" styleClass="time-text"/>
+                        </VBox>
+                    </HBox>
+                </HBox>
+
+                <GridPane hgap="20" vgap="10">
+                    <columnConstraints>
+                        <ColumnConstraints percentWidth="25"/>
+                        <ColumnConstraints percentWidth="25"/>
+                        <ColumnConstraints percentWidth="25"/>
+                        <ColumnConstraints percentWidth="25"/>
+                    </columnConstraints>
+                    
+                    <HBox styleClass="owner-stat-card" GridPane.columnIndex="0" alignment="CENTER_LEFT" spacing="15">
+                        <StackPane styleClass="stat-icon-container"><Label text="🏠" styleClass="stat-icon"/></StackPane>
+                        <VBox>
+                            <Label text="Total PGs" styleClass="stat-label"/>
+                            <Label text="3" styleClass="owner-stat-number"/>
+                            <Label text="Active PGs" styleClass="stat-sublabel"/>
+                        </VBox>
+                    </HBox>
+
+                    <HBox styleClass="owner-stat-card" GridPane.columnIndex="1" alignment="CENTER_LEFT" spacing="15">
+                        <StackPane styleClass="stat-icon-container"><Label text="🛏" styleClass="stat-icon"/></StackPane>
+                        <VBox>
+                            <Label text="Total Rooms" styleClass="stat-label"/>
+                            <Label text="24" styleClass="owner-stat-number"/>
+                            <Label text="Across all PGs" styleClass="stat-sublabel"/>
+                        </VBox>
+                    </HBox>
+
+                    <HBox styleClass="owner-stat-card" GridPane.columnIndex="2" alignment="CENTER_LEFT" spacing="15">
+                        <StackPane styleClass="stat-icon-container"><Label text="👥" styleClass="stat-icon"/></StackPane>
+                        <VBox>
+                            <Label text="Total Tenants" styleClass="stat-label"/>
+                            <Label text="18" styleClass="owner-stat-number"/>
+                            <Label text="Currently staying" styleClass="stat-sublabel"/>
+                        </VBox>
+                    </HBox>
+
+                    <HBox styleClass="owner-stat-card" GridPane.columnIndex="3" alignment="CENTER_LEFT" spacing="15">
+                        <StackPane styleClass="stat-icon-container"><Label text="📋" styleClass="stat-icon"/></StackPane>
+                        <VBox>
+                            <Label text="Pending Requests" styleClass="stat-label"/>
+                            <Label text="5" styleClass="owner-stat-number"/>
+                            <Label text="Awaiting review" styleClass="stat-sublabel"/>
+                        </VBox>
+                    </HBox>
+                </GridPane>
+
+                <HBox spacing="20">
+                    
+                    <VBox styleClass="owner-large-card" HBox.hgrow="ALWAYS" prefWidth="650" spacing="15">
+                        <HBox alignment="CENTER_LEFT">
+                            <Label text="Recent Booking Requests" styleClass="section-title" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                            <Button text="View All" styleClass="card-action-btn"/>
+                        </HBox>
+                        
+                        <VBox spacing="10">
+                            <HBox alignment="CENTER_LEFT" styleClass="request-item" spacing="15">
+                                <StackPane styleClass="avatar-circle"><Label text="RS" styleClass="avatar-text"/></StackPane>
+                                <VBox HBox.hgrow="ALWAYS">
+                                    <Label text="Rahul Sharma" styleClass="item-main-title"/>
+                                    <Label text="Sunrise PG • Room A" styleClass="item-subtitle"/>
+                                </VBox>
+                                <Label text="2 mins ago" styleClass="time-ago-label"/>
+                                <Button text="Review" styleClass="review-action-btn"/>
+                            </HBox>
+
+                            <HBox alignment="CENTER_LEFT" styleClass="request-item" spacing="15">
+                                <StackPane styleClass="avatar-circle"><Label text="AP" styleClass="avatar-text"/></StackPane>
+                                <VBox HBox.hgrow="ALWAYS">
+                                    <Label text="Aman Patel" styleClass="item-main-title"/>
+                                    <Label text="Green Residency • Room B" styleClass="item-subtitle"/>
+                                </VBox>
+                                <Label text="15 mins ago" styleClass="time-ago-label"/>
+                                <Button text="Review" styleClass="review-action-btn"/>
+                            </HBox>
+
+                            <HBox alignment="CENTER_LEFT" styleClass="request-item" spacing="15">
+                                <StackPane styleClass="avatar-circle"><Label text="NK" styleClass="avatar-text"/></StackPane>
+                                <VBox HBox.hgrow="ALWAYS">
+                                    <Label text="Neha Kumari" styleClass="item-main-title"/>
+                                    <Label text="Sunrise PG • Room C" styleClass="item-subtitle"/>
+                                </VBox>
+                                <Label text="30 mins ago" styleClass="time-ago-label"/>
+                                <Button text="Review" styleClass="review-action-btn"/>
+                            </HBox>
+
+                            <HBox alignment="CENTER_LEFT" styleClass="request-item" spacing="15">
+                                <StackPane styleClass="avatar-circle"><Label text="VK" styleClass="avatar-text"/></StackPane>
+                                <VBox HBox.hgrow="ALWAYS">
+                                    <Label text="Vikram Kumar" styleClass="item-main-title"/>
+                                    <Label text="Student Hub • Room A" styleClass="item-subtitle"/>
+                                </VBox>
+                                <Label text="1 hour ago" styleClass="time-ago-label"/>
+                                <Button text="Review" styleClass="review-action-btn"/>
+                            </HBox>
+
+                            <HBox alignment="CENTER_LEFT" styleClass="request-item" spacing="15">
+                                <StackPane styleClass="avatar-circle"><Label text="PS" styleClass="avatar-text"/></StackPane>
+                                <VBox HBox.hgrow="ALWAYS">
+                                    <Label text="Pooja Singh" styleClass="item-main-title"/>
+                                    <Label text="Green Residency • Room A" styleClass="item-subtitle"/>
+                                </VBox>
+                                <Label text="2 hours ago" styleClass="time-ago-label"/>
+                                <Button text="Review" styleClass="review-action-btn"/>
+                            </HBox>
+                        </VBox>
+                    </VBox>
+
+                    <VBox spacing="20" prefWidth="420">
+                        
+                        <VBox styleClass="owner-large-card" spacing="15">
+                            <HBox alignment="CENTER_LEFT">
+                                <Label text="Occupancy Overview" styleClass="section-title" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                                <Button text="View Details" styleClass="card-action-btn"/>
+                            </HBox>
+                            
+                            <HBox spacing="25" alignment="CENTER_LEFT">
+                                <StackPane prefWidth="100" prefHeight="100">
+    <Circle radius="40" fill="transparent" stroke="#bfe3d6" strokeWidth="10"/>
+    
+    <VBox alignment="CENTER">
+        <Label text="75%" styleClass="donut-percentage"/>
+        <Label text="Occupied" styleClass="donut-label"/>
+    </VBox>
+</StackPane>
+                                
+                                <VBox spacing="12" HBox.hgrow="ALWAYS">
+                                    <HBox alignment="CENTER_LEFT" spacing="10">
+                                        <Circle radius="5" fill="#0f4f46"/>
+                                        <Label text="Occupied" styleClass="legend-text" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                                        <Label text="18 Rooms" styleClass="legend-count"/>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" spacing="10">
+                                        <Circle radius="5" fill="#bfe3d6"/>
+                                        <Label text="Vacant" styleClass="legend-text" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                                        <Label text="6 Rooms" styleClass="legend-count"/>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" spacing="10">
+                                        <Circle radius="5" fill="#cccccc"/>
+                                        <Label text="Maintenance" styleClass="legend-text" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                                        <Label text="0 Rooms" styleClass="legend-count"/>
+                                    </HBox>
+                                </VBox>
+                            </HBox>
+                        </VBox>
+
+                        <VBox styleClass="owner-large-card" spacing="15">
+                            <Label text="Your PGs Overview" styleClass="section-title"/>
+                            <VBox spacing="14">
+                                <HBox alignment="CENTER_LEFT" spacing="10">
+                                    <Label text="🏠" styleClass="pg-list-icon"/>
+                                    <Label text="Sunrise PG" styleClass="pg-list-name" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                                    <Label text="8 Rooms  •  6 Tenants" styleClass="pg-list-stats"/>
+                                </HBox>
+                                <HBox alignment="CENTER_LEFT" spacing="10">
+                                    <Label text="🏠" styleClass="pg-list-icon"/>
+                                    <Label text="Green Residency" styleClass="pg-list-name" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                                    <Label text="10 Rooms  •  7 Tenants" styleClass="pg-list-stats"/>
+                                </HBox>
+                                <HBox alignment="CENTER_LEFT" spacing="10">
+                                    <Label text="🏠" styleClass="pg-list-icon"/>
+                                    <Label text="Student Hub" styleClass="pg-list-name" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                                    <Label text="6 Rooms  •  5 Tenants" styleClass="pg-list-stats"/>
+                                </HBox>
+                            </VBox>
+                        </VBox>
+                    </VBox>
+                </HBox>
+
+                <VBox styleClass="owner-large-card" spacing="15">
+                    <Label text="Quick Actions" styleClass="section-title"/>
+                    <HBox spacing="15">
+                        <Button text="🏠  Add New PG" styleClass="quick-action-btn"/>
+                        <Button text="🛏  Add Room" styleClass="quick-action-btn"/>
+                        <Button text="📋  View Bookings" styleClass="quick-action-btn"/>
+                        <Button text="📢  Add Announcement" styleClass="quick-action-btn"/>
+                        <Button text="💬  Chat with Tenants" styleClass="quick-action-btn"/>
+                    </HBox>
+                </VBox>
+
+            </VBox>
+        </ScrollPane>
+    </center>
+</BorderPane>

@@ -1,0 +1,352 @@
+/* GLOBAL STYLES */
+.root {
+    -fx-font-family: "Segoe UI", SanSerif;
+    -fx-background-color: #0f4f46;
+}
+
+/* LEFT SIDEBAR STYLING */
+.owner-sidebar {
+    -fx-background-color: #f4f9f6;
+    -fx-padding: 24 16 24 16;
+    -fx-border-color: transparent #e5ece9 transparent transparent;
+    -fx-border-width: 1;
+}
+
+.logo-container {
+    -fx-padding: 0 0 10 8;
+}
+
+.logo-icon-bg {
+    -fx-background-color: #0f4f46;
+    -fx-background-radius: 10;
+    -fx-min-width: 42;
+    -fx-max-width: 42;
+    -fx-min-height: 42;
+    -fx-max-height: 42;
+}
+
+.logo-icon {
+    -fx-font-size: 18;
+    -fx-text-fill: white;
+}
+
+.owner-logo {
+    -fx-font-size: 20;
+    -fx-font-weight: bold;
+    -fx-text-fill: #111111;
+}
+
+.owner-subtitle {
+    -fx-font-size: 12;
+    -fx-text-fill: #666666;
+}
+
+/* SIDEBAR NAVIGATION BUTTONS */
+.owner-menu {
+    -fx-background-color: transparent;
+    -fx-font-size: 14;
+    -fx-font-weight: bold;
+    -fx-text-fill: #445550;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 12 14;
+    -fx-cursor: hand;
+    -fx-background-radius: 8;
+}
+
+.owner-menu:hover {
+    -fx-background-color: #eafef6;
+    -fx-text-fill: #0f4f46;
+}
+
+.owner-menu-active {
+    -fx-background-color: #e1efe9;
+    -fx-font-size: 14;
+    -fx-font-weight: bold;
+    -fx-text-fill: #0f4f46;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 12 14;
+    -fx-background-radius: 8;
+}
+
+/* BADGE COUNTS INSIDE SIDEBAR */
+.menu-item-with-badge {
+    -fx-spacing: 0;
+}
+
+.menu-badge {
+    -fx-background-color: #0f4f46;
+    -fx-text-fill: white;
+    -fx-font-size: 11;
+    -fx-font-weight: bold;
+    -fx-padding: 2 8 2 8;
+    -fx-background-radius: 10;
+    -fx-translate-x: -30; /* Shifts badge inside the boundary */
+}
+
+.logout-button {
+    -fx-background-color: #eef4f1;
+    -fx-font-size: 14;
+    -fx-font-weight: bold;
+    -fx-text-fill: #445550;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 12 14;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+}
+
+.logout-button:hover {
+    -fx-background-color: #fde8e8;
+    -fx-text-fill: #c0392b;
+}
+
+/* MAIN DASHBOARD PANEL CONTENT */
+.main-scrollpane {
+    -fx-background-color: #0f4f46;
+    -fx-border-color: transparent;
+}
+
+.main-scrollpane > .viewport {
+    -fx-background-color: #0f4f46;
+}
+
+.owner-main-content {
+    -fx-padding: 30;
+}
+
+.welcome-title {
+    -fx-font-size: 28;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+.welcome-subtitle {
+    -fx-font-size: 14;
+    -fx-text-fill: #badbd4;
+}
+
+/* DATE DISPLAY CONTAINER */
+.date-card {
+    -fx-background-color: rgba(255, 255, 255, 0.07);
+    -fx-border-color: rgba(255, 255, 255, 0.15);
+    -fx-border-width: 1;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-padding: 10 18;
+}
+
+.date-icon {
+    -fx-font-size: 18;
+}
+
+.date-text {
+    -fx-font-size: 13;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+.time-text {
+    -fx-font-size: 11;
+    -fx-text-fill: #badbd4;
+}
+
+/* TOP STAT CARDS */
+.owner-stat-card {
+    -fx-background-color: white;
+    -fx-background-radius: 14;
+    -fx-padding: 18;
+}
+
+.stat-icon-container {
+    -fx-background-color: #eef7f4;
+    -fx-background-radius: 10;
+    -fx-min-width: 48;
+    -fx-max-width: 48;
+    -fx-min-height: 48;
+    -fx-max-height: 48;
+    -fx-alignment: CENTER;
+}
+
+.stat-icon {
+    -fx-font-size: 20;
+    -fx-text-fill: #0f4f46;
+}
+
+.stat-label {
+    -fx-font-size: 13;
+    -fx-text-fill: #666666;
+}
+
+.owner-stat-number {
+    -fx-font-size: 28;
+    -fx-font-weight: bold;
+    -fx-text-fill: #111111;
+    -fx-padding: 2 0;
+}
+
+.stat-sublabel {
+    -fx-font-size: 11;
+    -fx-text-fill: #999999;
+}
+
+/* GENERAL WHITE BASE CARDS */
+.owner-large-card {
+    -fx-background-color: white;
+    -fx-background-radius: 14;
+    -fx-padding: 22;
+}
+
+.section-title {
+    -fx-font-size: 16;
+    -fx-font-weight: bold;
+    -fx-text-fill: #111111;
+}
+
+.card-action-btn {
+    -fx-background-color: white;
+    -fx-border-color: #e2e8f0;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-text-fill: #0f4f46;
+    -fx-font-size: 12;
+    -fx-font-weight: bold;
+    -fx-padding: 6 14;
+    -fx-cursor: hand;
+}
+
+.card-action-btn:hover {
+    -fx-background-color: #f8fafc;
+}
+
+/* BOOKING REQUEST LISTS */
+.request-item {
+    -fx-background-color: transparent;
+    -fx-padding: 10 0 10 0;
+    -fx-border-color: transparent transparent #f1f5f4 transparent;
+    -fx-border-width: 1;
+}
+
+.avatar-circle {
+    -fx-background-color: #daebd7;
+    -fx-background-radius: 20;
+    -fx-min-width: 38;
+    -fx-max-width: 38;
+    -fx-min-height: 38;
+    -fx-max-height: 38;
+}
+
+.avatar-text {
+    -fx-font-size: 12;
+    -fx-font-weight: bold;
+    -fx-text-fill: #274d22;
+}
+
+.item-main-title {
+    -fx-font-size: 14;
+    -fx-font-weight: bold;
+    -fx-text-fill: #111111;
+}
+
+.item-subtitle {
+    -fx-font-size: 12;
+    -fx-text-fill: #666666;
+}
+
+.time-ago-label {
+    -fx-font-size: 12;
+    -fx-text-fill: #888888;
+    -fx-padding: 0 15 0 0;
+}
+
+.review-action-btn {
+    -fx-background-color: #0f4f46;
+    -fx-text-fill: white;
+    -fx-font-size: 13;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8;
+    -fx-padding: 6 16;
+    -fx-cursor: hand;
+}
+
+.review-action-btn:hover {
+    -fx-background-color: #0b3a33;
+}
+
+/* DONUT CHART SIMULATION STYLING */
+.donut-chart-container {
+    -fx-min-width: 100;
+    -fx-min-height: 100;
+}
+
+.occupancy-donut .percentage {
+    -fx-fill: transparent !important;
+    -fx-opacity: 0 !important;
+}
+
+.occupancy-donut .track {
+    -fx-background-color: #bfe3d6;
+}
+
+.occupancy-donut .bar {
+    -fx-background-color: #0f4f46;
+}
+
+.donut-percentage {
+    -fx-font-size: 22;
+    -fx-font-weight: bold;
+    -fx-text-fill: #111111;
+}
+
+.donut-label {
+    -fx-font-size: 11;
+    -fx-text-fill: #666666;
+}
+
+
+/* OCCUPANCY LEGEND DETAILS */
+.legend-text {
+    -fx-font-size: 13;
+    -fx-text-fill: #555555;
+}
+
+.legend-count {
+    -fx-font-size: 13;
+    -fx-font-weight: bold;
+    -fx-text-fill: #111111;
+}
+
+/* YOUR PGS LISTING */
+.pg-list-icon {
+    -fx-font-size: 16;
+    -fx-text-fill: #0f4f46;
+}
+
+.pg-list-name {
+    -fx-font-size: 14;
+    -fx-font-weight: bold;
+    -fx-text-fill: #111111;
+}
+
+.pg-list-stats {
+    -fx-font-size: 13;
+    -fx-text-fill: #444444;
+    -fx-font-weight: bold;
+}
+
+/* BOTTOM ACTION FOOTER BUTTONS */
+.quick-action-btn {
+    -fx-background-color: white;
+    -fx-border-color: #e2e8f0;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-font-size: 13;
+    -fx-font-weight: bold;
+    -fx-text-fill: #111111;
+    -fx-padding: 12 16;
+    -fx-cursor: HAND;
+    -fx-alignment: CENTER;
+}
+
+.quick-action-btn:hover {
+    -fx-background-color: #f1f5f9;
+    -fx-border-color: #cbd5e1;
+}
