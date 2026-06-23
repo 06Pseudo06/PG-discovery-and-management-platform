@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.pgfinder.controller.PGDetailsController"
+            stylesheets="@../css/pg-details.css">
+
+    <top>
+
+        <VBox spacing="15"
+              styleClass="header-section">
+
+            <Button text="← Browse PGs"
+                    onAction="#goBack"
+                    styleClass="back-button"/>
+
+            <Label text="PG Details"
+                   styleClass="page-title"/>
+
+        </VBox>
+
+    </top>
+
+    <center>
+
+        <ScrollPane fitToWidth="true">
+
+            <VBox spacing="20"
+                  styleClass="details-container">
+
+                <StackPane styleClass="hero-image">
+
+                    <Label text="PG IMAGE"/>
+
+                </StackPane>
+
+                <HBox spacing="20">
+
+                    <Label text="Sunrise PG"
+                           styleClass="pg-title"/>
+
+                    <Label text="⭐ 4.5"/>
+
+                </HBox>
+
+                <Label text="📍 Model Town, Jalandhar"/>
+
+                <HBox spacing="10">
+
+                    <Label text="WiFi"
+                           styleClass="feature-tag"/>
+
+                    <Label text="Food"
+                           styleClass="feature-tag"/>
+
+                    <Label text="AC"
+                           styleClass="feature-tag"/>
+
+                    <Label text="Laundry"
+                           styleClass="feature-tag"/>
+
+                </HBox>
+
+                <Separator/>
+
+                <Label text="Description"
+                       styleClass="section-title"/>
+
+                <Label wrapText="true"
+                       text="Comfortable PG located near educational institutions with WiFi, food services and modern facilities."/>
+
+                <Separator/>
+
+                <Label text="Available Rooms"
+                       styleClass="section-title"/>
+
+                <VBox spacing="10">
+
+                    <HBox styleClass="room-card">
+
+                        <Label text="Room A"/>
+
+                        <Region HBox.hgrow="ALWAYS"/>
+
+                        <Label text="2 Beds Available"/>
+
+                    </HBox>
+
+                    <HBox styleClass="room-card">
+
+                        <Label text="Room B"/>
+
+                        <Region HBox.hgrow="ALWAYS"/>
+
+                        <Label text="1 Bed Available"/>
+
+                    </HBox>
+
+                </VBox>
+
+                <Separator/>
+
+                <Label text="Reviews"
+                       styleClass="section-title"/>
+
+                <VBox spacing="10">
+
+                    <VBox styleClass="review-card">
+
+                        <Label text="⭐⭐⭐⭐⭐"/>
+
+                        <Label text="Great stay and friendly owner."/>
+
+                    </VBox>
+
+                    <VBox styleClass="review-card">
+
+                        <Label text="⭐⭐⭐⭐"/>
+
+                        <Label text="Food quality was good."/>
+
+                    </VBox>
+
+                </VBox>
+
+                <Button text="BOOK BED"
+                  styleClass="book-button"
+                    onAction="#openBooking"/>
+
+
+            </VBox>
+
+        </ScrollPane>
+
+    </center>
+
+</BorderPane>

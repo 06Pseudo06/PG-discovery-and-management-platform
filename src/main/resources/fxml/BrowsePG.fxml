@@ -78,7 +78,8 @@
         <Label text="WiFi • Food • AC"/>
         <Label text="2 Beds Available" styleClass="availability"/>
         <Label text="₹6500/month" styleClass="price"/>
-        <Button text="View Details"/>
+        <Button text="View Details"
+                onAction="#openPGDetails"/>
 
     </VBox>
 
@@ -103,7 +104,7 @@
         <Label text="WiFi • Food"/>
         <Label text="5 Beds Available" styleClass="availability"/>
         <Label text="₹7000/month" styleClass="price"/>
-        <Button text="View Details"/>
+        <Button text="View Details" onAction="#openPGDetails"/>
 
     </VBox>
 
@@ -128,7 +129,7 @@
         <Label text="WiFi • AC"/>
         <Label text="1 Bed Available" styleClass="availability"/>
         <Label text="₹6200/month" styleClass="price"/>
-        <Button text="View Details"/>
+        <Button text="View Details" onAction="#openPGDetails"/>
 
     </VBox>
 

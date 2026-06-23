@@ -1,0 +1,65 @@
+.root{
+    -fx-background-color:#f5f7f7;
+}
+
+.header-section{
+    -fx-padding:25;
+}
+
+.page-title{
+    -fx-font-size:30;
+    -fx-font-weight:bold;
+}
+
+.details-container{
+    -fx-padding:25;
+}
+
+.hero-image{
+    -fx-min-height:300;
+    -fx-background-color:#dce9e8;
+    -fx-background-radius:20;
+}
+
+.pg-title{
+    -fx-font-size:28;
+    -fx-font-weight:bold;
+}
+
+.section-title{
+    -fx-font-size:20;
+    -fx-font-weight:bold;
+}
+
+.feature-tag{
+    -fx-background-color:#dce9e8;
+    -fx-background-radius:12;
+    -fx-padding:6 12;
+}
+
+.room-card{
+    -fx-background-color:white;
+    -fx-padding:15;
+    -fx-background-radius:12;
+}
+
+.review-card{
+    -fx-background-color:white;
+    -fx-padding:15;
+    -fx-background-radius:12;
+}
+
+.book-button{
+    -fx-background-color:#214f4b;
+    -fx-text-fill:white;
+    -fx-font-size:16;
+    -fx-font-weight:bold;
+    -fx-background-radius:15;
+    -fx-padding:12 25;
+}
+
+.back-button{
+    -fx-background-color:#214f4b;
+    -fx-text-fill:white;
+    -fx-background-radius:12;
+}
