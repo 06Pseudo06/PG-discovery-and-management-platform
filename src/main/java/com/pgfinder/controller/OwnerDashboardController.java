@@ -1,6 +1,9 @@
 package com.pgfinder.controller;
 
 import java.util.ResourceBundle;
+
+import com.pgfinder.util.SceneManager;
+
 import java.net.URL;
 
 import javafx.fxml.FXML;
@@ -26,6 +29,10 @@ public void initialize(URL location, ResourceBundle resources) {
             }
         }
     });
+}
+
+public void openMyPGs() {
+    SceneManager.switchTo("MyPGs.fxml");
 }
 
 }

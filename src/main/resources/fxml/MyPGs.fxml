@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.pgfinder.controller.MyPGsController"
+            stylesheets="@../css/my-pgs.css">
+
+    <top>
+
+        <HBox spacing="15"
+              alignment="CENTER_LEFT"
+              styleClass="top-bar">
+
+              <Button text="← Dashboard"
+            onAction="#goBack"
+            styleClass="primary-button"/>
+
+            <Label text="My PGs"
+                   styleClass="page-title"/>
+
+            <Region HBox.hgrow="ALWAYS"/>
+
+            <Button text="+ Add New PG"
+                    styleClass="primary-button"/>
+
+        </HBox>
+
+    </top>
+
+    <center>
+
+        <ScrollPane fitToWidth="true">
+
+            <VBox spacing="20"
+                  styleClass="content-area">
+
+                <!-- PG 1 -->
+
+                <VBox spacing="12"
+                      styleClass="pg-card">
+
+                    <HBox>
+
+                        <VBox HBox.hgrow="ALWAYS">
+
+                            <Label text="Sunrise PG"
+                                   styleClass="pg-title"/>
+
+                            <Label text="Model Town, Jalandhar"/>
+
+                        </VBox>
+
+                        <Label text="Active"
+                               styleClass="status-active"/>
+
+                    </HBox>
+
+                    <HBox spacing="30">
+
+                        <Label text="Rooms: 8"/>
+
+                        <Label text="Beds: 12"/>
+
+                        <Label text="Occupied: 10"/>
+
+                    </HBox>
+
+                    <HBox spacing="10">
+
+                        <Button text="View"/>
+
+                        <Button text="Edit"/>
+
+                        <Button text="Manage Rooms"/>
+
+                    </HBox>
+
+                </VBox>
+
+                <!-- PG 2 -->
+
+                <VBox spacing="12"
+                      styleClass="pg-card">
+
+                    <HBox>
+
+                        <VBox HBox.hgrow="ALWAYS">
+
+                            <Label text="Green Residency"
+                                   styleClass="pg-title"/>
+
+                            <Label text="Urban Estate, Jalandhar"/>
+
+                        </VBox>
+
+                        <Label text="Active"
+                               styleClass="status-active"/>
+
+                    </HBox>
+
+                    <HBox spacing="30">
+
+                        <Label text="Rooms: 10"/>
+
+                        <Label text="Beds: 15"/>
+
+                        <Label text="Occupied: 13"/>
+
+                    </HBox>
+
+                    <HBox spacing="10">
+
+                        <Button text="View"/>
+
+                        <Button text="Edit"/>
+
+                        <Button text="Manage Rooms"/>
+
+                    </HBox>
+
+                </VBox>
+
+                <!-- PG 3 -->
+
+                <VBox spacing="12"
+                      styleClass="pg-card">
+
+                    <HBox>
+
+                        <VBox HBox.hgrow="ALWAYS">
+
+                            <Label text="Student Hub"
+                                   styleClass="pg-title"/>
+
+                            <Label text="Near University"/>
+
+                        </VBox>
+
+                        <Label text="Active"
+                               styleClass="status-active"/>
+
+                    </HBox>
+
+                    <HBox spacing="30">
+
+                        <Label text="Rooms: 6"/>
+
+                        <Label text="Beds: 8"/>
+
+                        <Label text="Occupied: 5"/>
+
+                    </HBox>
+
+                    <HBox spacing="10">
+
+                        <Button text="View"/>
+
+                        <Button text="Edit"/>
+
+                        <Button text="Manage Rooms"/>
+
+                    </HBox>
+
+                </VBox>
+
+            </VBox>
+
+        </ScrollPane>
+
+    </center>
+
+</BorderPane>

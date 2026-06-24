@@ -1,0 +1,53 @@
+.root{
+    -fx-background-color:#0f4f46;
+}
+
+.top-bar{
+    -fx-padding:25;
+}
+
+.page-title{
+    -fx-font-size:32;
+    -fx-font-weight:bold;
+    -fx-text-fill:white;
+}
+
+.primary-button{
+    -fx-background-color:white;
+    -fx-text-fill:#0f4f46;
+    -fx-font-weight:bold;
+    -fx-background-radius:10;
+    -fx-padding:10 20;
+}
+
+.content-area{
+    -fx-padding:25;
+}
+
+.pg-card{
+    -fx-background-color:white;
+    -fx-background-radius:16;
+    -fx-padding:20;
+
+    -fx-effect:dropshadow(
+        gaussian,
+        rgba(0,0,0,0.08),
+        12,
+        0,
+        0,
+        2
+    );
+}
+
+.pg-title{
+    -fx-font-size:22;
+    -fx-font-weight:bold;
+}
+
+.status-active{
+    -fx-background-color:#dff1ea;
+    -fx-background-radius:20;
+    -fx-padding:5 12;
+    -fx-text-fill:#0f4f46;
+    -fx-font-weight:bold;
+}
