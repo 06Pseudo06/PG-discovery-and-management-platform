@@ -1,0 +1,72 @@
+.root{
+    -fx-background-color:#0f4f46;
+}
+
+.top-bar{
+    -fx-padding:25;
+}
+
+.page-title{
+    -fx-font-size:30;
+    -fx-font-weight:bold;
+    -fx-text-fill:white;
+}
+
+.primary-button{
+    -fx-background-color:white;
+    -fx-text-fill:#0f4f46;
+    -fx-background-radius:10;
+}
+
+/* SIDEBAR */
+
+.chat-sidebar{
+    -fx-background-color:white;
+    -fx-padding:20;
+    -fx-spacing:10;
+}
+
+.sidebar-title{
+    -fx-font-size:18;
+    -fx-font-weight:bold;
+}
+
+.chat-user{
+    -fx-background-color:#dff1ea;
+    -fx-background-radius:10;
+    -fx-alignment:CENTER_LEFT;
+}
+
+/* CHAT */
+
+.chat-container{
+    -fx-padding:20;
+}
+
+.chat-header{
+    -fx-font-size:22;
+    -fx-font-weight:bold;
+    -fx-text-fill:white;
+}
+
+.messages-area{
+    -fx-padding:20;
+}
+
+.message-received{
+    -fx-background-color:white;
+    -fx-background-radius:15;
+    -fx-padding:10 15;
+}
+
+.message-sent{
+    -fx-background-color:#dff1ea;
+    -fx-background-radius:15;
+    -fx-padding:10 15;
+}
+
+.send-button{
+    -fx-background-color:white;
+    -fx-text-fill:#0f4f46;
+    -fx-font-weight:bold;
+}

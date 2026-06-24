@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.pgfinder.controller.TenantsController"
+            stylesheets="@../css/tenants.css">
+
+    <top>
+
+        <VBox spacing="15"
+              styleClass="top-container">
+
+            <HBox spacing="15"
+                  alignment="CENTER_LEFT">
+
+                <Button text="← Dashboard"
+                        onAction="#goBack"
+                        styleClass="primary-button"/>
+
+                <Label text="Tenants"
+                       styleClass="page-title"/>
+
+                <Region HBox.hgrow="ALWAYS"/>
+
+                <Button text="+ Add Tenant"
+                        styleClass="primary-button"/>
+
+            </HBox>
+
+            <TextField promptText="Search Tenant..."
+                       styleClass="search-field"/>
+
+        </VBox>
+
+    </top>
+
+    <center>
+
+        <ScrollPane fitToWidth="true">
+
+            <VBox spacing="20"
+                  styleClass="content-area">
+
+                <!-- TENANT 1 -->
+
+                <VBox spacing="12"
+                      styleClass="tenant-card">
+
+                    <HBox spacing="15">
+
+                        <StackPane styleClass="avatar">
+
+                            <Label text="👨"/>
+
+                        </StackPane>
+
+                        <VBox HBox.hgrow="ALWAYS">
+
+                            <Label text="Rahul Sharma"
+                                   styleClass="tenant-name"/>
+
+                            <Label text="Sunrise PG"/>
+
+                            <Label text="Room A • Bed A1"/>
+
+                        </VBox>
+
+                        <Label text="Active"
+                               styleClass="status-active"/>
+
+                    </HBox>
+
+                    <Separator/>
+
+                    <Label text="Joined: 15 Jul 2026"/>
+
+                    <HBox spacing="10">
+
+                        <Button text="View Profile"/>
+
+                        <Button text="Message"/>
+
+                    </HBox>
+
+                </VBox>
+
+                <!-- TENANT 2 -->
+
+                <VBox spacing="12"
+                      styleClass="tenant-card">
+
+                    <HBox spacing="15">
+
+                        <StackPane styleClass="avatar">
+
+                            <Label text="👨"/>
+
+                        </StackPane>
+
+                        <VBox HBox.hgrow="ALWAYS">
+
+                            <Label text="Aman Patel"
+                                   styleClass="tenant-name"/>
+
+                            <Label text="Green Residency"/>
+
+                            <Label text="Room B • Bed B3"/>
+
+                        </VBox>
+
+                        <Label text="Active"
+                               styleClass="status-active"/>
+
+                    </HBox>
+
+                    <Separator/>
+
+                    <Label text="Joined: 20 Jul 2026"/>
+
+                    <HBox spacing="10">
+
+                        <Button text="View Profile"/>
+
+                        <Button text="Message"/>
+
+                    </HBox>
+
+                </VBox>
+
+                <!-- TENANT 3 -->
+
+                <VBox spacing="12"
+                      styleClass="tenant-card">
+
+                    <HBox spacing="15">
+
+                        <StackPane styleClass="avatar">
+
+                            <Label text="👩"/>
+
+                        </StackPane>
+
+                        <VBox HBox.hgrow="ALWAYS">
+
+                            <Label text="Neha Verma"
+                                   styleClass="tenant-name"/>
+
+                            <Label text="Student Hub"/>
+
+                            <Label text="Room C • Bed C2"/>
+
+                        </VBox>
+
+                        <Label text="Active"
+                               styleClass="status-active"/>
+
+                    </HBox>
+
+                    <Separator/>
+
+                    <Label text="Joined: 01 Aug 2026"/>
+
+                    <HBox spacing="10">
+
+                        <Button text="View Profile"/>
+
+                        <Button text="Message"/>
+
+                    </HBox>
+
+                </VBox>
+
+            </VBox>
+
+        </ScrollPane>
+
+    </center>
+
+</BorderPane>

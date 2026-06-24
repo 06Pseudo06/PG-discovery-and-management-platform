@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.pgfinder.controller.AnnouncementsController"
+            stylesheets="@../css/announcements.css">
+
+    <top>
+
+        <HBox spacing="15"
+              alignment="CENTER_LEFT"
+              styleClass="top-bar">
+
+            <Button text="← Dashboard"
+                    onAction="#goBack"
+                    styleClass="primary-button"/>
+
+            <Label text="Announcements"
+                   styleClass="page-title"/>
+
+            <Region HBox.hgrow="ALWAYS"/>
+
+            <Button text="+ Create Announcement"
+                    styleClass="primary-button"/>
+
+        </HBox>
+
+    </top>
+
+    <center>
+
+        <ScrollPane fitToWidth="true">
+
+            <VBox spacing="20"
+                  styleClass="content-area">
+
+                <!-- CREATE ANNOUNCEMENT -->
+
+                <VBox spacing="15"
+                      styleClass="announcement-form">
+
+                    <Label text="Create New Announcement"
+                           styleClass="section-title"/>
+
+                    <TextField promptText="Announcement Title"/>
+
+                    <TextArea promptText="Write announcement..."
+                              prefRowCount="4"/>
+
+                    <Button text="Publish Announcement"
+                            styleClass="publish-btn"/>
+
+                </VBox>
+
+                <!-- ANNOUNCEMENT 1 -->
+
+                <VBox spacing="10"
+                      styleClass="announcement-card">
+
+                    <HBox>
+
+                        <VBox HBox.hgrow="ALWAYS">
+
+                            <Label text="Water Maintenance"
+                                   styleClass="announcement-title"/>
+
+                            <Label text="Posted: Today"/>
+
+                        </VBox>
+
+                        <Button text="Delete"/>
+
+                    </HBox>
+
+                    <Separator/>
+
+                    <Label text="Water supply will be unavailable from 10 AM to 12 PM tomorrow."/>
+
+                </VBox>
+
+                <!-- ANNOUNCEMENT 2 -->
+
+                <VBox spacing="10"
+                      styleClass="announcement-card">
+
+                    <HBox>
+
+                        <VBox HBox.hgrow="ALWAYS">
+
+                            <Label text="Rent Reminder"
+                                   styleClass="announcement-title"/>
+
+                            <Label text="Posted: 2 Days Ago"/>
+
+                        </VBox>
+
+                        <Button text="Delete"/>
+
+                    </HBox>
+
+                    <Separator/>
+
+                    <Label text="Please submit your monthly rent before the 5th."/>
+
+                </VBox>
+
+                <!-- ANNOUNCEMENT 3 -->
+
+                <VBox spacing="10"
+                      styleClass="announcement-card">
+
+                    <HBox>
+
+                        <VBox HBox.hgrow="ALWAYS">
+
+                            <Label text="WiFi Upgrade"
+                                   styleClass="announcement-title"/>
+
+                            <Label text="Posted: Last Week"/>
+
+                        </VBox>
+
+                        <Button text="Delete"/>
+
+                    </HBox>
+
+                    <Separator/>
+
+                    <Label text="New high-speed router installed for all residents."/>
+
+                </VBox>
+
+            </VBox>
+
+        </ScrollPane>
+
+    </center>
+
+</BorderPane>

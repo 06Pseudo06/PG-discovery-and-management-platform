@@ -34,11 +34,11 @@
                 <Label text="5" styleClass="menu-badge"/>
             </HBox>
             
-            <Button text="👥  Tenants" styleClass="owner-menu" maxWidth="Infinity"/>
-            <Button text="📢  Announcements" styleClass="owner-menu" maxWidth="Infinity"/>
+            <Button text="👥  Tenants" styleClass="owner-menu" maxWidth="Infinity" onAction="#openTenants"/>
+            <Button text="📢  Announcements" styleClass="owner-menu" maxWidth="Infinity"  onAction="#openAnnouncements"/>
             
             <HBox alignment="CENTER_LEFT" styleClass="menu-item-with-badge">
-                <Button text="💬  Chats" styleClass="owner-menu" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                <Button text="💬  Chats" styleClass="owner-menu" HBox.hgrow="ALWAYS" maxWidth="Infinity" onAction="#openChat"/>
                 <Label text="3" styleClass="menu-badge"/>
             </HBox>
             

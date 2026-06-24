@@ -39,6 +39,18 @@ public void openBookingRequests() {
     SceneManager.switchTo("BookingRequests.fxml");
 }
 
+public void openTenants() {
+    SceneManager.switchTo("Tenants.fxml");
+}
+
+public void openAnnouncements() {
+    SceneManager.switchTo("Announcements.fxml");
+}
+
+public void openChat() {
+    SceneManager.switchTo("Chat.fxml");
+}
+
 }
 
 

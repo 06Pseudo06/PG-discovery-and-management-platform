@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.pgfinder.controller.ChatController"
+            stylesheets="@../css/chat.css">
+
+    <!-- TOP -->
+
+    <top>
+
+        <HBox spacing="15"
+              alignment="CENTER_LEFT"
+              styleClass="top-bar">
+
+            <Button text="← Dashboard"
+                    onAction="#goBack"
+                    styleClass="primary-button"/>
+
+            <Label text="Tenant Chats"
+                   styleClass="page-title"/>
+
+        </HBox>
+
+    </top>
+
+    <!-- LEFT SIDE -->
+
+    <left>
+
+        <VBox prefWidth="280"
+              spacing="10"
+              styleClass="chat-sidebar">
+
+            <Label text="Conversations"
+                   styleClass="sidebar-title"/>
+
+            <Button text="Rahul Sharma"
+                    styleClass="chat-user"/>
+
+            <Button text="Aman Patel"
+                    styleClass="chat-user"/>
+
+            <Button text="Neha Verma"
+                    styleClass="chat-user"/>
+
+        </VBox>
+
+    </left>
+
+    <!-- CHAT AREA -->
+
+    <center>
+
+        <VBox spacing="15"
+              styleClass="chat-container">
+
+            <HBox>
+
+                <Label text="Rahul Sharma"
+                       styleClass="chat-header"/>
+
+            </HBox>
+
+            <ScrollPane fitToWidth="true"
+                        VBox.vgrow="ALWAYS">
+
+                <VBox spacing="10"
+                      styleClass="messages-area">
+
+                    <HBox alignment="CENTER_LEFT">
+
+                        <Label text="Hi Sir, is Bed A4 available?"
+                               styleClass="message-received"/>
+
+                    </HBox>
+
+                    <HBox alignment="CENTER_RIGHT">
+
+                        <Label text="Yes, it is currently available."
+                               styleClass="message-sent"/>
+
+                    </HBox>
+
+                    <HBox alignment="CENTER_LEFT">
+
+                        <Label text="Thank you!"
+                               styleClass="message-received"/>
+
+                    </HBox>
+
+                </VBox>
+
+            </ScrollPane>
+
+            <HBox spacing="10">
+
+                <TextField promptText="Type a message..."
+                           HBox.hgrow="ALWAYS"/>
+
+                <Button text="Send"
+                        styleClass="send-button"/>
+
+            </HBox>
+
+        </VBox>
+
+    </center>
+
+</BorderPane>
