@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.pgfinder.controller.BookingRequestsController"
+            stylesheets="@../css/booking-requests.css">
+
+    <top>
+
+        <HBox spacing="15"
+              alignment="CENTER_LEFT"
+              styleClass="top-bar">
+
+            <Button text="← Dashboard"
+                    onAction="#goBack"
+                    styleClass="primary-button"/>
+
+            <Label text="Booking Requests"
+                   styleClass="page-title"/>
+
+            <Region HBox.hgrow="ALWAYS"/>
+
+            <Label text="5 Pending Requests"
+                   styleClass="pending-label"/>
+
+        </HBox>
+
+    </top>
+
+    <center>
+
+        <ScrollPane fitToWidth="true">
+
+            <VBox spacing="20"
+                  styleClass="content-area">
+
+                <!-- REQUEST 1 -->
+
+                <VBox spacing="12"
+                      styleClass="request-card">
+
+                    <HBox>
+
+                        <Label text="Request #101"
+                               styleClass="request-title"/>
+
+                        <Region HBox.hgrow="ALWAYS"/>
+
+                        <Label text="Pending"
+                               styleClass="status-pending"/>
+
+                    </HBox>
+
+                    <Separator/>
+
+                    <Label text="Student: Rahul Sharma"/>
+
+                    <Label text="PG: Sunrise PG"/>
+
+                    <Label text="Room: A"/>
+
+                    <Label text="Bed: A4"/>
+
+                    <Label text="Move-In Date: 15 Jul 2026"/>
+
+                    <HBox spacing="10">
+
+                        <Button text="Approve"
+                                styleClass="approve-btn"/>
+
+                        <Button text="Reject"
+                                styleClass="reject-btn"/>
+
+                    </HBox>
+
+                </VBox>
+
+                <!-- REQUEST 2 -->
+
+                <VBox spacing="12"
+                      styleClass="request-card">
+
+                    <HBox>
+
+                        <Label text="Request #102"
+                               styleClass="request-title"/>
+
+                        <Region HBox.hgrow="ALWAYS"/>
+
+                        <Label text="Pending"
+                               styleClass="status-pending"/>
+
+                    </HBox>
+
+                    <Separator/>
+
+                    <Label text="Student: Aman Patel"/>
+
+                    <Label text="PG: Green Residency"/>
+
+                    <Label text="Room: B"/>
+
+                    <Label text="Bed: B3"/>
+
+                    <Label text="Move-In Date: 20 Jul 2026"/>
+
+                    <HBox spacing="10">
+
+                        <Button text="Approve"
+                                styleClass="approve-btn"/>
+
+                        <Button text="Reject"
+                                styleClass="reject-btn"/>
+
+                    </HBox>
+
+                </VBox>
+
+                <!-- REQUEST 3 -->
+
+                <VBox spacing="12"
+                      styleClass="request-card">
+
+                    <HBox>
+
+                        <Label text="Request #103"
+                               styleClass="request-title"/>
+
+                        <Region HBox.hgrow="ALWAYS"/>
+
+                        <Label text="Pending"
+                               styleClass="status-pending"/>
+
+                    </HBox>
+
+                    <Separator/>
+
+                    <Label text="Student: Neha Verma"/>
+
+                    <Label text="PG: Student Hub"/>
+
+                    <Label text="Room: C"/>
+
+                    <Label text="Bed: C2"/>
+
+                    <Label text="Move-In Date: 01 Aug 2026"/>
+
+                    <HBox spacing="10">
+
+                        <Button text="Approve"
+                                styleClass="approve-btn"/>
+
+                        <Button text="Reject"
+                                styleClass="reject-btn"/>
+
+                    </HBox>
+
+                </VBox>
+
+            </VBox>
+
+        </ScrollPane>
+
+    </center>
+
+</BorderPane>

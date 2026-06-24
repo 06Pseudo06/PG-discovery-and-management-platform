@@ -35,6 +35,10 @@ public void openMyPGs() {
     SceneManager.switchTo("MyPGs.fxml");
 }
 
+public void openBookingRequests() {
+    SceneManager.switchTo("BookingRequests.fxml");
+}
+
 }
 
 

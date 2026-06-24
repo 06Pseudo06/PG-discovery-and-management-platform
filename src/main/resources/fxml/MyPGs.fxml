@@ -74,7 +74,7 @@
 
                         <Button text="Edit"/>
 
-                        <Button text="Manage Rooms"/>
+                        <Button text="Manage Rooms" onAction="#openRoomsBeds"/>
 
                     </HBox>
 
@@ -117,7 +117,7 @@
 
                         <Button text="Edit"/>
 
-                        <Button text="Manage Rooms"/>
+                        <Button text="Manage Rooms" onAction="#openRoomsBeds"/>
 
                     </HBox>
 
@@ -160,7 +160,7 @@
 
                         <Button text="Edit"/>
 
-                        <Button text="Manage Rooms"/>
+                        <Button text="Manage Rooms" onAction="#openRoomsBeds"/>
 
                     </HBox>
 

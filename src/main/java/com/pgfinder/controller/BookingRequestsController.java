@@ -2,14 +2,10 @@ package com.pgfinder.controller;
 
 import com.pgfinder.util.SceneManager;
 
-public class MyPGsController {
+public class BookingRequestsController {
 
     public void goBack() {
         SceneManager.switchTo("OwnerDashboard.fxml");
-    }
-
-    public void openRoomsBeds() {
-        SceneManager.switchTo("RoomsBeds.fxml");
     }
 
 }
