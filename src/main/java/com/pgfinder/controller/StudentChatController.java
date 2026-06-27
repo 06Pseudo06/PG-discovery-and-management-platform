@@ -76,6 +76,11 @@ public class StudentChatController {
     }
 
     @FXML
+    private void openAnnouncements() {
+        SceneManager.switchTo("StudentAnnouncements.fxml");
+    }
+
+    @FXML
     private void openReviews() {
         SceneManager.switchTo("Reviews.fxml");
     }

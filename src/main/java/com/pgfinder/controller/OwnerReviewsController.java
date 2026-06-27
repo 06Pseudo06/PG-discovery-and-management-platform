@@ -4,16 +4,16 @@ import com.pgfinder.util.SceneManager;
 import com.pgfinder.util.SessionManager;
 import javafx.fxml.FXML;
 
-public class RoomsBedsController {
+public class OwnerReviewsController {
 
     @FXML
     public void initialize() {
-        // Init room statuses if needed
+        // Init reviews
     }
 
     @FXML
     public void goBack() {
-        SceneManager.switchTo("MyPGs.fxml");
+        SceneManager.switchTo("OwnerDashboard.fxml");
     }
 
     // Sidebar navigation actions
@@ -25,6 +25,11 @@ public class RoomsBedsController {
     @FXML
     private void openMyPGs() {
         SceneManager.switchTo("MyPGs.fxml");
+    }
+
+    @FXML
+    private void openRoomsBeds() {
+        SceneManager.switchTo("RoomsBeds.fxml");
     }
 
     @FXML
@@ -40,11 +45,6 @@ public class RoomsBedsController {
     @FXML
     private void openAnnouncements() {
         SceneManager.switchTo("Announcements.fxml");
-    }
-
-    @FXML
-    private void openReviews() {
-        SceneManager.switchTo("OwnerReviews.fxml");
     }
 
     @FXML

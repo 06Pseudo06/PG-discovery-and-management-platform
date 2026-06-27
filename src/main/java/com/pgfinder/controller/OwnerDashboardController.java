@@ -58,6 +58,11 @@ public class OwnerDashboardController implements Initializable {
     }
 
     @FXML
+    public void openReviews() {
+        SceneManager.switchTo("OwnerReviews.fxml");
+    }
+
+    @FXML
     public void openChat() {
         SceneManager.switchTo("Chat.fxml");
     }

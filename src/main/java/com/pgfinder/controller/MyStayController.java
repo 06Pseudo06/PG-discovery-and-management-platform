@@ -27,6 +27,11 @@ public class MyStayController {
     }
 
     @FXML
+    private void openAnnouncements() {
+        SceneManager.switchTo("StudentAnnouncements.fxml");
+    }
+
+    @FXML
     private void openPGHistory() {
         SceneManager.switchTo("PGHistory.fxml");
     }

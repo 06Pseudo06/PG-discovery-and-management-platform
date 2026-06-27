@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.Circle?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.pgfinder.controller.OwnerReviewsController"
+            stylesheets="@../css/owner-dashboard.css"
+            prefWidth="1280" prefHeight="800">
+
+    <!-- LEFT SIDEBAR -->
+    <left>
+        <VBox prefWidth="240" styleClass="owner-sidebar" spacing="8">
+            <HBox alignment="CENTER_LEFT" spacing="12" styleClass="logo-container">
+                <StackPane styleClass="logo-icon-bg">
+                    <Label text="🏠" styleClass="logo-icon"/>
+                </StackPane>
+                <VBox>
+                    <Label text="PGFinder" styleClass="owner-logo"/>
+                    <Label text="Owner Panel" styleClass="owner-subtitle"/>
+                </VBox>
+            </HBox>
+
+            <Region prefHeight="20"/>
+
+            <Button text="📁  Dashboard" styleClass="owner-menu" maxWidth="Infinity" onAction="#openDashboard"/>
+            <Button text="🏢 My PGs" styleClass="owner-menu" maxWidth="Infinity" onAction="#openMyPGs"/>
+            <Button text="🛏  Rooms &amp; Beds" styleClass="owner-menu" maxWidth="Infinity" onAction="#openRoomsBeds"/>
+            
+            <HBox alignment="CENTER_LEFT" styleClass="menu-item-with-badge">
+                <Button text="📋  Requests" styleClass="owner-menu" HBox.hgrow="ALWAYS" maxWidth="Infinity" onAction="#openBookingRequests"/>
+                <Label text="5" styleClass="menu-badge"/>
+            </HBox>
+            
+            <Button text="👥  Tenants" styleClass="owner-menu" maxWidth="Infinity" onAction="#openTenants"/>
+            <Button text="📢  Announcements" styleClass="owner-menu" maxWidth="Infinity" onAction="#openAnnouncements"/>
+            
+            <HBox alignment="CENTER_LEFT" styleClass="menu-item-with-badge">
+                <Button text="💬  Chats" styleClass="owner-menu" HBox.hgrow="ALWAYS" maxWidth="Infinity" onAction="#openChat"/>
+                <Label text="3" styleClass="menu-badge"/>
+            </HBox>
+            
+            <Button text="⭐  Reviews" styleClass="owner-menu-active" maxWidth="Infinity"/>
+            <Button text="📊  Reports" styleClass="owner-menu" maxWidth="Infinity" onAction="#openDashboard"/>
+            <Button text="⚙  Settings" styleClass="owner-menu" maxWidth="Infinity" onAction="#openDashboard"/>
+
+            <Region VBox.vgrow="ALWAYS"/>
+
+            <Button text="↪  Logout" styleClass="logout-button" maxWidth="Infinity" onAction="#handleLogout"/>
+        </VBox>
+    </left>
+
+    <!-- MAIN BODY -->
+    <center>
+        <ScrollPane fitToWidth="true" fitToHeight="true" styleClass="main-scrollpane">
+            <VBox spacing="25" styleClass="owner-main-content">
+                
+                <!-- TOP BAR -->
+                <HBox alignment="CENTER_LEFT" spacing="15">
+                    <Button text="← Dashboard" styleClass="secondary-button" onAction="#goBack"/>
+                    <Label text="Tenant Reviews &amp; Ratings" styleClass="page-title" style="-fx-padding: 0 0 0 10;"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <ComboBox promptText="Filter by Property" prefWidth="200"/>
+                </HBox>
+
+                <!-- REVIEWS BREAKDOWN ROW -->
+                <HBox spacing="20">
+                    <VBox styleClass="owner-large-card" prefWidth="350" alignment="CENTER" spacing="15">
+                        <Label text="Average Tenant Rating" styleClass="stat-label"/>
+                        <Label text="4.6 / 5.0" styleClass="welcome-title" style="-fx-font-size: 36px; -fx-text-fill: #0F4F46;"/>
+                        <Label text="⭐⭐⭐⭐★" style="-fx-font-size: 22px; -fx-text-fill: #F59E0B;"/>
+                        <Label text="Based on 24 reviews" styleClass="stat-sublabel"/>
+                    </VBox>
+
+                    <VBox styleClass="owner-large-card" HBox.hgrow="ALWAYS" spacing="8">
+                        <Label text="Rating Distribution" styleClass="section-title"/>
+                        <HBox spacing="10" alignment="CENTER_LEFT">
+                            <Label text="5 Star" prefWidth="50" styleClass="stat-sublabel"/>
+                            <ProgressBar progress="0.75" HBox.hgrow="ALWAYS"/>
+                            <Label text="18" prefWidth="20" styleClass="stat-sublabel"/>
+                        </HBox>
+                        <HBox spacing="10" alignment="CENTER_LEFT">
+                            <Label text="4 Star" prefWidth="50" styleClass="stat-sublabel"/>
+                            <ProgressBar progress="0.20" HBox.hgrow="ALWAYS"/>
+                            <Label text="4" prefWidth="20" styleClass="stat-sublabel"/>
+                        </HBox>
+                        <HBox spacing="10" alignment="CENTER_LEFT">
+                            <Label text="3 Star" prefWidth="50" styleClass="stat-sublabel"/>
+                            <ProgressBar progress="0.05" HBox.hgrow="ALWAYS"/>
+                            <Label text="2" prefWidth="20" styleClass="stat-sublabel"/>
+                        </HBox>
+                    </VBox>
+                </HBox>
+
+                <!-- REVIEWS FEED -->
+                <VBox spacing="15">
+                    <Label text="Active Feedback Feed" styleClass="section-title" style="-fx-text-fill: #FFFFFF;"/>
+                    
+                    <!-- Review card 1 -->
+                    <VBox styleClass="owner-large-card" spacing="12">
+                        <HBox alignment="CENTER_LEFT" spacing="12">
+                            <StackPane styleClass="avatar-circle"><Label text="RS" styleClass="avatar-text"/></StackPane>
+                            <VBox HBox.hgrow="ALWAYS">
+                                <HBox alignment="CENTER_LEFT">
+                                    <Label text="Rahul Sharma" styleClass="item-main-title" style="-fx-font-size: 15px;"/>
+                                    <Label text="•  Tenant in Sunrise PG (Room A1)" styleClass="item-subtitle" style="-fx-padding: 0 0 0 10;"/>
+                                    <Region HBox.hgrow="ALWAYS"/>
+                                    <Label text="⭐⭐⭐⭐⭐" style="-fx-text-fill: #F59E0B; -fx-font-size: 14px;"/>
+                                </HBox>
+                            </VBox>
+                        </HBox>
+                        <Separator/>
+                        <Label text="Absolutely loved my stay here. Rooms were premium, food was exceptional, and housekeeping was daily. Strongly recommended!" wrapText="true" style="-fx-text-fill: #4B5563; -fx-font-size: 13.5px;"/>
+                        <Separator/>
+                        <HBox alignment="CENTER_RIGHT">
+                            <Button text="Quick Reply" styleClass="review-action-btn" style="-fx-padding: 6 12; -fx-font-size: 11px;"/>
+                        </HBox>
+                    </VBox>
+
+                    <!-- Review card 2 -->
+                    <VBox styleClass="owner-large-card" spacing="12">
+                        <HBox alignment="CENTER_LEFT" spacing="12">
+                            <StackPane styleClass="avatar-circle"><Label text="AP" styleClass="avatar-text"/></StackPane>
+                            <VBox HBox.hgrow="ALWAYS">
+                                <HBox alignment="CENTER_LEFT">
+                                    <Label text="Aman Patel" styleClass="item-main-title" style="-fx-font-size: 15px;"/>
+                                    <Label text="•  Tenant in Green Residency (Room B)" styleClass="item-subtitle" style="-fx-padding: 0 0 0 10;"/>
+                                    <Region HBox.hgrow="ALWAYS"/>
+                                    <Label text="⭐⭐⭐⭐★" style="-fx-text-fill: #F59E0B; -fx-font-size: 14px;"/>
+                                </HBox>
+                            </VBox>
+                        </HBox>
+                        <Separator/>
+                        <Label text="Great location and the owner Rohit was very responsive. The WiFi was sometimes slow, but rooms were clean and food was decent." wrapText="true" style="-fx-text-fill: #4B5563; -fx-font-size: 13.5px;"/>
+                        <Separator/>
+                        <HBox alignment="CENTER_RIGHT">
+                            <Button text="Quick Reply" styleClass="review-action-btn" style="-fx-padding: 6 12; -fx-font-size: 11px;"/>
+                        </HBox>
+                    </VBox>
+                </VBox>
+
+            </VBox>
+        </ScrollPane>
+    </center>
+</BorderPane>

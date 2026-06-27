@@ -124,6 +124,11 @@ public class ReviewsController {
     }
 
     @FXML
+    private void openAnnouncements() {
+        SceneManager.switchTo("StudentAnnouncements.fxml");
+    }
+
+    @FXML
     private void openSettings() {
         SceneManager.switchTo("Settings.fxml");
     }

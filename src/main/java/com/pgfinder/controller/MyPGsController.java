@@ -43,6 +43,11 @@ public class MyPGsController {
     }
 
     @FXML
+    private void openReviews() {
+        SceneManager.switchTo("OwnerReviews.fxml");
+    }
+
+    @FXML
     private void openChat() {
         SceneManager.switchTo("Chat.fxml");
     }
