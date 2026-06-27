@@ -6,137 +6,153 @@
 <BorderPane xmlns="http://javafx.com/javafx/21"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.pgfinder.controller.AnnouncementsController"
-            stylesheets="@../css/announcements.css">
+            stylesheets="@../css/owner-dashboard.css"
+            prefWidth="1280" prefHeight="800">
 
-    <top>
+    <!-- LEFT SIDEBAR -->
+    <left>
+        <VBox prefWidth="240" styleClass="owner-sidebar" spacing="8">
+            <HBox alignment="CENTER_LEFT" spacing="12" styleClass="logo-container">
+                <StackPane styleClass="logo-icon-bg">
+                    <Label text="🏠" styleClass="logo-icon"/>
+                </StackPane>
+                <VBox>
+                    <Label text="PGFinder" styleClass="owner-logo"/>
+                    <Label text="Owner Panel" styleClass="owner-subtitle"/>
+                </VBox>
+            </HBox>
 
-        <HBox spacing="15"
-              alignment="CENTER_LEFT"
-              styleClass="top-bar">
+            <Region prefHeight="20"/>
 
-            <Button text="← Dashboard"
-                    onAction="#goBack"
-                    styleClass="primary-button"/>
+            <Button text="📁  Dashboard" styleClass="owner-menu" maxWidth="Infinity" onAction="#openDashboard"/>
+            <Button text="🏢 My PGs" styleClass="owner-menu" maxWidth="Infinity" onAction="#openMyPGs"/>
+            <Button text="🛏  Rooms &amp; Beds" styleClass="owner-menu" maxWidth="Infinity" onAction="#openRoomsBeds"/>
+            
+            <HBox alignment="CENTER_LEFT" styleClass="menu-item-with-badge">
+                <Button text="📋  Requests" styleClass="owner-menu" HBox.hgrow="ALWAYS" maxWidth="Infinity" onAction="#openBookingRequests"/>
+                <Label text="5" styleClass="menu-badge"/>
+            </HBox>
+            
+            <Button text="👥  Tenants" styleClass="owner-menu" maxWidth="Infinity" onAction="#openTenants"/>
+            <Button text="📢  Announcements" styleClass="owner-menu-active" maxWidth="Infinity"/>
+            
+            <HBox alignment="CENTER_LEFT" styleClass="menu-item-with-badge">
+                <Button text="💬  Chats" styleClass="owner-menu" HBox.hgrow="ALWAYS" maxWidth="Infinity" onAction="#openChat"/>
+                <Label text="3" styleClass="menu-badge"/>
+            </HBox>
+            
+            <Button text="⭐  Reviews" styleClass="owner-menu" maxWidth="Infinity" onAction="#openDashboard"/>
+            <Button text="📊  Reports" styleClass="owner-menu" maxWidth="Infinity" onAction="#openDashboard"/>
+            <Button text="⚙  Settings" styleClass="owner-menu" maxWidth="Infinity" onAction="#openDashboard"/>
 
-            <Label text="Announcements"
-                   styleClass="page-title"/>
+            <Region VBox.vgrow="ALWAYS"/>
 
-            <Region HBox.hgrow="ALWAYS"/>
+            <Button text="↪  Logout" styleClass="logout-button" maxWidth="Infinity" onAction="#handleLogout"/>
+        </VBox>
+    </left>
 
-            <Button text="+ Create Announcement"
-                    styleClass="primary-button"/>
-
-        </HBox>
-
-    </top>
-
+    <!-- MAIN BODY -->
     <center>
+        <ScrollPane fitToWidth="true" fitToHeight="true" styleClass="main-scrollpane">
+            <VBox spacing="25" styleClass="owner-main-content">
+                
+                <!-- TOP BAR -->
+                <HBox alignment="CENTER_LEFT" spacing="15">
+                    <Button text="← Dashboard" styleClass="secondary-button" onAction="#goBack"/>
+                    <Label text="Announcements &amp; Notifications Manager" styleClass="page-title" style="-fx-padding: 0 0 0 10;"/>
+                </HBox>
 
-        <ScrollPane fitToWidth="true">
+                <!-- SPLIT COLUMNS -->
+                <HBox spacing="25">
+                    
+                    <!-- LEFT COLUMN: COMPOSER -->
+                    <VBox spacing="20" HBox.hgrow="ALWAYS" prefWidth="550">
+                        <VBox spacing="20" styleClass="owner-large-card">
+                            <Label text="Compose Announcement" styleClass="section-title"/>
+                            
+                            <VBox spacing="8">
+                                <Label text="Select Property" styleClass="stat-label"/>
+                                <ComboBox fx:id="pgSelect" promptText="All Properties" prefWidth="400"/>
+                            </VBox>
 
-            <VBox spacing="20"
-                  styleClass="content-area">
+                            <VBox spacing="8">
+                                <Label text="Priority Level" styleClass="stat-label"/>
+                                <ComboBox fx:id="prioritySelect" promptText="Choose Priority" prefWidth="400"/>
+                            </VBox>
 
-                <!-- CREATE ANNOUNCEMENT -->
+                            <VBox spacing="8">
+                                <Label text="Announcement Title" styleClass="stat-label"/>
+                                <TextField fx:id="titleField" promptText="Enter announcement heading..."/>
+                            </VBox>
 
-                <VBox spacing="15"
-                      styleClass="announcement-form">
+                            <VBox spacing="8">
+                                <Label text="Announcement Message" styleClass="stat-label"/>
+                                <TextArea fx:id="messageArea" promptText="Type the body of the notification here..." prefRowCount="5"/>
+                            </VBox>
 
-                    <Label text="Create New Announcement"
-                           styleClass="section-title"/>
+                            <VBox spacing="8">
+                                <Label text="Schedule Broadcast (Optional)" styleClass="stat-label"/>
+                                <HBox spacing="10" alignment="CENTER_LEFT">
+                                    <DatePicker fx:id="scheduleDate" promptText="Select Date" prefWidth="250"/>
+                                    <Label text="(Leave empty to post immediately)" styleClass="stat-sublabel"/>
+                                </HBox>
+                            </VBox>
 
-                    <TextField promptText="Announcement Title"/>
+                            <Separator/>
+                            
+                            <Button text="📢 Broadcast to Tenants" styleClass="primary-button" prefWidth="220" onAction="#handlePostAnnouncement"/>
+                        </VBox>
+                    </VBox>
 
-                    <TextArea promptText="Write announcement..."
-                              prefRowCount="4"/>
-
-                    <Button text="Publish Announcement"
-                            styleClass="publish-btn"/>
-
-                </VBox>
-
-                <!-- ANNOUNCEMENT 1 -->
-
-                <VBox spacing="10"
-                      styleClass="announcement-card">
-
-                    <HBox>
-
-                        <VBox HBox.hgrow="ALWAYS">
-
-                            <Label text="Water Maintenance"
-                                   styleClass="announcement-title"/>
-
-                            <Label text="Posted: Today"/>
-
+                    <!-- RIGHT COLUMN: PAST FEED -->
+                    <VBox spacing="20" prefWidth="480">
+                        <Label text="Announcement History Feed" styleClass="section-title" style="-fx-text-fill: #FFFFFF;"/>
+                        
+                        <!-- Item 1 -->
+                        <VBox styleClass="owner-large-card" spacing="10">
+                            <HBox alignment="CENTER_LEFT">
+                                <Label text="Water Maintenance Services" styleClass="section-title" style="-fx-font-size: 15px;"/>
+                                <Region HBox.hgrow="ALWAYS"/>
+                                <Label text="HIGH" styleClass="priority-high"/>
+                            </HBox>
+                            <Label text="Sent to Sunrise PG  •  Active Stay Tenants" styleClass="stat-sublabel"/>
+                            <Label text="Tomorrow 10:00 AM to 12:00 PM water supply will be restricted. Housekeeping will manage clean tank refilling." wrapText="true" style="-fx-text-fill: #4B5563; -fx-font-size: 13px;"/>
+                            <Separator/>
+                            <Label text="Posted on: 27 May 2026, 10:25 AM" styleClass="stat-sublabel"/>
                         </VBox>
 
-                        <Button text="Delete"/>
-
-                    </HBox>
-
-                    <Separator/>
-
-                    <Label text="Water supply will be unavailable from 10 AM to 12 PM tomorrow."/>
-
-                </VBox>
-
-                <!-- ANNOUNCEMENT 2 -->
-
-                <VBox spacing="10"
-                      styleClass="announcement-card">
-
-                    <HBox>
-
-                        <VBox HBox.hgrow="ALWAYS">
-
-                            <Label text="Rent Reminder"
-                                   styleClass="announcement-title"/>
-
-                            <Label text="Posted: 2 Days Ago"/>
-
+                        <!-- Item 2 -->
+                        <VBox styleClass="owner-large-card" spacing="10">
+                            <HBox alignment="CENTER_LEFT">
+                                <Label text="Rent Collection Notice" styleClass="section-title" style="-fx-font-size: 15px;"/>
+                                <Region HBox.hgrow="ALWAYS"/>
+                                <Label text="MEDIUM" styleClass="priority-medium"/>
+                            </HBox>
+                            <Label text="Sent to All PGs  •  All Tenants" styleClass="stat-sublabel"/>
+                            <Label text="Please submit monthly room rent on or before July 5th. Delayed payments will attract verification issues." wrapText="true" style="-fx-text-fill: #4B5563; -fx-font-size: 13px;"/>
+                            <Separator/>
+                            <Label text="Posted on: 25 May 2026, 09:15 AM" styleClass="stat-sublabel"/>
                         </VBox>
 
-                        <Button text="Delete"/>
-
-                    </HBox>
-
-                    <Separator/>
-
-                    <Label text="Please submit your monthly rent before the 5th."/>
-
-                </VBox>
-
-                <!-- ANNOUNCEMENT 3 -->
-
-                <VBox spacing="10"
-                      styleClass="announcement-card">
-
-                    <HBox>
-
-                        <VBox HBox.hgrow="ALWAYS">
-
-                            <Label text="WiFi Upgrade"
-                                   styleClass="announcement-title"/>
-
-                            <Label text="Posted: Last Week"/>
-
+                        <!-- Item 3 -->
+                        <VBox styleClass="owner-large-card" spacing="10">
+                            <HBox alignment="CENTER_LEFT">
+                                <Label text="WiFi Router Upgrade" styleClass="section-title" style="-fx-font-size: 15px;"/>
+                                <Region HBox.hgrow="ALWAYS"/>
+                                <Label text="LOW" styleClass="priority-low"/>
+                            </HBox>
+                            <Label text="Sent to Sunrise PG  •  All Tenants" styleClass="stat-sublabel"/>
+                            <Label text="New high-speed routers are installed across all hallways for higher browsing speeds." wrapText="true" style="-fx-text-fill: #4B5563; -fx-font-size: 13px;"/>
+                            <Separator/>
+                            <Label text="Posted on: 20 May 2026, 04:30 PM" styleClass="stat-sublabel"/>
                         </VBox>
 
-                        <Button text="Delete"/>
+                    </VBox>
 
-                    </HBox>
-
-                    <Separator/>
-
-                    <Label text="New high-speed router installed for all residents."/>
-
-                </VBox>
+                </HBox>
 
             </VBox>
-
         </ScrollPane>
-
     </center>
 
 </BorderPane>

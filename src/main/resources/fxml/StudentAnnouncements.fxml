@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.pgfinder.controller.StudentAnnouncementsController"
+            stylesheets="@../css/student-dashboard.css"
+            prefWidth="1280" prefHeight="800">
+
+    <!-- LEFT SIDEBAR -->
+    <left>
+        <VBox fx:id="sidebar"
+              prefWidth="250"
+              spacing="15"
+              styleClass="sidebar">
+
+            <Label text="PG FINDER"
+                   styleClass="logo"/>
+
+            <VBox spacing="12"
+                  alignment="CENTER"
+                  styleClass="profile-card">
+                <StackPane styleClass="avatar-circle">
+                    <Label text="👨" styleClass="avatar-icon"/>
+                </StackPane>
+                <Label text="Hi, Alex" styleClass="profile-name"/>
+                <Label text="Welcome Back!" styleClass="profile-subtitle"/>
+            </VBox>
+
+            <Button text="🏠 Dashboard" styleClass="menu-button" maxWidth="Infinity" onAction="#openDashboard"/>
+            <Button text="🔍 Browse PGs" styleClass="menu-button" maxWidth="Infinity" onAction="#openBrowsePG"/>
+            <Button text="📍 My Stay" styleClass="menu-button" maxWidth="Infinity" onAction="#openMyStay"/>
+            <Button text="💬 Chat" styleClass="menu-button" maxWidth="Infinity" onAction="#openChat"/>
+            <Button text="📢 Announcements" styleClass="menu-button, menu-button-active" maxWidth="Infinity"/>
+            <Button text="📜 PG History" styleClass="menu-button" maxWidth="Infinity" onAction="#openPGHistory"/>
+            <Button text="⭐ Reviews" styleClass="menu-button" maxWidth="Infinity" onAction="#openReviews"/>
+            <Button text="⚙ Settings" styleClass="menu-button" maxWidth="Infinity" onAction="#openSettings"/>
+
+        </VBox>
+    </left>
+
+    <!-- MAIN CONTENT -->
+    <center>
+        <ScrollPane fitToWidth="true" hbarPolicy="NEVER">
+            <VBox spacing="25" styleClass="main-content">
+                
+                <!-- HEADER -->
+                <VBox spacing="5">
+                    <Label text="Announcements" styleClass="heading"/>
+                    <Label text="Important updates, maintenance, and rent alerts from your PG owner." styleClass="sub-heading"/>
+                </VBox>
+
+                <!-- SEARCH/FILTER ROW -->
+                <VBox spacing="15" styleClass="content-card">
+                    <HBox spacing="15" alignment="CENTER_LEFT">
+                        <TextField promptText="Search announcements..." HBox.hgrow="ALWAYS" styleClass="text-field"/>
+                        <ComboBox promptText="Filter by Priority" prefWidth="180"/>
+                        <Button text="Search" styleClass="btn-primary" prefWidth="120"/>
+                    </HBox>
+                </VBox>
+
+                <!-- ANNOUNCEMENTS LIST -->
+                <VBox spacing="20">
+                    
+                    <!-- Announcement 1 -->
+                    <VBox styleClass="content-card" spacing="12" style="-fx-border-color: #FCA5A5; -fx-border-width: 1px; -fx-border-radius: 20px;">
+                        <HBox alignment="CENTER_LEFT">
+                            <Label text="Water Maintenance Services" styleClass="section-title" style="-fx-font-size: 16px;"/>
+                            <Region HBox.hgrow="ALWAYS"/>
+                            <Label text="HIGH PRIORITY" styleClass="gender-tag" style="-fx-background-color: #FADBD8; -fx-text-fill: #78281F;"/>
+                        </HBox>
+                        <Label text="From Owner: Mr. Rohit Sharma  •  Sunrise PG" styleClass="sub-heading" style="-fx-font-size: 12px;"/>
+                        <Label text="Tomorrow between 10:00 AM and 12:00 PM, municipal water supply will be closed for clean tank pipeline servicing. Please store necessary water beforehand. Housekeeping staff will be on standby for support."
+                               wrapText="true" style="-fx-text-fill: #374151; -fx-font-size: 13.5px; -fx-line-spacing: 1.4;"/>
+                        <Separator/>
+                        <Label text="Posted on: 27 June 2026 at 10:25 AM" styleClass="chat-time"/>
+                    </VBox>
+
+                    <!-- Announcement 2 -->
+                    <VBox styleClass="content-card" spacing="12" style="-fx-border-color: #FCD34D; -fx-border-width: 1px; -fx-border-radius: 20px;">
+                        <HBox alignment="CENTER_LEFT">
+                            <Label text="Monthly Rent Reminder" styleClass="section-title" style="-fx-font-size: 16px;"/>
+                            <Region HBox.hgrow="ALWAYS"/>
+                            <Label text="MEDIUM PRIORITY" styleClass="gender-tag" style="-fx-background-color: #FCF3CF; -fx-text-fill: #7E5109;"/>
+                        </HBox>
+                        <Label text="From Owner: Mr. Rohit Sharma  •  Sunrise PG" styleClass="sub-heading" style="-fx-font-size: 12px;"/>
+                        <Label text="Dear tenants, please submit your monthly room rent for July 2026 on or before July 5th. Payment invoices are available in your portal stays section. Disregard if already settled."
+                               wrapText="true" style="-fx-text-fill: #374151; -fx-font-size: 13.5px; -fx-line-spacing: 1.4;"/>
+                        <Separator/>
+                        <Label text="Posted on: 25 June 2026 at 09:15 AM" styleClass="chat-time"/>
+                    </VBox>
+
+                    <!-- Announcement 3 -->
+                    <VBox styleClass="content-card" spacing="12" style="-fx-border-color: #86EFAC; -fx-border-width: 1px; -fx-border-radius: 20px;">
+                        <HBox alignment="CENTER_LEFT">
+                            <Label text="WiFi Router Upgrades Completed" styleClass="section-title" style="-fx-font-size: 16px;"/>
+                            <Region HBox.hgrow="ALWAYS"/>
+                            <Label text="LOW PRIORITY" styleClass="gender-tag" style="-fx-background-color: #D4EFDF; -fx-text-fill: #196F3D;"/>
+                        </HBox>
+                        <Label text="From Owner: Mr. Rohit Sharma  •  Sunrise PG" styleClass="sub-heading" style="-fx-font-size: 12px;"/>
+                        <Label text="New dual-band high-speed WiFi routers have been successfully configured and installed in all common areas and rooms. Speed limits are now upgraded to 100 Mbps per tenant. Please contact support if you face signal drops."
+                               wrapText="true" style="-fx-text-fill: #374151; -fx-font-size: 13.5px; -fx-line-spacing: 1.4;"/>
+                        <Separator/>
+                        <Label text="Posted on: 20 June 2026 at 04:30 PM" styleClass="chat-time"/>
+                    </VBox>
+
+                </VBox>
+
+            </VBox>
+        </ScrollPane>
+    </center>
+
+</BorderPane>

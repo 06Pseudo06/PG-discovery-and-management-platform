@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.pgfinder.controller.ReviewsController"
+            stylesheets="@../css/student-dashboard.css"
+            prefWidth="1280" prefHeight="800">
+
+    <!-- LEFT SIDEBAR -->
+    <left>
+        <VBox fx:id="sidebar"
+              prefWidth="250"
+              spacing="15"
+              styleClass="sidebar">
+
+            <Label text="PG FINDER"
+                   styleClass="logo"/>
+
+            <VBox spacing="12"
+                  alignment="CENTER"
+                  styleClass="profile-card">
+                <StackPane styleClass="avatar-circle">
+                    <Label text="👨" styleClass="avatar-icon"/>
+                </StackPane>
+                <Label text="Hi, Alex" styleClass="profile-name"/>
+                <Label text="Welcome Back!" styleClass="profile-subtitle"/>
+            </VBox>
+
+            <Button text="🏠 Dashboard" styleClass="menu-button" maxWidth="Infinity" onAction="#openDashboard"/>
+            <Button text="🔍 Browse PGs" styleClass="menu-button" maxWidth="Infinity" onAction="#openBrowsePG"/>
+            <Button text="📍 My Stay" styleClass="menu-button" maxWidth="Infinity" onAction="#openMyStay"/>
+            <Button text="💬 Chat" styleClass="menu-button" maxWidth="Infinity" onAction="#openChat"/>
+            <Button text="📢 Announcements" styleClass="menu-button" maxWidth="Infinity" onAction="#openDashboard"/>
+            <Button text="📜 PG History" styleClass="menu-button" maxWidth="Infinity" onAction="#openPGHistory"/>
+            <Button text="⭐ Reviews" styleClass="menu-button, menu-button-active" maxWidth="Infinity"/>
+            <Button text="⚙ Settings" styleClass="menu-button" maxWidth="Infinity" onAction="#openSettings"/>
+
+        </VBox>
+    </left>
+
+    <!-- MAIN CONTENT -->
+    <center>
+        <ScrollPane fitToWidth="true" hbarPolicy="NEVER">
+            <VBox spacing="25" styleClass="main-content">
+                
+                <!-- HEADER -->
+                <VBox spacing="5">
+                    <Label text="Reviews &amp; Feedback" styleClass="heading"/>
+                    <Label text="Share your stay experience or edit your past reviews." styleClass="sub-heading"/>
+                </VBox>
+
+                <!-- REVIEW SECTION SPLIT -->
+                <HBox spacing="25">
+                    
+                    <!-- LEFT COLUMN: WRITE A REVIEW -->
+                    <VBox spacing="20" HBox.hgrow="ALWAYS" prefWidth="550">
+                        <VBox spacing="20" styleClass="content-card">
+                            <Label text="Write a New Review" styleClass="section-title"/>
+                            
+                            <VBox spacing="8">
+                                <Label text="Select PG Stay" style="-fx-font-weight: bold;"/>
+                                <ComboBox fx:id="pgSelect" promptText="Choose PG Stay" prefWidth="400"/>
+                            </VBox>
+
+                            <VBox spacing="8">
+                                <Label text="Your Rating" style="-fx-font-weight: bold;"/>
+                                <HBox spacing="5" alignment="CENTER_LEFT">
+                                    <Button fx:id="star1" text="★" styleClass="star-button" onAction="#rate1"/>
+                                    <Button fx:id="star2" text="★" styleClass="star-button" onAction="#rate2"/>
+                                    <Button fx:id="star3" text="★" styleClass="star-button" onAction="#rate3"/>
+                                    <Button fx:id="star4" text="★" styleClass="star-button" onAction="#rate4"/>
+                                    <Button fx:id="star5" text="★" styleClass="star-button" onAction="#rate5"/>
+                                    <Label fx:id="ratingLabel" text="(Select Stars)" styleClass="sub-heading" style="-fx-padding: 0 0 0 10;"/>
+                                </HBox>
+                            </VBox>
+
+                            <VBox spacing="8">
+                                <Label text="Review Comments" style="-fx-font-weight: bold;"/>
+                                <TextArea fx:id="reviewComments" promptText="Describe your stay, food quality, rooms, and owners..." prefRowCount="5" styleClass="text-area"/>
+                            </VBox>
+
+                            <VBox spacing="8">
+                                <Label text="Upload Images (Optional)" style="-fx-font-weight: bold;"/>
+                                <StackPane style="-fx-background-color: #F9FAFB; -fx-border-style: dashed; -fx-border-color: #D1D5DB; -fx-border-width: 1.5px; -fx-border-radius: 8px; -fx-background-radius: 8px; -fx-padding: 20; -fx-cursor: hand;">
+                                    <VBox alignment="CENTER" spacing="5">
+                                        <Label text="📷" style="-fx-font-size: 24px;"/>
+                                        <Label text="Click to browse hostel images" styleClass="sub-heading" style="-fx-font-size: 12px;"/>
+                                    </VBox>
+                                </StackPane>
+                            </VBox>
+
+                            <Button text="Submit Review" styleClass="btn-primary" prefWidth="150" onAction="#handleSubmitReview"/>
+                        </VBox>
+                    </VBox>
+
+                    <!-- RIGHT COLUMN: RATINGS OVERVIEW & PREVIOUS -->
+                    <VBox spacing="20" prefWidth="480">
+                        
+                        <!-- OVERVIEW CARD -->
+                        <VBox styleClass="content-card" spacing="15" alignment="CENTER">
+                            <Label text="My Average Rating Given" styleClass="sub-heading" style="-fx-font-weight: bold;"/>
+                            <Label text="4.5" styleClass="heading" style="-fx-font-size: 48px; -fx-text-fill: #214F4B;"/>
+                            <Label text="⭐⭐⭐⭐★" style="-fx-font-size: 22px; -fx-text-fill: #F59E0B;"/>
+                            <Label text="Based on 2 past stays" styleClass="sub-heading" style="-fx-font-size: 12px;"/>
+                        </VBox>
+
+                        <!-- PREVIOUS REVIEWS FEED -->
+                        <VBox spacing="15">
+                            <Label text="My Previous Reviews" styleClass="section-title"/>
+                            
+                            <!-- Review Item 1 -->
+                            <VBox styleClass="content-card" spacing="10">
+                                <HBox alignment="CENTER_LEFT">
+                                    <VBox>
+                                        <Label text="Comfort Living Hostel" styleClass="chat-name" style="-fx-font-size: 15px;"/>
+                                        <Label text="Stayed: Jul 2025 - May 2026" styleClass="chat-time"/>
+                                    </VBox>
+                                    <Region HBox.hgrow="ALWAYS"/>
+                                    <Label text="⭐⭐⭐⭐★" style="-fx-text-fill: #F59E0B; -fx-font-size: 14px;"/>
+                                </HBox>
+                                <Label text="Great location and the owner Mr. Aman was very responsive. The WiFi was sometimes slow, but rooms were clean and food was decent." wrapText="true" style="-fx-text-fill: #4B5563; -fx-font-size: 13px;"/>
+                                <Separator/>
+                                <HBox alignment="CENTER_RIGHT">
+                                    <Button text="✏ Edit Review" styleClass="btn-outline" style="-fx-padding: 6 12; -fx-font-size: 11px;" onAction="#handleEditReview"/>
+                                </HBox>
+                            </VBox>
+
+                            <!-- Review Item 2 -->
+                            <VBox styleClass="content-card" spacing="10">
+                                <HBox alignment="CENTER_LEFT">
+                                    <VBox>
+                                        <Label text="Student Nest Hostel" styleClass="chat-name" style="-fx-font-size: 15px;"/>
+                                        <Label text="Stayed: Jul 2024 - Jun 2025" styleClass="chat-time"/>
+                                    </VBox>
+                                    <Region HBox.hgrow="ALWAYS"/>
+                                    <Label text="⭐⭐⭐⭐⭐" style="-fx-text-fill: #F59E0B; -fx-font-size: 14px;"/>
+                                </HBox>
+                                <Label text="Absolutely loved my stay here. Rooms were premium, food was exceptional, and housekeeping was daily. Strongly recommended!" wrapText="true" style="-fx-text-fill: #4B5563; -fx-font-size: 13px;"/>
+                                <Separator/>
+                                <HBox alignment="CENTER_RIGHT">
+                                    <Button text="✏ Edit Review" styleClass="btn-outline" style="-fx-padding: 6 12; -fx-font-size: 11px;" onAction="#handleEditReview"/>
+                                </HBox>
+                            </VBox>
+
+                        </VBox>
+                    </VBox>
+
+                </HBox>
+
+            </VBox>
+        </ScrollPane>
+    </center>
+
+</BorderPane>

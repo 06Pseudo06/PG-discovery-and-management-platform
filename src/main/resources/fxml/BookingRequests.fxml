@@ -6,164 +6,175 @@
 <BorderPane xmlns="http://javafx.com/javafx/21"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.pgfinder.controller.BookingRequestsController"
-            stylesheets="@../css/booking-requests.css">
+            stylesheets="@../css/owner-dashboard.css"
+            prefWidth="1280" prefHeight="800">
 
-    <top>
+    <!-- LEFT SIDEBAR -->
+    <left>
+        <VBox prefWidth="240" styleClass="owner-sidebar" spacing="8">
+            <HBox alignment="CENTER_LEFT" spacing="12" styleClass="logo-container">
+                <StackPane styleClass="logo-icon-bg">
+                    <Label text="🏠" styleClass="logo-icon"/>
+                </StackPane>
+                <VBox>
+                    <Label text="PGFinder" styleClass="owner-logo"/>
+                    <Label text="Owner Panel" styleClass="owner-subtitle"/>
+                </VBox>
+            </HBox>
 
-        <HBox spacing="15"
-              alignment="CENTER_LEFT"
-              styleClass="top-bar">
+            <Region prefHeight="20"/>
 
-            <Button text="← Dashboard"
-                    onAction="#goBack"
-                    styleClass="primary-button"/>
+            <Button text="📁  Dashboard" styleClass="owner-menu" maxWidth="Infinity" onAction="#openDashboard"/>
+            <Button text="🏢 My PGs" styleClass="owner-menu" maxWidth="Infinity" onAction="#openMyPGs"/>
+            <Button text="🛏  Rooms &amp; Beds" styleClass="owner-menu" maxWidth="Infinity" onAction="#openRoomsBeds"/>
+            
+            <HBox alignment="CENTER_LEFT" styleClass="menu-item-with-badge">
+                <Button text="📋  Requests" styleClass="owner-menu-active" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                <Label text="5" styleClass="menu-badge"/>
+            </HBox>
+            
+            <Button text="👥  Tenants" styleClass="owner-menu" maxWidth="Infinity" onAction="#openTenants"/>
+            <Button text="📢  Announcements" styleClass="owner-menu" maxWidth="Infinity" onAction="#openAnnouncements"/>
+            
+            <HBox alignment="CENTER_LEFT" styleClass="menu-item-with-badge">
+                <Button text="💬  Chats" styleClass="owner-menu" HBox.hgrow="ALWAYS" maxWidth="Infinity" onAction="#openChat"/>
+                <Label text="3" styleClass="menu-badge"/>
+            </HBox>
+            
+            <Button text="⭐  Reviews" styleClass="owner-menu" maxWidth="Infinity" onAction="#openDashboard"/>
+            <Button text="📊  Reports" styleClass="owner-menu" maxWidth="Infinity" onAction="#openDashboard"/>
+            <Button text="⚙  Settings" styleClass="owner-menu" maxWidth="Infinity" onAction="#openDashboard"/>
 
-            <Label text="Booking Requests"
-                   styleClass="page-title"/>
+            <Region VBox.vgrow="ALWAYS"/>
 
-            <Region HBox.hgrow="ALWAYS"/>
+            <Button text="↪  Logout" styleClass="logout-button" maxWidth="Infinity" onAction="#handleLogout"/>
+        </VBox>
+    </left>
 
-            <Label text="5 Pending Requests"
-                   styleClass="pending-label"/>
-
-        </HBox>
-
-    </top>
-
+    <!-- MAIN BODY -->
     <center>
+        <ScrollPane fitToWidth="true" fitToHeight="true" styleClass="main-scrollpane">
+            <VBox spacing="25" styleClass="owner-main-content">
+                
+                <!-- TOP BAR -->
+                <HBox alignment="CENTER_LEFT" spacing="15">
+                    <Button text="← Dashboard" styleClass="secondary-button" onAction="#goBack"/>
+                    <Label text="Tenant Booking Requests" styleClass="page-title" style="-fx-padding: 0 0 0 10;"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <ComboBox promptText="Filter by PG" prefWidth="200"/>
+                </HBox>
 
-        <ScrollPane fitToWidth="true">
-
-            <VBox spacing="20"
-                  styleClass="content-area">
-
-                <!-- REQUEST 1 -->
-
-                <VBox spacing="12"
-                      styleClass="request-card">
-
-                    <HBox>
-
-                        <Label text="Request #101"
-                               styleClass="request-title"/>
-
-                        <Region HBox.hgrow="ALWAYS"/>
-
-                        <Label text="Pending"
-                               styleClass="status-pending"/>
-
+                <!-- SEARCH AND FILTERS -->
+                <VBox spacing="15" styleClass="owner-large-card">
+                    <HBox spacing="15" alignment="CENTER_LEFT">
+                        <TextField promptText="Search applicants by name or email..." HBox.hgrow="ALWAYS" styleClass="text-field"/>
+                        
+                        <Label text="Status:" styleClass="stat-label"/>
+                        <ToggleButton text="All" selected="true" styleClass="card-action-btn"/>
+                        <ToggleButton text="Pending" styleClass="card-action-btn"/>
+                        <ToggleButton text="Approved" styleClass="card-action-btn"/>
                     </HBox>
-
-                    <Separator/>
-
-                    <Label text="Student: Rahul Sharma"/>
-
-                    <Label text="PG: Sunrise PG"/>
-
-                    <Label text="Room: A"/>
-
-                    <Label text="Bed: A4"/>
-
-                    <Label text="Move-In Date: 15 Jul 2026"/>
-
-                    <HBox spacing="10">
-
-                        <Button text="Approve"
-                                styleClass="approve-btn"/>
-
-                        <Button text="Reject"
-                                styleClass="reject-btn"/>
-
-                    </HBox>
-
                 </VBox>
 
-                <!-- REQUEST 2 -->
+                <!-- REQUEST CARDS FEED -->
+                <VBox spacing="20">
+                    
+                    <!-- Applicant Card 1 -->
+                    <VBox styleClass="owner-large-card" spacing="15">
+                        <HBox alignment="CENTER_LEFT" spacing="15">
+                            <StackPane styleClass="avatar-circle"><Label text="RS" styleClass="avatar-text" style="-fx-font-size: 14px;"/></StackPane>
+                            <VBox HBox.hgrow="ALWAYS">
+                                <HBox alignment="CENTER_LEFT">
+                                    <Label text="Rahul Sharma" styleClass="item-main-title" style="-fx-font-size: 16px;"/>
+                                    <Label text="•  rahul@example.com  •  +91 99887 76655" styleClass="item-subtitle" style="-fx-padding: 0 0 0 10;"/>
+                                    <Region HBox.hgrow="ALWAYS"/>
+                                    <Label text="PENDING VERIFICATION" styleClass="priority-medium"/>
+                                </HBox>
+                                <Label text="Requested Sunrise PG  •  Room A1 (Bed B2)" styleClass="item-subtitle" style="-fx-padding: 5 0;"/>
+                            </VBox>
+                        </HBox>
+                        <Separator/>
+                        <GridPane hgap="10" vgap="8">
+                            <columnConstraints>
+                                <ColumnConstraints percentWidth="25"/>
+                                <ColumnConstraints percentWidth="25"/>
+                                <ColumnConstraints percentWidth="25"/>
+                                <ColumnConstraints percentWidth="25"/>
+                            </columnConstraints>
+                            <VBox GridPane.columnIndex="0">
+                                <Label text="Preferred Move-in" styleClass="stat-label"/>
+                                <Label text="01 July 2026" style="-fx-font-weight: bold;"/>
+                            </VBox>
+                            <VBox GridPane.columnIndex="1">
+                                <Label text="Contract Period" styleClass="stat-label"/>
+                                <Label text="12 Months" style="-fx-font-weight: bold;"/>
+                            </VBox>
+                            <VBox GridPane.columnIndex="2">
+                                <Label text="Monthly Rent Rate" styleClass="stat-label"/>
+                                <Label text="₹6,500" style="-fx-font-weight: bold; -fx-text-fill: #0F4F46;"/>
+                            </VBox>
+                            <VBox GridPane.columnIndex="3">
+                                <Label text="Security Deposit" styleClass="stat-label"/>
+                                <Label text="₹10,000" style="-fx-font-weight: bold;"/>
+                            </VBox>
+                        </GridPane>
+                        <Separator/>
+                        <HBox alignment="CENTER_RIGHT" spacing="10">
+                            <Button text="Reject Request" styleClass="secondary-button" style="-fx-text-fill: #DC2626; -fx-border-color: #FCA5A5;"/>
+                            <Button text="Approve Request" styleClass="primary-button"/>
+                        </HBox>
+                    </VBox>
 
-                <VBox spacing="12"
-                      styleClass="request-card">
-
-                    <HBox>
-
-                        <Label text="Request #102"
-                               styleClass="request-title"/>
-
-                        <Region HBox.hgrow="ALWAYS"/>
-
-                        <Label text="Pending"
-                               styleClass="status-pending"/>
-
-                    </HBox>
-
-                    <Separator/>
-
-                    <Label text="Student: Aman Patel"/>
-
-                    <Label text="PG: Green Residency"/>
-
-                    <Label text="Room: B"/>
-
-                    <Label text="Bed: B3"/>
-
-                    <Label text="Move-In Date: 20 Jul 2026"/>
-
-                    <HBox spacing="10">
-
-                        <Button text="Approve"
-                                styleClass="approve-btn"/>
-
-                        <Button text="Reject"
-                                styleClass="reject-btn"/>
-
-                    </HBox>
-
-                </VBox>
-
-                <!-- REQUEST 3 -->
-
-                <VBox spacing="12"
-                      styleClass="request-card">
-
-                    <HBox>
-
-                        <Label text="Request #103"
-                               styleClass="request-title"/>
-
-                        <Region HBox.hgrow="ALWAYS"/>
-
-                        <Label text="Pending"
-                               styleClass="status-pending"/>
-
-                    </HBox>
-
-                    <Separator/>
-
-                    <Label text="Student: Neha Verma"/>
-
-                    <Label text="PG: Student Hub"/>
-
-                    <Label text="Room: C"/>
-
-                    <Label text="Bed: C2"/>
-
-                    <Label text="Move-In Date: 01 Aug 2026"/>
-
-                    <HBox spacing="10">
-
-                        <Button text="Approve"
-                                styleClass="approve-btn"/>
-
-                        <Button text="Reject"
-                                styleClass="reject-btn"/>
-
-                    </HBox>
+                    <!-- Applicant Card 2 -->
+                    <VBox styleClass="owner-large-card" spacing="15">
+                        <HBox alignment="CENTER_LEFT" spacing="15">
+                            <StackPane styleClass="avatar-circle"><Label text="AP" styleClass="avatar-text" style="-fx-font-size: 14px;"/></StackPane>
+                            <VBox HBox.hgrow="ALWAYS">
+                                <HBox alignment="CENTER_LEFT">
+                                    <Label text="Aman Patel" styleClass="item-main-title" style="-fx-font-size: 16px;"/>
+                                    <Label text="•  aman@example.com  •  +91 99112 23344" styleClass="item-subtitle" style="-fx-padding: 0 0 0 10;"/>
+                                    <Region HBox.hgrow="ALWAYS"/>
+                                    <Label text="PENDING VERIFICATION" styleClass="priority-medium"/>
+                                </HBox>
+                                <Label text="Requested Green Residency  •  Room B (Bed C1)" styleClass="item-subtitle" style="-fx-padding: 5 0;"/>
+                            </VBox>
+                        </HBox>
+                        <Separator/>
+                        <GridPane hgap="10" vgap="8">
+                            <columnConstraints>
+                                <ColumnConstraints percentWidth="25"/>
+                                <ColumnConstraints percentWidth="25"/>
+                                <ColumnConstraints percentWidth="25"/>
+                                <ColumnConstraints percentWidth="25"/>
+                            </columnConstraints>
+                            <VBox GridPane.columnIndex="0">
+                                <Label text="Preferred Move-in" styleClass="stat-label"/>
+                                <Label text="05 July 2026" style="-fx-font-weight: bold;"/>
+                            </VBox>
+                            <VBox GridPane.columnIndex="1">
+                                <Label text="Contract Period" styleClass="stat-label"/>
+                                <Label text="6 Months" style="-fx-font-weight: bold;"/>
+                            </VBox>
+                            <VBox GridPane.columnIndex="2">
+                                <Label text="Monthly Rent Rate" styleClass="stat-label"/>
+                                <Label text="₹7,000" style="-fx-font-weight: bold; -fx-text-fill: #0F4F46;"/>
+                            </VBox>
+                            <VBox GridPane.columnIndex="3">
+                                <Label text="Security Deposit" styleClass="stat-label"/>
+                                <Label text="₹10,000" style="-fx-font-weight: bold;"/>
+                            </VBox>
+                        </GridPane>
+                        <Separator/>
+                        <HBox alignment="CENTER_RIGHT" spacing="10">
+                            <Button text="Reject Request" styleClass="secondary-button" style="-fx-text-fill: #DC2626; -fx-border-color: #FCA5A5;"/>
+                            <Button text="Approve Request" styleClass="primary-button"/>
+                        </HBox>
+                    </VBox>
 
                 </VBox>
 
             </VBox>
-
         </ScrollPane>
-
     </center>
 
 </BorderPane>

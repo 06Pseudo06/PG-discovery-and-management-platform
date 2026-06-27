@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.pgfinder.controller.StudentChatController"
+            stylesheets="@../css/student-dashboard.css"
+            prefWidth="1280" prefHeight="800">
+
+    <!-- LEFT SIDEBAR -->
+    <left>
+        <VBox fx:id="sidebar"
+              prefWidth="250"
+              spacing="15"
+              styleClass="sidebar">
+
+            <Label text="PG FINDER"
+                   styleClass="logo"/>
+
+            <VBox spacing="12"
+                  alignment="CENTER"
+                  styleClass="profile-card">
+                <StackPane styleClass="avatar-circle">
+                    <Label text="👨" styleClass="avatar-icon"/>
+                </StackPane>
+                <Label text="Hi, Alex" styleClass="profile-name"/>
+                <Label text="Welcome Back!" styleClass="profile-subtitle"/>
+            </VBox>
+
+            <Button text="🏠 Dashboard" styleClass="menu-button" maxWidth="Infinity" onAction="#openDashboard"/>
+            <Button text="🔍 Browse PGs" styleClass="menu-button" maxWidth="Infinity" onAction="#openBrowsePG"/>
+            <Button text="📍 My Stay" styleClass="menu-button" maxWidth="Infinity" onAction="#openMyStay"/>
+            <Button text="💬 Chat" styleClass="menu-button, menu-button-active" maxWidth="Infinity"/>
+            <Button text="📢 Announcements" styleClass="menu-button" maxWidth="Infinity" onAction="#openDashboard"/> <!-- Links back to dashboard announcements -->
+            <Button text="📜 PG History" styleClass="menu-button" maxWidth="Infinity" onAction="#openPGHistory"/>
+            <Button text="⭐ Reviews" styleClass="menu-button" maxWidth="Infinity" onAction="#openReviews"/>
+            <Button text="⚙ Settings" styleClass="menu-button" maxWidth="Infinity" onAction="#openSettings"/>
+
+        </VBox>
+    </left>
+
+    <!-- MAIN CHAT AREA -->
+    <center>
+        <VBox spacing="20" styleClass="main-content">
+            
+            <!-- HEADER -->
+            <HBox alignment="CENTER_LEFT" spacing="20" styleClass="content-card" prefHeight="80">
+                <StackPane styleClass="mini-avatar">
+                    <Label text="👨" styleClass="avatar-icon" style="-fx-font-size: 20px;"/>
+                </StackPane>
+                <VBox HBox.hgrow="ALWAYS">
+                    <Label text="Mr. Rohit Sharma" styleClass="chat-name" style="-fx-font-size: 16px;"/>
+                    <HBox spacing="5" alignment="CENTER_LEFT">
+                        <StackPane styleClass="unread-indicator" style="-fx-background-color: #2ECC71;"/>
+                        <Label text="Online • Owner of Sunrise PG" styleClass="sub-heading" style="-fx-font-size: 12px;"/>
+                    </HBox>
+                </VBox>
+            </HBox>
+
+            <!-- CONVERSATION SCROLL -->
+            <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS" styleClass="content-card" style="-fx-padding: 10;">
+                <VBox fx:id="messagesContainer" spacing="15" styleClass="messages-area">
+                    
+                    <HBox alignment="CENTER_LEFT">
+                        <VBox spacing="4">
+                            <Label text="Mr. Rohit Sharma • 10:25 AM" styleClass="chat-time"/>
+                            <Label text="Hi Alex, hope you are settling in well at Sunrise PG."
+                                   styleClass="message-received"/>
+                        </VBox>
+                    </HBox>
+
+                    <HBox alignment="CENTER_RIGHT">
+                        <VBox spacing="4" alignment="TOP_RIGHT">
+                            <Label text="You • 10:28 AM" styleClass="chat-time"/>
+                            <Label text="Thank you, Rohit! I have a question about the water filter service in Room A."
+                                   styleClass="message-sent"/>
+                        </VBox>
+                    </HBox>
+
+                    <HBox alignment="CENTER_LEFT">
+                        <VBox spacing="4">
+                            <Label text="Mr. Rohit Sharma • 10:30 AM" styleClass="chat-time"/>
+                            <Label text="Sure! The service technician will visit today between 3 PM and 4 PM."
+                                   styleClass="message-received"/>
+                        </VBox>
+                    </HBox>
+                    
+                </VBox>
+            </ScrollPane>
+
+            <!-- INPUT BAR -->
+            <HBox spacing="15" alignment="CENTER_LEFT">
+                <TextField fx:id="messageInput"
+                           promptText="Type a message..."
+                           HBox.hgrow="ALWAYS"
+                           styleClass="text-field"
+                           style="-fx-background-color: #FFFFFF;"/>
+                <Button text="Send Message"
+                        styleClass="btn-primary"
+                        onAction="#handleSendMessage"/>
+            </HBox>
+
+        </VBox>
+    </center>
+
+</BorderPane>

@@ -6,177 +6,189 @@
 <BorderPane xmlns="http://javafx.com/javafx/21"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.pgfinder.controller.TenantsController"
-            stylesheets="@../css/tenants.css">
+            stylesheets="@../css/owner-dashboard.css"
+            prefWidth="1280" prefHeight="800">
 
-    <top>
-
-        <VBox spacing="15"
-              styleClass="top-container">
-
-            <HBox spacing="15"
-                  alignment="CENTER_LEFT">
-
-                <Button text="← Dashboard"
-                        onAction="#goBack"
-                        styleClass="primary-button"/>
-
-                <Label text="Tenants"
-                       styleClass="page-title"/>
-
-                <Region HBox.hgrow="ALWAYS"/>
-
-                <Button text="+ Add Tenant"
-                        styleClass="primary-button"/>
-
+    <!-- LEFT SIDEBAR -->
+    <left>
+        <VBox prefWidth="240" styleClass="owner-sidebar" spacing="8">
+            <HBox alignment="CENTER_LEFT" spacing="12" styleClass="logo-container">
+                <StackPane styleClass="logo-icon-bg">
+                    <Label text="🏠" styleClass="logo-icon"/>
+                </StackPane>
+                <VBox>
+                    <Label text="PGFinder" styleClass="owner-logo"/>
+                    <Label text="Owner Panel" styleClass="owner-subtitle"/>
+                </VBox>
             </HBox>
 
-            <TextField promptText="Search Tenant..."
-                       styleClass="search-field"/>
+            <Region prefHeight="20"/>
 
+            <Button text="📁  Dashboard" styleClass="owner-menu" maxWidth="Infinity" onAction="#openDashboard"/>
+            <Button text="🏢 My PGs" styleClass="owner-menu" maxWidth="Infinity" onAction="#openMyPGs"/>
+            <Button text="🛏  Rooms &amp; Beds" styleClass="owner-menu" maxWidth="Infinity" onAction="#openRoomsBeds"/>
+            
+            <HBox alignment="CENTER_LEFT" styleClass="menu-item-with-badge">
+                <Button text="📋  Requests" styleClass="owner-menu" HBox.hgrow="ALWAYS" maxWidth="Infinity" onAction="#openBookingRequests"/>
+                <Label text="5" styleClass="menu-badge"/>
+            </HBox>
+            
+            <Button text="👥  Tenants" styleClass="owner-menu-active" maxWidth="Infinity"/>
+            <Button text="📢  Announcements" styleClass="owner-menu" maxWidth="Infinity" onAction="#openAnnouncements"/>
+            
+            <HBox alignment="CENTER_LEFT" styleClass="menu-item-with-badge">
+                <Button text="💬  Chats" styleClass="owner-menu" HBox.hgrow="ALWAYS" maxWidth="Infinity" onAction="#openChat"/>
+                <Label text="3" styleClass="menu-badge"/>
+            </HBox>
+            
+            <Button text="⭐  Reviews" styleClass="owner-menu" maxWidth="Infinity" onAction="#openDashboard"/>
+            <Button text="📊  Reports" styleClass="owner-menu" maxWidth="Infinity" onAction="#openDashboard"/>
+            <Button text="⚙  Settings" styleClass="owner-menu" maxWidth="Infinity" onAction="#openDashboard"/>
+
+            <Region VBox.vgrow="ALWAYS"/>
+
+            <Button text="↪  Logout" styleClass="logout-button" maxWidth="Infinity" onAction="#handleLogout"/>
         </VBox>
+    </left>
 
-    </top>
-
+    <!-- MAIN BODY -->
     <center>
+        <ScrollPane fitToWidth="true" fitToHeight="true" styleClass="main-scrollpane">
+            <VBox spacing="25" styleClass="owner-main-content">
+                
+                <!-- TOP BAR -->
+                <HBox alignment="CENTER_LEFT" spacing="15">
+                    <Button text="← Dashboard" styleClass="secondary-button" onAction="#goBack"/>
+                    <Label text="Active Tenants Directory" styleClass="page-title" style="-fx-padding: 0 0 0 10;"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <ComboBox promptText="Filter by PG" prefWidth="200"/>
+                </HBox>
 
-        <ScrollPane fitToWidth="true">
-
-            <VBox spacing="20"
-                  styleClass="content-area">
-
-                <!-- TENANT 1 -->
-
-                <VBox spacing="12"
-                      styleClass="tenant-card">
-
-                    <HBox spacing="15">
-
-                        <StackPane styleClass="avatar">
-
-                            <Label text="👨"/>
-
-                        </StackPane>
-
-                        <VBox HBox.hgrow="ALWAYS">
-
-                            <Label text="Rahul Sharma"
-                                   styleClass="tenant-name"/>
-
-                            <Label text="Sunrise PG"/>
-
-                            <Label text="Room A • Bed A1"/>
-
-                        </VBox>
-
-                        <Label text="Active"
-                               styleClass="status-active"/>
-
+                <!-- SEARCH CARD -->
+                <VBox spacing="15" styleClass="owner-large-card">
+                    <HBox spacing="15" alignment="CENTER_LEFT">
+                        <TextField promptText="Search tenants by name, room, email or phone..." HBox.hgrow="ALWAYS" styleClass="text-field"/>
+                        <Button text="Search" styleClass="primary-button" prefWidth="120"/>
                     </HBox>
-
-                    <Separator/>
-
-                    <Label text="Joined: 15 Jul 2026"/>
-
-                    <HBox spacing="10">
-
-                        <Button text="View Profile"/>
-
-                        <Button text="Message"/>
-
-                    </HBox>
-
                 </VBox>
 
-                <!-- TENANT 2 -->
-
-                <VBox spacing="12"
-                      styleClass="tenant-card">
-
-                    <HBox spacing="15">
-
-                        <StackPane styleClass="avatar">
-
-                            <Label text="👨"/>
-
-                        </StackPane>
-
-                        <VBox HBox.hgrow="ALWAYS">
-
-                            <Label text="Aman Patel"
-                                   styleClass="tenant-name"/>
-
-                            <Label text="Green Residency"/>
-
-                            <Label text="Room B • Bed B3"/>
-
+                <!-- TENANTS FEED -->
+                <VBox spacing="20">
+                    
+                    <!-- Tenant Card 1 -->
+                    <VBox styleClass="owner-large-card" spacing="15">
+                        <HBox alignment="CENTER_LEFT" spacing="15">
+                            <StackPane styleClass="avatar-circle"><Label text="RS" styleClass="avatar-text" style="-fx-font-size: 14px;"/></StackPane>
+                            <VBox HBox.hgrow="ALWAYS">
+                                <HBox alignment="CENTER_LEFT">
+                                    <Label text="Rahul Sharma" styleClass="item-main-title" style="-fx-font-size: 16px;"/>
+                                    <Label text="•  rahul@example.com  •  +91 99887 76655" styleClass="item-subtitle" style="-fx-padding: 0 0 0 10;"/>
+                                    <Region HBox.hgrow="ALWAYS"/>
+                                    <Label text="STAYING" styleClass="status-tag"/>
+                                </HBox>
+                                <Label text="Sunrise PG  •  Room A1  •  Bed B1 (Double Sharing)" styleClass="item-subtitle" style="-fx-padding: 5 0;"/>
+                            </VBox>
+                        </HBox>
+                        <Separator/>
+                        <GridPane hgap="10" vgap="8">
+                            <columnConstraints>
+                                <ColumnConstraints percentWidth="25"/>
+                                <ColumnConstraints percentWidth="25"/>
+                                <ColumnConstraints percentWidth="25"/>
+                                <ColumnConstraints percentWidth="25"/>
+                            </columnConstraints>
+                            <VBox GridPane.columnIndex="0">
+                                <Label text="Move-in Date" styleClass="stat-label"/>
+                                <Label text="15 June 2026" style="-fx-font-weight: bold;"/>
+                            </VBox>
+                            <VBox GridPane.columnIndex="1">
+                                <Label text="Contract Period" styleClass="stat-label"/>
+                                <Label text="12 Months" style="-fx-font-weight: bold;"/>
+                            </VBox>
+                            <VBox GridPane.columnIndex="2">
+                                <Label text="Monthly Rent Rate" styleClass="stat-label"/>
+                                <Label text="₹6,500" style="-fx-font-weight: bold; -fx-text-fill: #0F4F46;"/>
+                            </VBox>
+                            <VBox GridPane.columnIndex="3">
+                                <Label text="Rent Status" styleClass="stat-label"/>
+                                <Label text="Paid" style="-fx-font-weight: bold; -fx-text-fill: #16A34A;"/>
+                            </VBox>
+                        </GridPane>
+                        <Separator/>
+                        <VBox spacing="6">
+                            <HBox alignment="CENTER_LEFT">
+                                <Label text="Lease Move-Out Countdown" styleClass="stat-label"/>
+                                <Region HBox.hgrow="ALWAYS"/>
+                                <Label text="147 Days Remaining" styleClass="stat-label" style="-fx-font-weight: bold; -fx-text-fill: #0F4F46;"/>
+                            </HBox>
+                            <ProgressBar progress="0.65" prefWidth="950" style="-fx-min-height: 8px;"/>
                         </VBox>
+                        <Separator/>
+                        <HBox alignment="CENTER_RIGHT" spacing="10">
+                            <Button text="Lease Details" styleClass="secondary-button"/>
+                            <Button text="Send Chat Message" styleClass="primary-button" onAction="#openChat"/>
+                        </HBox>
+                    </VBox>
 
-                        <Label text="Active"
-                               styleClass="status-active"/>
-
-                    </HBox>
-
-                    <Separator/>
-
-                    <Label text="Joined: 20 Jul 2026"/>
-
-                    <HBox spacing="10">
-
-                        <Button text="View Profile"/>
-
-                        <Button text="Message"/>
-
-                    </HBox>
-
-                </VBox>
-
-                <!-- TENANT 3 -->
-
-                <VBox spacing="12"
-                      styleClass="tenant-card">
-
-                    <HBox spacing="15">
-
-                        <StackPane styleClass="avatar">
-
-                            <Label text="👩"/>
-
-                        </StackPane>
-
-                        <VBox HBox.hgrow="ALWAYS">
-
-                            <Label text="Neha Verma"
-                                   styleClass="tenant-name"/>
-
-                            <Label text="Student Hub"/>
-
-                            <Label text="Room C • Bed C2"/>
-
+                    <!-- Tenant Card 2 -->
+                    <VBox styleClass="owner-large-card" spacing="15">
+                        <HBox alignment="CENTER_LEFT" spacing="15">
+                            <StackPane styleClass="avatar-circle"><Label text="AP" styleClass="avatar-text" style="-fx-font-size: 14px;"/></StackPane>
+                            <VBox HBox.hgrow="ALWAYS">
+                                <HBox alignment="CENTER_LEFT">
+                                    <Label text="Aman Patel" styleClass="item-main-title" style="-fx-font-size: 16px;"/>
+                                    <Label text="•  aman@example.com  •  +91 99112 23344" styleClass="item-subtitle" style="-fx-padding: 0 0 0 10;"/>
+                                    <Region HBox.hgrow="ALWAYS"/>
+                                    <Label text="STAYING" styleClass="status-tag"/>
+                                </HBox>
+                                <Label text="Green Residency  •  Room B  •  Bed C1 (Triple Sharing)" styleClass="item-subtitle" style="-fx-padding: 5 0;"/>
+                            </VBox>
+                        </HBox>
+                        <Separator/>
+                        <GridPane hgap="10" vgap="8">
+                            <columnConstraints>
+                                <ColumnConstraints percentWidth="25"/>
+                                <ColumnConstraints percentWidth="25"/>
+                                <ColumnConstraints percentWidth="25"/>
+                                <ColumnConstraints percentWidth="25"/>
+                            </columnConstraints>
+                            <VBox GridPane.columnIndex="0">
+                                <Label text="Move-in Date" styleClass="stat-label"/>
+                                <Label text="01 May 2026" style="-fx-font-weight: bold;"/>
+                            </VBox>
+                            <VBox GridPane.columnIndex="1">
+                                <Label text="Contract Period" styleClass="stat-label"/>
+                                <Label text="6 Months" style="-fx-font-weight: bold;"/>
+                            </VBox>
+                            <VBox GridPane.columnIndex="2">
+                                <Label text="Monthly Rent Rate" styleClass="stat-label"/>
+                                <Label text="₹7,000" style="-fx-font-weight: bold; -fx-text-fill: #0F4F46;"/>
+                            </VBox>
+                            <VBox GridPane.columnIndex="3">
+                                <Label text="Rent Status" styleClass="stat-label"/>
+                                <Label text="Paid" style="-fx-font-weight: bold; -fx-text-fill: #16A34A;"/>
+                            </VBox>
+                        </GridPane>
+                        <Separator/>
+                        <VBox spacing="6">
+                            <HBox alignment="CENTER_LEFT">
+                                <Label text="Lease Move-Out Countdown" styleClass="stat-label"/>
+                                <Region HBox.hgrow="ALWAYS"/>
+                                <Label text="205 Days Remaining" styleClass="stat-label" style="-fx-font-weight: bold; -fx-text-fill: #0F4F46;"/>
+                            </HBox>
+                            <ProgressBar progress="0.45" prefWidth="950" style="-fx-min-height: 8px;"/>
                         </VBox>
-
-                        <Label text="Active"
-                               styleClass="status-active"/>
-
-                    </HBox>
-
-                    <Separator/>
-
-                    <Label text="Joined: 01 Aug 2026"/>
-
-                    <HBox spacing="10">
-
-                        <Button text="View Profile"/>
-
-                        <Button text="Message"/>
-
-                    </HBox>
+                        <Separator/>
+                        <HBox alignment="CENTER_RIGHT" spacing="10">
+                            <Button text="Lease Details" styleClass="secondary-button"/>
+                            <Button text="Send Chat Message" styleClass="primary-button" onAction="#openChat"/>
+                        </HBox>
+                    </VBox>
 
                 </VBox>
 
             </VBox>
-
         </ScrollPane>
-
     </center>
 
 </BorderPane>

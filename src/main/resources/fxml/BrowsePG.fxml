@@ -6,137 +6,195 @@
 <BorderPane xmlns="http://javafx.com/javafx/21"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.pgfinder.controller.BrowsePGController"
-            stylesheets="@../css/browse-pg.css">
+            stylesheets="@../css/student-dashboard.css"
+            prefWidth="1280" prefHeight="800">
 
-    <top>
+    <!-- LEFT SIDEBAR -->
+    <left>
+        <VBox fx:id="sidebar"
+              prefWidth="250"
+              spacing="15"
+              styleClass="sidebar">
 
-        <Button text="← Dashboard"
-        onAction="#goBack"/>
+            <Label text="PG FINDER"
+                   styleClass="logo"/>
 
-        <VBox spacing="20"
-      styleClass="search-section">
+            <VBox spacing="12"
+                  alignment="CENTER"
+                  styleClass="profile-card">
+                <StackPane styleClass="avatar-circle">
+                    <Label text="👨" styleClass="avatar-icon"/>
+                </StackPane>
+                <Label text="Hi, Alex" styleClass="profile-name"/>
+                <Label text="Welcome Back!" styleClass="profile-subtitle"/>
+            </VBox>
 
-    <Button text="← Dashboard"
-            onAction="#goBack"
-            styleClass="back-button"/>
-
-
-            <Label text="Browse PGs"
-                   styleClass="page-title"/>
-
-            <HBox spacing="15">
-
-               <TextField promptText="Search PGs, Areas, Locations..."
-           prefWidth="450"/>
-
-                <ComboBox promptText="Gender"/>
-
-                <ComboBox promptText="Budget"/>
-
-                <CheckBox text="WiFi"/>
-
-                <CheckBox text="Food"/>
-
-                <CheckBox text="AC"/>
-
-                <Button text="Search"
-                     styleClass="search-button"/>
-
-            </HBox>
+            <Button text="🏠 Dashboard" styleClass="menu-button" maxWidth="Infinity" onAction="#openDashboard"/>
+            <Button text="🔍 Browse PGs" styleClass="menu-button, menu-button-active" maxWidth="Infinity"/>
+            <Button text="📍 My Stay" styleClass="menu-button" maxWidth="Infinity" onAction="#openMyStay"/>
+            <Button text="💬 Chat" styleClass="menu-button" maxWidth="Infinity" onAction="#openChat"/>
+            <Button text="📢 Announcements" styleClass="menu-button" maxWidth="Infinity" onAction="#openDashboard"/>
+            <Button text="📜 PG History" styleClass="menu-button" maxWidth="Infinity" onAction="#openPGHistory"/>
+            <Button text="⭐ Reviews" styleClass="menu-button" maxWidth="Infinity" onAction="#openReviews"/>
+            <Button text="⚙ Settings" styleClass="menu-button" maxWidth="Infinity" onAction="#openSettings"/>
 
         </VBox>
+    </left>
 
-    </top>
-
+    <!-- MAIN Browse CONTENT -->
     <center>
+        <ScrollPane fitToWidth="true" hbarPolicy="NEVER">
+            <VBox spacing="25" styleClass="main-content">
+                
+                <!-- HEADER -->
+                <VBox spacing="5">
+                    <Label text="Discover Accommodations" styleClass="heading"/>
+                    <Label text="Find the best PG/Hostel stays near universities and business hubs." styleClass="sub-heading"/>
+                </VBox>
 
-        <ScrollPane fitToWidth="true">
+                <!-- SEARCH & FILTER ROW -->
+                <VBox spacing="15" styleClass="content-card">
+                    <HBox spacing="15" alignment="CENTER_LEFT">
+                        <TextField promptText="Search PGs, areas, locations..." HBox.hgrow="ALWAYS" styleClass="text-field"/>
+                        
+                        <ComboBox promptText="Gender Preference" prefWidth="180"/>
+                        <ComboBox promptText="Budget Range" prefWidth="180"/>
+                        
+                        <Button text="Search Stay" styleClass="btn-primary" prefWidth="130"/>
+                    </HBox>
+                    
+                    <Separator/>
+                    
+                    <!-- FILTER CHIPS -->
+                    <HBox spacing="10" alignment="CENTER_LEFT">
+                        <Label text="Popular Filters:" styleClass="sub-heading" style="-fx-font-weight: bold;"/>
+                        <ToggleButton text="Boys Only" styleClass="gender-tag" style="-fx-cursor: hand;"/>
+                        <ToggleButton text="Girls Only" styleClass="gender-tag" style="-fx-cursor: hand;"/>
+                        <ToggleButton text="WiFi Included" styleClass="gender-tag" style="-fx-cursor: hand;"/>
+                        <ToggleButton text="Air Conditioning" styleClass="gender-tag" style="-fx-cursor: hand;"/>
+                        <ToggleButton text="Food Included" styleClass="gender-tag" style="-fx-cursor: hand;"/>
+                        <ToggleButton text="Laundry" styleClass="gender-tag" style="-fx-cursor: hand;"/>
+                    </HBox>
+                </VBox>
 
-            <TilePane hgap="20"
-          vgap="20"
-          prefColumns="3"
-          styleClass="pg-grid">
+                <!-- HOSTELS GRID -->
+                <TilePane hgap="25" vgap="25" prefColumns="3" styleClass="pg-grid">
+                    
+                    <!-- PG Card 1 -->
+                    <VBox styleClass="pg-card" prefWidth="300">
+                        <StackPane styleClass="pg-image" style="-fx-background-color: #DFF1EA;">
+                            <Label text="Sunrise PG" styleClass="pg-title" style="-fx-text-fill: #214F4B;"/>
+                            <HBox alignment="TOP_RIGHT" style="-fx-padding: 10;">
+                                <Button text="❤️" styleClass="favorite-button, favorite-button-active"/>
+                            </HBox>
+                        </StackPane>
+                        
+                        <VBox spacing="6">
+                            <HBox alignment="CENTER_LEFT">
+                                <Label text="Sunrise PG" styleClass="pg-title"/>
+                                <Region HBox.hgrow="ALWAYS"/>
+                                <Label text="⭐ 4.5" style="-fx-text-fill: #F59E0B; -fx-font-weight: bold;"/>
+                            </HBox>
+                            
+                            <Label text="📍 Model Town, Jalandhar" styleClass="sub-heading" style="-fx-font-size: 12px;"/>
+                            
+                            <HBox spacing="8" style="-fx-padding: 5 0;">
+                                <Label text="GIRLS" styleClass="gender-tag"/>
+                                <Label text="LIMITED STATUS" styleClass="status-tag-warning"/>
+                            </HBox>
+                            
+                            <Label text="WiFi • Food • AC • Laundry" styleClass="sub-heading" style="-fx-font-size: 11px;"/>
+                            <Label text="2 Beds Available" styleClass="sub-heading" style="-fx-text-fill: #16A34A; -fx-font-weight: bold;"/>
+                            
+                            <Separator style="-fx-padding: 5 0;"/>
+                            
+                            <HBox alignment="CENTER_LEFT">
+                                <Label text="₹6,500" styleClass="price-text"/>
+                                <Label text="/month" styleClass="sub-heading" style="-fx-font-size: 11px;"/>
+                                <Region HBox.hgrow="ALWAYS"/>
+                                <Button text="View Details" styleClass="btn-primary" onAction="#openPGDetails"/>
+                            </HBox>
+                        </VBox>
+                    </VBox>
 
-    <VBox styleClass="pg-card">
+                    <!-- PG Card 2 -->
+                    <VBox styleClass="pg-card" prefWidth="300">
+                        <StackPane styleClass="pg-image" style="-fx-background-color: #DFF1EA;">
+                            <Label text="Green Residency" styleClass="pg-title" style="-fx-text-fill: #214F4B;"/>
+                            <HBox alignment="TOP_RIGHT" style="-fx-padding: 10;">
+                                <Button text="🖤" styleClass="favorite-button"/>
+                            </HBox>
+                        </StackPane>
+                        
+                        <VBox spacing="6">
+                            <HBox alignment="CENTER_LEFT">
+                                <Label text="Green Residency" styleClass="pg-title"/>
+                                <Region HBox.hgrow="ALWAYS"/>
+                                <Label text="⭐ 4.7" style="-fx-text-fill: #F59E0B; -fx-font-weight: bold;"/>
+                            </HBox>
+                            
+                            <Label text="📍 Urban Estate, Jalandhar" styleClass="sub-heading" style="-fx-font-size: 12px;"/>
+                            
+                            <HBox spacing="8" style="-fx-padding: 5 0;">
+                                <Label text="BOYS" styleClass="gender-tag" style="-fx-background-color: #EBF5FF; -fx-text-fill: #1E40AF;"/>
+                                <Label text="AVAILABLE" styleClass="status-tag"/>
+                            </HBox>
+                            
+                            <Label text="WiFi • Food • Gym • Parking" styleClass="sub-heading" style="-fx-font-size: 11px;"/>
+                            <Label text="5 Beds Available" styleClass="sub-heading" style="-fx-text-fill: #16A34A; -fx-font-weight: bold;"/>
+                            
+                            <Separator style="-fx-padding: 5 0;"/>
+                            
+                            <HBox alignment="CENTER_LEFT">
+                                <Label text="₹7,000" styleClass="price-text"/>
+                                <Label text="/month" styleClass="sub-heading" style="-fx-font-size: 11px;"/>
+                                <Region HBox.hgrow="ALWAYS"/>
+                                <Button text="View Details" styleClass="btn-primary" onAction="#openPGDetails"/>
+                            </HBox>
+                        </VBox>
+                    </VBox>
 
-        <StackPane styleClass="pg-image">
-            <Label text="Image"/>
-        </StackPane>
+                    <!-- PG Card 3 -->
+                    <VBox styleClass="pg-card" prefWidth="300">
+                        <StackPane styleClass="pg-image" style="-fx-background-color: #DFF1EA;">
+                            <Label text="Student Hub" styleClass="pg-title" style="-fx-text-fill: #214F4B;"/>
+                            <HBox alignment="TOP_RIGHT" style="-fx-padding: 10;">
+                                <Button text="🖤" styleClass="favorite-button"/>
+                            </HBox>
+                        </StackPane>
+                        
+                        <VBox spacing="6">
+                            <HBox alignment="CENTER_LEFT">
+                                <Label text="Student Hub" styleClass="pg-title"/>
+                                <Region HBox.hgrow="ALWAYS"/>
+                                <Label text="⭐ 4.4" style="-fx-text-fill: #F59E0B; -fx-font-weight: bold;"/>
+                            </HBox>
+                            
+                            <Label text="📍 LPU Highway, Phagwara" styleClass="sub-heading" style="-fx-font-size: 12px;"/>
+                            
+                            <HBox spacing="8" style="-fx-padding: 5 0;">
+                                <Label text="GIRLS" styleClass="gender-tag"/>
+                                <Label text="LIMITED STATUS" styleClass="status-tag-warning"/>
+                            </HBox>
+                            
+                            <Label text="WiFi • AC • Washing Machine" styleClass="sub-heading" style="-fx-font-size: 11px;"/>
+                            <Label text="1 Bed Available" styleClass="sub-heading" style="-fx-text-fill: #16A34A; -fx-font-weight: bold;"/>
+                            
+                            <Separator style="-fx-padding: 5 0;"/>
+                            
+                            <HBox alignment="CENTER_LEFT">
+                                <Label text="₹6,200" styleClass="price-text"/>
+                                <Label text="/month" styleClass="sub-heading" style="-fx-font-size: 11px;"/>
+                                <Region HBox.hgrow="ALWAYS"/>
+                                <Button text="View Details" styleClass="btn-primary" onAction="#openPGDetails"/>
+                            </HBox>
+                        </VBox>
+                    </VBox>
 
-        <Label text="Sunrise PG" styleClass="pg-title"/>
-        <Label text="Model Town, Jalandhar"/>
-        <Label text="⭐ 4.5"/>
-        <HBox spacing="10">
+                </TilePane>
 
-    <Label text="GIRLS"
-           styleClass="gender-tag"/>
-
-    <Label text="LIMITED"
-           styleClass="status-tag-warning"/>
-
-</HBox>
-        <Label text="WiFi • Food • AC"/>
-        <Label text="2 Beds Available" styleClass="availability"/>
-        <Label text="₹6500/month" styleClass="price"/>
-        <Button text="View Details"
-                onAction="#openPGDetails"/>
-
-    </VBox>
-
-    <VBox styleClass="pg-card">
-
-        <StackPane styleClass="pg-image">
-            <Label text="Image"/>
-        </StackPane>
-
-        <Label text="Green Residency" styleClass="pg-title"/>
-        <Label text="Urban Estate"/>
-        <Label text="⭐ 4.7"/>
-        <HBox spacing="10">
-
-    <Label text="BOYS"
-           styleClass="gender-tag"/>
-
-    <Label text="AVAILABLE"
-           styleClass="status-tag"/>
-
-</HBox>
-        <Label text="WiFi • Food"/>
-        <Label text="5 Beds Available" styleClass="availability"/>
-        <Label text="₹7000/month" styleClass="price"/>
-        <Button text="View Details" onAction="#openPGDetails"/>
-
-    </VBox>
-
-    <VBox styleClass="pg-card">
-
-        <StackPane styleClass="pg-image">
-            <Label text="Image"/>
-        </StackPane>
-
-        <Label text="Student Hub" styleClass="pg-title"/>
-        <Label text="Near University"/>
-        <Label text="⭐ 4.4"/>
-        <HBox spacing="10">
-
-    <Label text="GIRLS"
-           styleClass="gender-tag"/>
-
-    <Label text="LIMITED"
-           styleClass="status-tag-warning"/>
-
-</HBox>
-        <Label text="WiFi • AC"/>
-        <Label text="1 Bed Available" styleClass="availability"/>
-        <Label text="₹6200/month" styleClass="price"/>
-        <Button text="View Details" onAction="#openPGDetails"/>
-
-    </VBox>
-
-</TilePane>
-
+            </VBox>
         </ScrollPane>
-
     </center>
 
 </BorderPane>

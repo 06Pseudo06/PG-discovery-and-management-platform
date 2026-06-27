@@ -1,34 +1,13 @@
 package com.pgfinder.controller;
 
 import com.pgfinder.util.SceneManager;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
-public class BrowsePGController {
+public class StudentAnnouncementsController {
 
     @FXML
     public void initialize() {
-        // Init browse list if needed
-    }
-
-    @FXML
-    public void goBack() {
-        SceneManager.switchTo("StudentDashboard.fxml");
-    }
-
-    @FXML
-    public void goBack(ActionEvent event) {
-        goBack();
-    }
-
-    @FXML
-    public void openPGDetails() {
-        SceneManager.switchTo("PGDetails.fxml");
-    }
-
-    @FXML
-    public void openPGDetails(ActionEvent event) {
-        openPGDetails();
+        // Init announcements
     }
 
     // Sidebar navigation actions
@@ -38,8 +17,8 @@ public class BrowsePGController {
     }
 
     @FXML
-    private void openAnnouncements() {
-        SceneManager.switchTo("StudentAnnouncements.fxml");
+    private void openBrowsePG() {
+        SceneManager.switchTo("BrowsePG.fxml");
     }
 
     @FXML

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.pgfinder.controller.SettingsController"
+            stylesheets="@../css/student-dashboard.css"
+            prefWidth="1280" prefHeight="800">
+
+    <!-- LEFT SIDEBAR -->
+    <left>
+        <VBox fx:id="sidebar"
+              prefWidth="250"
+              spacing="15"
+              styleClass="sidebar">
+
+            <Label text="PG FINDER"
+                   styleClass="logo"/>
+
+            <VBox spacing="12"
+                  alignment="CENTER"
+                  styleClass="profile-card">
+                <StackPane styleClass="avatar-circle">
+                    <Label text="👨" styleClass="avatar-icon"/>
+                </StackPane>
+                <Label text="Hi, Alex" styleClass="profile-name"/>
+                <Label text="Welcome Back!" styleClass="profile-subtitle"/>
+            </VBox>
+
+            <Button text="🏠 Dashboard" styleClass="menu-button" maxWidth="Infinity" onAction="#openDashboard"/>
+            <Button text="🔍 Browse PGs" styleClass="menu-button" maxWidth="Infinity" onAction="#openBrowsePG"/>
+            <Button text="📍 My Stay" styleClass="menu-button" maxWidth="Infinity" onAction="#openMyStay"/>
+            <Button text="💬 Chat" styleClass="menu-button" maxWidth="Infinity" onAction="#openChat"/>
+            <Button text="📢 Announcements" styleClass="menu-button" maxWidth="Infinity" onAction="#openDashboard"/>
+            <Button text="📜 PG History" styleClass="menu-button" maxWidth="Infinity" onAction="#openPGHistory"/>
+            <Button text="⭐ Reviews" styleClass="menu-button" maxWidth="Infinity" onAction="#openReviews"/>
+            <Button text="⚙ Settings" styleClass="menu-button, menu-button-active" maxWidth="Infinity"/>
+
+        </VBox>
+    </left>
+
+    <!-- MAIN CONTENT -->
+    <center>
+        <ScrollPane fitToWidth="true" hbarPolicy="NEVER">
+            <VBox spacing="25" styleClass="main-content">
+                
+                <!-- HEADER -->
+                <VBox spacing="5">
+                    <Label text="Account Settings" styleClass="heading"/>
+                    <Label text="Manage your profile information, password, and system configurations." styleClass="sub-heading"/>
+                </VBox>
+
+                <!-- SETTINGS CONTROLS -->
+                <VBox spacing="25" maxWidth="800">
+                    
+                    <!-- PROFILE SETTINGS -->
+                    <VBox spacing="15" styleClass="content-card">
+                        <Label text="Profile Information" styleClass="section-title"/>
+                        <GridPane hgap="20" vgap="15">
+                            <columnConstraints>
+                                <ColumnConstraints percentWidth="30"/>
+                                <ColumnConstraints percentWidth="70"/>
+                            </columnConstraints>
+                            
+                            <Label text="Full Name" GridPane.rowIndex="0" GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
+                            <TextField fx:id="nameField" text="Alex" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                            
+                            <Label text="Email Address" GridPane.rowIndex="1" GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
+                            <TextField fx:id="emailField" text="alex@pgfinder.com" GridPane.rowIndex="1" GridPane.columnIndex="1" editable="false" style="-fx-background-color: #F3F4F6;"/>
+                            
+                            <Label text="Phone Number" GridPane.rowIndex="2" GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
+                            <TextField fx:id="phoneField" text="+91 98765 43210" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+                        </GridPane>
+                        <Separator/>
+                        <HBox alignment="CENTER_RIGHT">
+                            <Button text="Save Profile Info" styleClass="btn-primary" onAction="#handleSaveProfile"/>
+                        </HBox>
+                    </VBox>
+
+                    <!-- SECURITY / PASSWORD SETTINGS -->
+                    <VBox spacing="15" styleClass="content-card">
+                        <Label text="Security &amp; Password" styleClass="section-title"/>
+                        <GridPane hgap="20" vgap="15">
+                            <columnConstraints>
+                                <ColumnConstraints percentWidth="30"/>
+                                <ColumnConstraints percentWidth="70"/>
+                            </columnConstraints>
+                            
+                            <Label text="Current Password" GridPane.rowIndex="0" GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
+                            <PasswordField fx:id="currentPasswordField" promptText="Enter current password" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                            
+                            <Label text="New Password" GridPane.rowIndex="1" GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
+                            <PasswordField fx:id="newPasswordField" promptText="Enter new password" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+                            
+                            <Label text="Confirm Password" GridPane.rowIndex="2" GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
+                            <PasswordField fx:id="confirmPasswordField" promptText="Confirm new password" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+                        </GridPane>
+                        <Separator/>
+                        <HBox alignment="CENTER_RIGHT">
+                            <Button text="Change Password" styleClass="btn-outline" onAction="#handleChangePassword"/>
+                        </HBox>
+                    </VBox>
+
+                    <!-- PREFERENCES & NOTIFICATIONS -->
+                    <VBox spacing="15" styleClass="content-card">
+                        <Label text="Preferences &amp; Notifications" styleClass="section-title"/>
+                        <VBox spacing="12">
+                            <CheckBox fx:id="emailNotificationsToggle" text="Receive email notifications for announcements" selected="true"/>
+                            <CheckBox fx:id="chatNotificationsToggle" text="Receive notifications for new chat messages" selected="true"/>
+                            <Separator style="-fx-padding: 5 0;"/>
+                            <HBox alignment="CENTER_LEFT" spacing="20">
+                                <Label text="Theme Preference" style="-fx-font-weight: bold;"/>
+                                <ToggleButton fx:id="themeToggleButton" text="Light Mode Active" styleClass="btn-secondary" onAction="#handleToggleTheme"/>
+                                <Label text="(Dark Mode support placeholder)" styleClass="sub-heading" style="-fx-font-size: 11px;"/>
+                            </HBox>
+                        </VBox>
+                    </VBox>
+
+                    <!-- DANGER ZONE -->
+                    <VBox spacing="15" styleClass="content-card" style="-fx-border-color: #FCA5A5; -fx-border-width: 1.5px;">
+                        <Label text="Danger Zone" styleClass="section-title" style="-fx-text-fill: #DC2626;"/>
+                        <Label text="Actions here can permanently log you out or delete your application data." styleClass="sub-heading" style="-fx-font-size: 13px;"/>
+                        <HBox spacing="15">
+                            <Button text="Log Out" styleClass="btn-secondary" onAction="#handleLogout"/>
+                            <Button text="Delete Account" styleClass="btn-danger" onAction="#handleDeleteAccount"/>
+                        </HBox>
+                    </VBox>
+
+                </VBox>
+            </VBox>
+        </ScrollPane>
+    </center>
+
+</BorderPane>

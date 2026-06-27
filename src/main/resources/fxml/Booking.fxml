@@ -6,78 +6,167 @@
 <BorderPane xmlns="http://javafx.com/javafx/21"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.pgfinder.controller.BookingController"
-            stylesheets="@../css/booking.css">
+            stylesheets="@../css/student-dashboard.css"
+            prefWidth="1280" prefHeight="800">
 
-    <top>
+    <!-- LEFT SIDEBAR -->
+    <left>
+        <VBox fx:id="sidebar"
+              prefWidth="250"
+              spacing="15"
+              styleClass="sidebar">
 
-        <VBox spacing="15"
-              styleClass="header-section">
+            <Label text="PG FINDER"
+                   styleClass="logo"/>
 
-            <Button text="← PG Details"
-                    onAction="#goBack"
-                    styleClass="back-button"/>
+            <VBox spacing="12"
+                  alignment="CENTER"
+                  styleClass="profile-card">
+                <StackPane styleClass="avatar-circle">
+                    <Label text="👨" styleClass="avatar-icon"/>
+                </StackPane>
+                <Label text="Hi, Alex" styleClass="profile-name"/>
+                <Label text="Welcome Back!" styleClass="profile-subtitle"/>
+            </VBox>
 
-            <Label text="Book Your Stay"
-                   styleClass="page-title"/>
+            <Button text="🏠 Dashboard" styleClass="menu-button" maxWidth="Infinity" onAction="#openDashboard"/>
+            <Button text="🔍 Browse PGs" styleClass="menu-button, menu-button-active" maxWidth="Infinity" onAction="#openBrowsePG"/>
+            <Button text="📍 My Stay" styleClass="menu-button" maxWidth="Infinity" onAction="#openMyStay"/>
+            <Button text="💬 Chat" styleClass="menu-button" maxWidth="Infinity" onAction="#openChat"/>
+            <Button text="📢 Announcements" styleClass="menu-button" maxWidth="Infinity" onAction="#openDashboard"/>
+            <Button text="📜 PG History" styleClass="menu-button" maxWidth="Infinity" onAction="#openPGHistory"/>
+            <Button text="⭐ Reviews" styleClass="menu-button" maxWidth="Infinity" onAction="#openReviews"/>
+            <Button text="⚙ Settings" styleClass="menu-button" maxWidth="Infinity" onAction="#openSettings"/>
 
         </VBox>
+    </left>
 
-    </top>
-
+    <!-- MAIN Browse CONTENT -->
     <center>
+        <ScrollPane fitToWidth="true" hbarPolicy="NEVER">
+            <VBox spacing="25" styleClass="main-content">
+                
+                <!-- HEADER NAVIGATION -->
+                <HBox spacing="15" alignment="CENTER_LEFT">
+                    <Button text="← Back to Details" styleClass="btn-secondary" onAction="#goBack"/>
+                </HBox>
 
-        <VBox spacing="20"
-              styleClass="booking-container">
+                <!-- HEADER TITLE -->
+                <VBox spacing="5">
+                    <Label text="Request Reservation" styleClass="heading"/>
+                    <Label text="Confirm your room selection, bed availability, and move-in dates." styleClass="sub-heading"/>
+                </VBox>
 
-            <VBox styleClass="summary-card"
-                  spacing="10">
+                <!-- TWO COLUMN CHECKOUT -->
+                <HBox spacing="25">
+                    
+                    <!-- LEFT COLUMN: SELECTIONS & VISUALIZATION -->
+                    <VBox spacing="25" HBox.hgrow="ALWAYS" prefWidth="600">
+                        
+                        <!-- Reservation Form -->
+                        <VBox spacing="20" styleClass="content-card">
+                            <Label text="Select Bed Space &amp; Dates" styleClass="section-title"/>
+                            
+                            <GridPane hgap="15" vgap="15">
+                                <columnConstraints>
+                                    <ColumnConstraints percentWidth="30"/>
+                                    <ColumnConstraints percentWidth="70"/>
+                                </columnConstraints>
+                                
+                                <Label text="Select Room" GridPane.rowIndex="0" GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
+                                <ComboBox fx:id="roomComboBox" promptText="Choose Room" prefWidth="400" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
 
-                <Label text="Booking Summary"
-                       styleClass="section-title"/>
+                                <Label text="Select Bed" GridPane.rowIndex="1" GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
+                                <ComboBox fx:id="bedComboBox" promptText="Choose Bed" prefWidth="400" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
 
-                <Label text="PG: Sunrise PG"/>
+                                <Label text="Move-in Date" GridPane.rowIndex="2" GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
+                                <DatePicker fx:id="moveInDatePicker" prefWidth="400" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+                            </GridPane>
+                        </VBox>
 
-                <Label text="Location: Model Town, Jalandhar"/>
+                        <!-- Bed Room Visualizer -->
+                        <VBox spacing="15" styleClass="content-card">
+                            <Label text="Selected Room Visualizer" styleClass="section-title"/>
+                            <Label text="Double Sharing Bed Layout (Room A1)" styleClass="sub-heading" style="-fx-font-size: 12px;"/>
+                            <HBox spacing="20" alignment="CENTER" style="-fx-padding: 10 0;">
+                                <VBox alignment="CENTER" spacing="8" style="-fx-background-color: #F3F4F6; -fx-padding: 15; -fx-background-radius: 10px; -fx-border-color: #214F4B; -fx-border-width: 1.5px; -fx-border-radius: 10px;">
+                                    <Label text="🛏️" style="-fx-font-size: 32px;"/>
+                                    <Label text="Bed B1 (Rahul S)" style="-fx-font-weight: bold; -fx-font-size: 11px;"/>
+                                    <Label text="OCCUPIED" styleClass="gender-tag" style="-fx-background-color: #E5E7EB; -fx-text-fill: #374151; -fx-font-size: 9px;"/>
+                                </VBox>
+                                <VBox alignment="CENTER" spacing="8" style="-fx-background-color: #DFF1EA; -fx-padding: 15; -fx-background-radius: 10px; -fx-border-color: #10B981; -fx-border-width: 2px; -fx-border-radius: 10px; -fx-cursor: hand;">
+                                    <Label text="🛏️" style="-fx-font-size: 32px; -fx-text-fill: #065F46;"/>
+                                    <Label text="Bed B2 (Selected)" style="-fx-font-weight: bold; -fx-font-size: 11px; -fx-text-fill: #065F46;"/>
+                                    <Label text="VACANT" styleClass="gender-tag" style="-fx-font-size: 9px;"/>
+                                </VBox>
+                            </HBox>
+                        </VBox>
 
-                <Label text="Rent: ₹6500/month"/>
+                        <!-- Additional Notes -->
+                        <VBox spacing="15" styleClass="content-card">
+                            <Label text="Additional Notes for Owner" styleClass="section-title"/>
+                            <TextArea fx:id="additionalNotes" promptText="Enter any special requests, diet preferences, or arrival details..." prefRowCount="4"/>
+                        </VBox>
+
+                    </VBox>
+
+                    <!-- RIGHT COLUMN: BILLING & CTA SUMMARY -->
+                    <VBox spacing="25" prefWidth="400">
+                        
+                        <!-- Booking Summary -->
+                        <VBox spacing="15" styleClass="content-card">
+                            <Label text="Booking Invoice Summary" styleClass="section-title"/>
+                            
+                            <GridPane hgap="10" vgap="12">
+                                <columnConstraints>
+                                    <ColumnConstraints percentWidth="65"/>
+                                    <ColumnConstraints percentWidth="35"/>
+                                </columnConstraints>
+                                
+                                <Label text="Monthly PG Rent" GridPane.rowIndex="0" GridPane.columnIndex="0" styleClass="sub-heading"/>
+                                <Label text="₹6,500" GridPane.rowIndex="0" GridPane.columnIndex="1" style="-fx-font-weight: bold; -fx-alignment: CENTER_RIGHT;"/>
+
+                                <Label text="Security Deposit (Refundable)" GridPane.rowIndex="1" GridPane.columnIndex="0" styleClass="sub-heading"/>
+                                <Label text="₹10,000" GridPane.rowIndex="1" GridPane.columnIndex="1" style="-fx-font-weight: bold;"/>
+
+                                <Label text="Utility &amp; Maintenance Fee" GridPane.rowIndex="2" GridPane.columnIndex="0" styleClass="sub-heading"/>
+                                <Label text="₹0 (Free)" GridPane.rowIndex="2" GridPane.columnIndex="1" style="-fx-font-weight: bold; -fx-text-fill: #16A34A;"/>
+                            </GridPane>
+                            
+                            <Separator style="-fx-padding: 5 0;"/>
+                            
+                            <HBox alignment="CENTER_LEFT">
+                                <Label text="Estimated Initial Payment" style="-fx-font-weight: bold; -fx-font-size: 14px;"/>
+                                <Region HBox.hgrow="ALWAYS"/>
+                                <Label text="₹16,500" style="-fx-font-weight: 800; -fx-font-size: 18px; -fx-text-fill: #214F4B;"/>
+                            </HBox>
+                        </VBox>
+
+                        <!-- Process Step Progress -->
+                        <VBox spacing="15" styleClass="content-card">
+                            <Label text="Verification Process Timeline" styleClass="section-title"/>
+                            <VBox spacing="10">
+                                <Label text="✔ 1. Select Room &amp; Date" style="-fx-text-fill: #16A34A; -fx-font-weight: bold;"/>
+                                <Label text="⌛ 2. Owner Verification &amp; Approval" style="-fx-text-fill: #F59E0B; -fx-font-weight: bold;"/>
+                                <Label text="● 3. Digital Contract Signing" styleClass="chat-time"/>
+                                <Label text="● 4. Security Deposit Payment" styleClass="chat-time"/>
+                            </VBox>
+                        </VBox>
+
+                        <!-- Confirmation Button -->
+                        <VBox spacing="15" styleClass="content-card" style="-fx-background-color: #214F4B;">
+                            <Label text="Submit Booking Request" styleClass="section-title" style="-fx-text-fill: #FFFFFF;"/>
+                            <Label text="Click below to send details to the landlord. You will receive an alert once approved." styleClass="sub-heading" style="-fx-text-fill: #DFF1EA; -fx-font-size: 13px;"/>
+                            <Button text="Confirm &amp; Request" styleClass="btn-primary" style="-fx-background-color: #FFFFFF; -fx-text-fill: #214F4B; -fx-font-weight: 800; -fx-font-size: 14px;" maxWidth="Infinity" onAction="#handleConfirmBooking"/>
+                            <Label text="🔒 Encrypted checkout. No initial card charges." styleClass="chat-time" style="-fx-text-fill: #A7F3D0; -fx-font-size: 11px; -fx-alignment: CENTER;" maxWidth="Infinity"/>
+                        </VBox>
+
+                    </VBox>
+
+                </HBox>
 
             </VBox>
-
-            <VBox spacing="10">
-
-                <Label text="Select Room"/>
-
-                <ComboBox promptText="Choose Room"/>
-
-            </VBox>
-
-            <VBox spacing="10">
-
-                <Label text="Select Bed"/>
-
-                <ComboBox promptText="Choose Bed"/>
-
-            </VBox>
-
-            <VBox spacing="10">
-
-                <Label text="Move-in Date"/>
-
-                <DatePicker/>
-            </VBox>
-
-            <VBox spacing="10">
-
-                <Label text="Additional Notes"/>
-
-                <TextArea prefRowCount="4"/>
-            </VBox>
-
-            <Button text="Confirm Booking"
-                    styleClass="confirm-button"/>
-
-        </VBox>
-
+        </ScrollPane>
     </center>
 
 </BorderPane>

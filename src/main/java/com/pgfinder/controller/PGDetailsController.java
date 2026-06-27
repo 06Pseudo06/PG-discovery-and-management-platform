@@ -1,40 +1,69 @@
 package com.pgfinder.controller;
 
-import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
-
 import com.pgfinder.util.SceneManager;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 
 public class PGDetailsController {
 
-    public void goBack(ActionEvent event) {
-
-        try {
-
-            Parent root = FXMLLoader.load(
-                    getClass().getResource("/fxml/BrowsePG.fxml")
-            );
-
-            Stage stage =
-                    (Stage) ((Node) event.getSource())
-                            .getScene()
-                            .getWindow();
-
-            stage.setScene(new Scene(root));
-            stage.show();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    @FXML
+    public void initialize() {
+        // Init details if needed
     }
 
+    @FXML
+    public void goBack() {
+        SceneManager.switchTo("BrowsePG.fxml");
+    }
 
-public void openBooking(ActionEvent event) {
-    SceneManager.switchTo("Booking.fxml");
-}
+    @FXML
+    public void goBack(ActionEvent event) {
+        goBack();
+    }
 
+    @FXML
+    public void openBooking() {
+        SceneManager.switchTo("Booking.fxml");
+    }
+
+    @FXML
+    public void openBooking(ActionEvent event) {
+        openBooking();
+    }
+
+    // Sidebar navigation actions
+    @FXML
+    private void openDashboard() {
+        SceneManager.switchTo("StudentDashboard.fxml");
+    }
+
+    @FXML
+    private void openBrowsePG() {
+        SceneManager.switchTo("BrowsePG.fxml");
+    }
+
+    @FXML
+    private void openMyStay() {
+        SceneManager.switchTo("MyStay.fxml");
+    }
+
+    @FXML
+    private void openChat() {
+        SceneManager.switchTo("StudentChat.fxml");
+    }
+
+    @FXML
+    private void openPGHistory() {
+        SceneManager.switchTo("PGHistory.fxml");
+    }
+
+    @FXML
+    private void openReviews() {
+        SceneManager.switchTo("Reviews.fxml");
+    }
+
+    @FXML
+    private void openSettings() {
+        SceneManager.switchTo("Settings.fxml");
+    }
 }

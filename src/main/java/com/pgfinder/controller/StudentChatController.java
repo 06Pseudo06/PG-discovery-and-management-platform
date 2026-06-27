@@ -1,18 +1,16 @@
 package com.pgfinder.controller;
 
 import com.pgfinder.util.SceneManager;
-import com.pgfinder.util.SessionManager;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
-public class ChatController {
+public class StudentChatController {
 
     @FXML
     private VBox messagesContainer;
@@ -22,12 +20,7 @@ public class ChatController {
 
     @FXML
     public void initialize() {
-        // Init chat elements if needed
-    }
-
-    @FXML
-    public void goBack() {
-        SceneManager.switchTo("OwnerDashboard.fxml");
+        // Initialization code if needed
     }
 
     @FXML
@@ -37,6 +30,7 @@ public class ChatController {
             return;
         }
 
+        // Create message bubble
         VBox messageBox = new VBox(4);
         messageBox.setAlignment(Pos.TOP_RIGHT);
 
@@ -44,13 +38,11 @@ public class ChatController {
         String time = LocalTime.now().format(formatter);
 
         Label headerLabel = new Label("You • " + time);
-        headerLabel.getStyleClass().add("stat-sublabel");
+        headerLabel.getStyleClass().add("chat-time");
 
         Label bubbleLabel = new Label(text.trim());
         bubbleLabel.getStyleClass().add("message-sent");
         bubbleLabel.setWrapText(true);
-        // Matching visual padding
-        bubbleLabel.setStyle("-fx-padding: 10 14; -fx-font-size: 13px;");
 
         messageBox.getChildren().addAll(headerLabel, bubbleLabel);
 
@@ -65,37 +57,31 @@ public class ChatController {
     // Sidebar navigation actions
     @FXML
     private void openDashboard() {
-        SceneManager.switchTo("OwnerDashboard.fxml");
+        SceneManager.switchTo("StudentDashboard.fxml");
     }
 
     @FXML
-    private void openMyPGs() {
-        SceneManager.switchTo("MyPGs.fxml");
+    private void openBrowsePG() {
+        SceneManager.switchTo("BrowsePG.fxml");
     }
 
     @FXML
-    private void openRoomsBeds() {
-        SceneManager.switchTo("RoomsBeds.fxml");
+    private void openMyStay() {
+        SceneManager.switchTo("MyStay.fxml");
     }
 
     @FXML
-    private void openBookingRequests() {
-        SceneManager.switchTo("BookingRequests.fxml");
+    private void openPGHistory() {
+        SceneManager.switchTo("PGHistory.fxml");
     }
 
     @FXML
-    private void openTenants() {
-        SceneManager.switchTo("Tenants.fxml");
+    private void openReviews() {
+        SceneManager.switchTo("Reviews.fxml");
     }
 
     @FXML
-    private void openAnnouncements() {
-        SceneManager.switchTo("Announcements.fxml");
-    }
-
-    @FXML
-    private void handleLogout() {
-        SessionManager.logout();
-        SceneManager.switchTo("Login.fxml");
+    private void openSettings() {
+        SceneManager.switchTo("Settings.fxml");
     }
 }

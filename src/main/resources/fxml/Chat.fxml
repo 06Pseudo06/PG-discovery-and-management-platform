@@ -6,108 +6,150 @@
 <BorderPane xmlns="http://javafx.com/javafx/21"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.pgfinder.controller.ChatController"
-            stylesheets="@../css/chat.css">
+            stylesheets="@../css/owner-dashboard.css"
+            prefWidth="1280" prefHeight="800">
 
-    <!-- TOP -->
-
-    <top>
-
-        <HBox spacing="15"
-              alignment="CENTER_LEFT"
-              styleClass="top-bar">
-
-            <Button text="← Dashboard"
-                    onAction="#goBack"
-                    styleClass="primary-button"/>
-
-            <Label text="Tenant Chats"
-                   styleClass="page-title"/>
-
-        </HBox>
-
-    </top>
-
-    <!-- LEFT SIDE -->
-
+    <!-- LEFT SIDEBAR -->
     <left>
+        <VBox prefWidth="240" styleClass="owner-sidebar" spacing="8">
+            <HBox alignment="CENTER_LEFT" spacing="12" styleClass="logo-container">
+                <StackPane styleClass="logo-icon-bg">
+                    <Label text="🏠" styleClass="logo-icon"/>
+                </StackPane>
+                <VBox>
+                    <Label text="PGFinder" styleClass="owner-logo"/>
+                    <Label text="Owner Panel" styleClass="owner-subtitle"/>
+                </VBox>
+            </HBox>
 
-        <VBox prefWidth="280"
-              spacing="10"
-              styleClass="chat-sidebar">
+            <Region prefHeight="20"/>
 
-            <Label text="Conversations"
-                   styleClass="sidebar-title"/>
+            <Button text="📁  Dashboard" styleClass="owner-menu" maxWidth="Infinity" onAction="#openDashboard"/>
+            <Button text="🏢 My PGs" styleClass="owner-menu" maxWidth="Infinity" onAction="#openMyPGs"/>
+            <Button text="🛏  Rooms &amp; Beds" styleClass="owner-menu" maxWidth="Infinity" onAction="#openRoomsBeds"/>
+            
+            <HBox alignment="CENTER_LEFT" styleClass="menu-item-with-badge">
+                <Button text="📋  Requests" styleClass="owner-menu" HBox.hgrow="ALWAYS" maxWidth="Infinity" onAction="#openBookingRequests"/>
+                <Label text="5" styleClass="menu-badge"/>
+            </HBox>
+            
+            <Button text="👥  Tenants" styleClass="owner-menu" maxWidth="Infinity" onAction="#openTenants"/>
+            <Button text="📢  Announcements" styleClass="owner-menu" maxWidth="Infinity" onAction="#openAnnouncements"/>
+            
+            <HBox alignment="CENTER_LEFT" styleClass="menu-item-with-badge">
+                <Button text="💬  Chats" styleClass="owner-menu-active" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                <Label text="3" styleClass="menu-badge"/>
+            </HBox>
+            
+            <Button text="⭐  Reviews" styleClass="owner-menu" maxWidth="Infinity" onAction="#openDashboard"/>
+            <Button text="📊  Reports" styleClass="owner-menu" maxWidth="Infinity" onAction="#openDashboard"/>
+            <Button text="⚙  Settings" styleClass="owner-menu" maxWidth="Infinity" onAction="#openDashboard"/>
 
-            <Button text="Rahul Sharma"
-                    styleClass="chat-user"/>
+            <Region VBox.vgrow="ALWAYS"/>
 
-            <Button text="Aman Patel"
-                    styleClass="chat-user"/>
-
-            <Button text="Neha Verma"
-                    styleClass="chat-user"/>
-
+            <Button text="↪  Logout" styleClass="logout-button" maxWidth="Infinity" onAction="#handleLogout"/>
         </VBox>
-
     </left>
 
-    <!-- CHAT AREA -->
-
+    <!-- MAIN CHAT WORKSPACE -->
     <center>
+        <HBox spacing="0" styleClass="main-scrollpane">
+            
+            <!-- CONVERSATIONS LIST SIDEBAR (LEFT COLUMN OF CHAT) -->
+            <VBox prefWidth="280" styleClass="chat-sidebar" spacing="12">
+                <Label text="Direct Messages" styleClass="sidebar-title"/>
+                <TextField promptText="Search tenant conversations..." styleClass="text-field" style="-fx-font-size: 12px;"/>
+                
+                <Separator/>
+                
+                <VBox spacing="6">
+                    <Button styleClass="chat-user, chat-user-active" maxWidth="Infinity" alignment="CENTER_LEFT">
+                        <graphic>
+                            <HBox spacing="8" alignment="CENTER_LEFT">
+                                <StackPane style="-fx-background-color: #2ECC71; -fx-background-radius: 10px; -fx-min-width: 8px; -fx-max-width: 8px; -fx-min-height: 8px; -fx-max-height: 8px;"/>
+                                <Label text="Rahul Sharma (Room A1)"/>
+                            </HBox>
+                        </graphic>
+                    </Button>
 
-        <VBox spacing="15"
-              styleClass="chat-container">
+                    <Button styleClass="chat-user" maxWidth="Infinity" alignment="CENTER_LEFT">
+                        <graphic>
+                            <HBox spacing="8" alignment="CENTER_LEFT">
+                                <StackPane style="-fx-background-color: #9CA3AF; -fx-background-radius: 10px; -fx-min-width: 8px; -fx-max-width: 8px; -fx-min-height: 8px; -fx-max-height: 8px;"/>
+                                <Label text="Aman Patel (Room B1)"/>
+                            </HBox>
+                        </graphic>
+                    </Button>
 
-            <HBox>
-
-                <Label text="Rahul Sharma"
-                       styleClass="chat-header"/>
-
-            </HBox>
-
-            <ScrollPane fitToWidth="true"
-                        VBox.vgrow="ALWAYS">
-
-                <VBox spacing="10"
-                      styleClass="messages-area">
-
-                    <HBox alignment="CENTER_LEFT">
-
-                        <Label text="Hi Sir, is Bed A4 available?"
-                               styleClass="message-received"/>
-
-                    </HBox>
-
-                    <HBox alignment="CENTER_RIGHT">
-
-                        <Label text="Yes, it is currently available."
-                               styleClass="message-sent"/>
-
-                    </HBox>
-
-                    <HBox alignment="CENTER_LEFT">
-
-                        <Label text="Thank you!"
-                               styleClass="message-received"/>
-
-                    </HBox>
-
+                    <Button styleClass="chat-user" maxWidth="Infinity" alignment="CENTER_LEFT">
+                        <graphic>
+                            <HBox spacing="8" alignment="CENTER_LEFT">
+                                <StackPane style="-fx-background-color: #2ECC71; -fx-background-radius: 10px; -fx-min-width: 8px; -fx-max-width: 8px; -fx-min-height: 8px; -fx-max-height: 8px;"/>
+                                <Label text="Neha Verma (Room C2)"/>
+                            </HBox>
+                        </graphic>
+                    </Button>
                 </VBox>
+            </VBox>
 
-            </ScrollPane>
+            <!-- CHAT VIEWPORT (RIGHT COLUMN OF CHAT) -->
+            <VBox spacing="15" HBox.hgrow="ALWAYS" style="-fx-padding: 20; -fx-background-color: #FFFFFF;">
+                
+                <!-- Chat Header Info -->
+                <HBox alignment="CENTER_LEFT" spacing="15" styleClass="owner-large-card" style="-fx-padding: 12 18; -fx-effect: none; -fx-border-color: #E5E7EB; -fx-border-width: 0 0 1px 0; -fx-border-radius: 0;">
+                    <StackPane styleClass="avatar-circle" style="-fx-min-width: 32px; -fx-max-width: 32px; -fx-min-height: 32px; -fx-max-height: 32px;">
+                        <Label text="RS" styleClass="avatar-text"/>
+                    </StackPane>
+                    <VBox HBox.hgrow="ALWAYS">
+                        <Label text="Rahul Sharma" styleClass="chat-name" style="-fx-font-size: 15px;"/>
+                        <Label text="Active staying tenant in Room A1, Bed B1" styleClass="stat-sublabel"/>
+                    </VBox>
+                </HBox>
 
-            <HBox spacing="10">
+                <!-- Messages area -->
+                <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS" style="-fx-background-color: #F9FAFB; -fx-padding: 10;">
+                    <VBox fx:id="messagesContainer" spacing="15" styleClass="messages-area">
+                        
+                        <HBox alignment="CENTER_LEFT">
+                            <VBox spacing="4">
+                                <Label text="Rahul Sharma • 10:20 AM" styleClass="stat-sublabel"/>
+                                <HBox spacing="5" alignment="CENTER_LEFT">
+                                    <Label text="Hi Sir, is Bed A4 available for my friend?" styleClass="message-received" style="-fx-padding: 10 14; -fx-font-size: 13px;"/>
+                                    <Label text="👍" style="-fx-font-size: 12px; -fx-text-fill: #888888;"/> <!-- Reaction indicator -->
+                                </HBox>
+                            </VBox>
+                        </HBox>
 
-                <TextField promptText="Type a message..."
-                           HBox.hgrow="ALWAYS"/>
+                        <HBox alignment="CENTER_RIGHT">
+                            <VBox spacing="4" alignment="TOP_RIGHT">
+                                <Label text="You • 10:22 AM" styleClass="stat-sublabel"/>
+                                <HBox spacing="5" alignment="CENTER_RIGHT">
+                                    <Label text="Yes, Bed A4 is currently vacant. They can apply via the portal." styleClass="message-sent" style="-fx-padding: 10 14; -fx-font-size: 13px;"/>
+                                </HBox>
+                            </VBox>
+                        </HBox>
 
-                <Button text="Send"
-                        styleClass="send-button"/>
+                        <HBox alignment="CENTER_LEFT">
+                            <VBox spacing="4">
+                                <Label text="Rahul Sharma • 10:23 AM" styleClass="stat-sublabel"/>
+                                <HBox spacing="5" alignment="CENTER_LEFT">
+                                    <Label text="Perfect! Thank you so much, I will ask them to register." styleClass="message-received" style="-fx-padding: 10 14; -fx-font-size: 13px;"/>
+                                </HBox>
+                            </VBox>
+                        </HBox>
 
-            </HBox>
+                    </VBox>
+                </ScrollPane>
 
-        </VBox>
+                <!-- Message input footer -->
+                <HBox spacing="12" alignment="CENTER_LEFT">
+                    <TextField fx:id="messageInput" promptText="Type your reply to Rahul..." HBox.hgrow="ALWAYS" styleClass="text-field"/>
+                    <Button text="Send Reply" styleClass="send-button" onAction="#handleSendMessage"/>
+                </HBox>
+                
+            </VBox>
 
+        </HBox>
     </center>
 
 </BorderPane>

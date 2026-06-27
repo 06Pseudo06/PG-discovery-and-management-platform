@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.pgfinder.controller.PGHistoryController"
+            stylesheets="@../css/student-dashboard.css"
+            prefWidth="1280" prefHeight="800">
+
+    <!-- LEFT SIDEBAR -->
+    <left>
+        <VBox fx:id="sidebar"
+              prefWidth="250"
+              spacing="15"
+              styleClass="sidebar">
+
+            <Label text="PG FINDER"
+                   styleClass="logo"/>
+
+            <VBox spacing="12"
+                  alignment="CENTER"
+                  styleClass="profile-card">
+                <StackPane styleClass="avatar-circle">
+                    <Label text="👨" styleClass="avatar-icon"/>
+                </StackPane>
+                <Label text="Hi, Alex" styleClass="profile-name"/>
+                <Label text="Welcome Back!" styleClass="profile-subtitle"/>
+            </VBox>
+
+            <Button text="🏠 Dashboard" styleClass="menu-button" maxWidth="Infinity" onAction="#openDashboard"/>
+            <Button text="🔍 Browse PGs" styleClass="menu-button" maxWidth="Infinity" onAction="#openBrowsePG"/>
+            <Button text="📍 My Stay" styleClass="menu-button" maxWidth="Infinity" onAction="#openMyStay"/>
+            <Button text="💬 Chat" styleClass="menu-button" maxWidth="Infinity" onAction="#openChat"/>
+            <Button text="📢 Announcements" styleClass="menu-button" maxWidth="Infinity" onAction="#openDashboard"/>
+            <Button text="📜 PG History" styleClass="menu-button, menu-button-active" maxWidth="Infinity"/>
+            <Button text="⭐ Reviews" styleClass="menu-button" maxWidth="Infinity" onAction="#openReviews"/>
+            <Button text="⚙ Settings" styleClass="menu-button" maxWidth="Infinity" onAction="#openSettings"/>
+
+        </VBox>
+    </left>
+
+    <!-- MAIN CONTENT -->
+    <center>
+        <ScrollPane fitToWidth="true" hbarPolicy="NEVER">
+            <VBox spacing="25" styleClass="main-content">
+                
+                <!-- HEADER -->
+                <VBox spacing="5">
+                    <Label text="My Stay History" styleClass="heading"/>
+                    <Label text="Your timeline of past accommodations and reviews." styleClass="sub-heading"/>
+                </VBox>
+
+                <!-- TIMELINE CONTAINER -->
+                <VBox spacing="0" styleClass="timeline-container">
+                    
+                    <!-- CURRENT STAY (TOP OF TIMELINE) -->
+                    <HBox spacing="20" alignment="TOP_LEFT">
+                        <VBox alignment="TOP_CENTER" spacing="5">
+                            <StackPane styleClass="timeline-node" style="-fx-background-color: #2ECC71;"/>
+                            <Region prefHeight="130" styleClass="timeline-line"/>
+                        </VBox>
+                        <VBox spacing="10" HBox.hgrow="ALWAYS" styleClass="timeline-card" style="-fx-border-color: #2ECC71; -fx-border-width: 1.5px;">
+                            <HBox alignment="CENTER_LEFT">
+                                <Label text="Sunrise PG" styleClass="pg-name" style="-fx-font-size: 20px;"/>
+                                <Region HBox.hgrow="ALWAYS"/>
+                                <Label text="ACTIVE STAY" styleClass="status-tag" style="-fx-background-color: #D4EFDF; -fx-text-fill: #196F3D;"/>
+                            </HBox>
+                            <Label text="📍 Model Town, Jalandhar  •  Room A1, Bed B2" styleClass="sub-heading"/>
+                            <HBox spacing="30">
+                                <VBox spacing="2">
+                                    <Label text="Duration" styleClass="sub-heading" style="-fx-font-size: 11px;"/>
+                                    <Label text="15 Jun 2026 - Present (1 Year Contract)" style="-fx-font-weight: bold; -fx-font-size: 13px;"/>
+                                </VBox>
+                                <VBox spacing="2">
+                                    <Label text="Owner" styleClass="sub-heading" style="-fx-font-size: 11px;"/>
+                                    <Label text="Mr. Rohit Sharma" style="-fx-font-weight: bold; -fx-font-size: 13px;"/>
+                                </VBox>
+                            </HBox>
+                            <Separator/>
+                            <HBox alignment="CENTER_RIGHT">
+                                <Button text="View Active Details" styleClass="btn-primary" onAction="#openMyStay"/>
+                            </HBox>
+                        </VBox>
+                    </HBox>
+
+                    <!-- PAST STAY 1 -->
+                    <HBox spacing="20" alignment="TOP_LEFT">
+                        <VBox alignment="TOP_CENTER" spacing="5">
+                            <StackPane styleClass="timeline-node"/>
+                            <Region prefHeight="130" styleClass="timeline-line"/>
+                        </VBox>
+                        <VBox spacing="10" HBox.hgrow="ALWAYS" styleClass="timeline-card">
+                            <HBox alignment="CENTER_LEFT">
+                                <Label text="Comfort Living Hostel" styleClass="pg-name" style="-fx-font-size: 20px;"/>
+                                <Region HBox.hgrow="ALWAYS"/>
+                                <Label text="COMPLETED" styleClass="status-tag" style="-fx-background-color: #EAECEE; -fx-text-fill: #5D6D7E;"/>
+                            </HBox>
+                            <Label text="📍 Urban Estate, Phase 1, Jalandhar  •  Room C3, Bed A" styleClass="sub-heading"/>
+                            <HBox spacing="30">
+                                <VBox spacing="2">
+                                    <Label text="Duration" styleClass="sub-heading" style="-fx-font-size: 11px;"/>
+                                    <Label text="01 Jul 2025 - 30 May 2026 (11 Months)" style="-fx-font-weight: bold; -fx-font-size: 13px;"/>
+                                </VBox>
+                                <VBox spacing="2">
+                                    <Label text="Owner" styleClass="sub-heading" style="-fx-font-size: 11px;"/>
+                                    <Label text="Mr. Aman Patel" style="-fx-font-weight: bold; -fx-font-size: 13px;"/>
+                                </VBox>
+                                <VBox spacing="2">
+                                    <Label text="Rating Given" styleClass="sub-heading" style="-fx-font-size: 11px;"/>
+                                    <Label text="⭐⭐⭐⭐★ (4.0)" style="-fx-text-fill: #F59E0B; -fx-font-weight: bold;"/>
+                                </VBox>
+                            </HBox>
+                            <Separator/>
+                            <HBox alignment="CENTER_RIGHT" spacing="10">
+                                <Button text="Write Review" styleClass="btn-outline" onAction="#openReviews"/>
+                                <Button text="Browse Similar PGs" styleClass="btn-secondary" onAction="#openBrowsePG"/>
+                            </HBox>
+                        </VBox>
+                    </HBox>
+
+                    <!-- PAST STAY 2 -->
+                    <HBox spacing="20" alignment="TOP_LEFT">
+                        <VBox alignment="TOP_CENTER" spacing="5">
+                            <StackPane styleClass="timeline-node"/>
+                        </VBox>
+                        <VBox spacing="10" HBox.hgrow="ALWAYS" styleClass="timeline-card">
+                            <HBox alignment="CENTER_LEFT">
+                                <Label text="Student Nest Hostel" styleClass="pg-name" style="-fx-font-size: 20px;"/>
+                                <Region HBox.hgrow="ALWAYS"/>
+                                <Label text="COMPLETED" styleClass="status-tag" style="-fx-background-color: #EAECEE; -fx-text-fill: #5D6D7E;"/>
+                            </HBox>
+                            <Label text="📍 LPU Highway, Phagwara  •  Room B10, Bed B" styleClass="sub-heading"/>
+                            <HBox spacing="30">
+                                <VBox spacing="2">
+                                    <Label text="Duration" styleClass="sub-heading" style="-fx-font-size: 11px;"/>
+                                    <Label text="15 Jul 2024 - 15 Jun 2025 (11 Months)" style="-fx-font-weight: bold; -fx-font-size: 13px;"/>
+                                </VBox>
+                                <VBox spacing="2">
+                                    <Label text="Owner" styleClass="sub-heading" style="-fx-font-size: 11px;"/>
+                                    <Label text="Mrs. Neha Verma" style="-fx-font-weight: bold; -fx-font-size: 13px;"/>
+                                </VBox>
+                                <VBox spacing="2">
+                                    <Label text="Rating Given" styleClass="sub-heading" style="-fx-font-size: 11px;"/>
+                                    <Label text="⭐⭐⭐⭐⭐ (5.0)" style="-fx-text-fill: #F59E0B; -fx-font-weight: bold;"/>
+                                </VBox>
+                            </HBox>
+                        </VBox>
+                    </HBox>
+
+                </VBox>
+            </VBox>
+        </ScrollPane>
+    </center>
+
+</BorderPane>

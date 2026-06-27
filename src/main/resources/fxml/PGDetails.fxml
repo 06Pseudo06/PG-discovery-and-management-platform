@@ -6,135 +6,226 @@
 <BorderPane xmlns="http://javafx.com/javafx/21"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.pgfinder.controller.PGDetailsController"
-            stylesheets="@../css/pg-details.css">
+            stylesheets="@../css/student-dashboard.css"
+            prefWidth="1280" prefHeight="800">
 
-    <top>
+    <!-- LEFT SIDEBAR -->
+    <left>
+        <VBox fx:id="sidebar"
+              prefWidth="250"
+              spacing="15"
+              styleClass="sidebar">
 
-        <VBox spacing="15"
-              styleClass="header-section">
+            <Label text="PG FINDER"
+                   styleClass="logo"/>
 
-            <Button text="← Browse PGs"
-                    onAction="#goBack"
-                    styleClass="back-button"/>
-
-            <Label text="PG Details"
-                   styleClass="page-title"/>
-
-        </VBox>
-
-    </top>
-
-    <center>
-
-        <ScrollPane fitToWidth="true">
-
-            <VBox spacing="20"
-                  styleClass="details-container">
-
-                <StackPane styleClass="hero-image">
-
-                    <Label text="PG IMAGE"/>
-
+            <VBox spacing="12"
+                  alignment="CENTER"
+                  styleClass="profile-card">
+                <StackPane styleClass="avatar-circle">
+                    <Label text="👨" styleClass="avatar-icon"/>
                 </StackPane>
-
-                <HBox spacing="20">
-
-                    <Label text="Sunrise PG"
-                           styleClass="pg-title"/>
-
-                    <Label text="⭐ 4.5"/>
-
-                </HBox>
-
-                <Label text="📍 Model Town, Jalandhar"/>
-
-                <HBox spacing="10">
-
-                    <Label text="WiFi"
-                           styleClass="feature-tag"/>
-
-                    <Label text="Food"
-                           styleClass="feature-tag"/>
-
-                    <Label text="AC"
-                           styleClass="feature-tag"/>
-
-                    <Label text="Laundry"
-                           styleClass="feature-tag"/>
-
-                </HBox>
-
-                <Separator/>
-
-                <Label text="Description"
-                       styleClass="section-title"/>
-
-                <Label wrapText="true"
-                       text="Comfortable PG located near educational institutions with WiFi, food services and modern facilities."/>
-
-                <Separator/>
-
-                <Label text="Available Rooms"
-                       styleClass="section-title"/>
-
-                <VBox spacing="10">
-
-                    <HBox styleClass="room-card">
-
-                        <Label text="Room A"/>
-
-                        <Region HBox.hgrow="ALWAYS"/>
-
-                        <Label text="2 Beds Available"/>
-
-                    </HBox>
-
-                    <HBox styleClass="room-card">
-
-                        <Label text="Room B"/>
-
-                        <Region HBox.hgrow="ALWAYS"/>
-
-                        <Label text="1 Bed Available"/>
-
-                    </HBox>
-
-                </VBox>
-
-                <Separator/>
-
-                <Label text="Reviews"
-                       styleClass="section-title"/>
-
-                <VBox spacing="10">
-
-                    <VBox styleClass="review-card">
-
-                        <Label text="⭐⭐⭐⭐⭐"/>
-
-                        <Label text="Great stay and friendly owner."/>
-
-                    </VBox>
-
-                    <VBox styleClass="review-card">
-
-                        <Label text="⭐⭐⭐⭐"/>
-
-                        <Label text="Food quality was good."/>
-
-                    </VBox>
-
-                </VBox>
-
-                <Button text="BOOK BED"
-                  styleClass="book-button"
-                    onAction="#openBooking"/>
-
-
+                <Label text="Hi, Alex" styleClass="profile-name"/>
+                <Label text="Welcome Back!" styleClass="profile-subtitle"/>
             </VBox>
 
-        </ScrollPane>
+            <Button text="🏠 Dashboard" styleClass="menu-button" maxWidth="Infinity" onAction="#openDashboard"/>
+            <Button text="🔍 Browse PGs" styleClass="menu-button, menu-button-active" maxWidth="Infinity" onAction="#openBrowsePG"/>
+            <Button text="📍 My Stay" styleClass="menu-button" maxWidth="Infinity" onAction="#openMyStay"/>
+            <Button text="💬 Chat" styleClass="menu-button" maxWidth="Infinity" onAction="#openChat"/>
+            <Button text="📢 Announcements" styleClass="menu-button" maxWidth="Infinity" onAction="#openDashboard"/>
+            <Button text="📜 PG History" styleClass="menu-button" maxWidth="Infinity" onAction="#openPGHistory"/>
+            <Button text="⭐ Reviews" styleClass="menu-button" maxWidth="Infinity" onAction="#openReviews"/>
+            <Button text="⚙ Settings" styleClass="menu-button" maxWidth="Infinity" onAction="#openSettings"/>
 
+        </VBox>
+    </left>
+
+    <!-- MAIN Browse CONTENT -->
+    <center>
+        <ScrollPane fitToWidth="true" hbarPolicy="NEVER">
+            <VBox spacing="25" styleClass="main-content">
+                
+                <!-- HEADER NAVIGATION -->
+                <HBox spacing="15" alignment="CENTER_LEFT">
+                    <Button text="← Browse PGs" styleClass="btn-secondary" onAction="#goBack"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Button text="❤️ Add to Favorites" styleClass="btn-outline"/>
+                </HBox>
+
+                <!-- PG TITLE & RATING HEADER -->
+                <VBox spacing="5">
+                    <HBox alignment="CENTER_LEFT" spacing="15">
+                        <Label text="Sunrise PG" styleClass="heading" style="-fx-font-size: 32px;"/>
+                        <Label text="⭐ 4.5 (24 Reviews)" style="-fx-text-fill: #F59E0B; -fx-font-weight: bold; -fx-font-size: 16px;"/>
+                    </HBox>
+                    <Label text="📍 Model Town, Jalandhar  •  Girls PG" styleClass="sub-heading" style="-fx-font-size: 14px;"/>
+                </VBox>
+
+                <!-- AIRBNB STYLE PHOTO GALLERY -->
+                <HBox spacing="15" prefHeight="300">
+                    <StackPane HBox.hgrow="ALWAYS" style="-fx-background-color: #E2ECE8; -fx-background-radius: 12px;">
+                        <Label text="Main Room Image" styleClass="pg-title" style="-fx-text-fill: #214F4B;"/>
+                    </StackPane>
+                    <VBox spacing="15" prefWidth="300">
+                        <StackPane VBox.vgrow="ALWAYS" style="-fx-background-color: #DFF1EA; -fx-background-radius: 12px;">
+                            <Label text="Living Room" styleClass="sub-heading" style="-fx-font-size: 12px;"/>
+                        </StackPane>
+                        <StackPane VBox.vgrow="ALWAYS" style="-fx-background-color: #DFF1EA; -fx-background-radius: 12px;">
+                            <Label text="Washroom" styleClass="sub-heading" style="-fx-font-size: 12px;"/>
+                        </StackPane>
+                    </VBox>
+                </HBox>
+
+                <!-- DETAILS BLOCK: HBOX SPLIT -->
+                <HBox spacing="25">
+                    
+                    <!-- LEFT COLUMN: DESCRIPTION, AMENITIES, REVIEWS -->
+                    <VBox spacing="25" HBox.hgrow="ALWAYS" prefWidth="600">
+                        
+                        <!-- Description -->
+                        <VBox spacing="15" styleClass="content-card">
+                            <Label text="Description" styleClass="section-title"/>
+                            <Label text="Sunrise PG is a premium hostel workspace curated specifically for university students and corporate females. Situated at the premium commercial location of Model Town, Jalandhar, it offers immediate access to local cafes, transport nodes, and educational institutes. With high-end security systems, strict verification, daily housekeeping, and home-cooked meals, we ensure you feel right at home."
+                                   wrapText="true" style="-fx-font-size: 14px; -fx-text-fill: #4B5563; -fx-line-spacing: 1.5;"/>
+                        </VBox>
+
+                        <!-- Amenities -->
+                        <VBox spacing="15" styleClass="content-card">
+                            <Label text="Included Amenities" styleClass="section-title"/>
+                            <FlowPane hgap="10" vgap="10">
+                                <Label text="📶 High-speed WiFi" styleClass="gender-tag" style="-fx-background-color: #E2F0ED; -fx-text-fill: #214F4B;"/>
+                                <Label text="🍲 Three Meals Daily" styleClass="gender-tag" style="-fx-background-color: #E2F0ED; -fx-text-fill: #214F4B;"/>
+                                <Label text="❄ Air Conditioning (AC)" styleClass="gender-tag" style="-fx-background-color: #E2F0ED; -fx-text-fill: #214F4B;"/>
+                                <Label text="🧺 Laundry Service" styleClass="gender-tag" style="-fx-background-color: #E2F0ED; -fx-text-fill: #214F4B;"/>
+                                <Label text="🧼 Daily Housekeeping" styleClass="gender-tag" style="-fx-background-color: #E2F0ED; -fx-text-fill: #214F4B;"/>
+                                <Label text="⚡ Power Backup" styleClass="gender-tag" style="-fx-background-color: #E2F0ED; -fx-text-fill: #214F4B;"/>
+                                <Label text="👮 24/7 Security &amp; CCTV" styleClass="gender-tag" style="-fx-background-color: #E2F0ED; -fx-text-fill: #214F4B;"/>
+                            </FlowPane>
+                        </VBox>
+
+                        <!-- Nearby Places -->
+                        <VBox spacing="15" styleClass="content-card">
+                            <Label text="Nearby Landmarks" styleClass="section-title"/>
+                            <GridPane hgap="20" vgap="12">
+                                <columnConstraints>
+                                    <ColumnConstraints percentWidth="60"/>
+                                    <ColumnConstraints percentWidth="40"/>
+                                </columnConstraints>
+                                <Label text="LPU Phagwara University" GridPane.rowIndex="0" GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
+                                <Label text="🚗 10 Mins Drive (3.5 km)" GridPane.rowIndex="0" GridPane.columnIndex="1" styleClass="sub-heading"/>
+
+                                <Label text="Model Town Market &amp; Food Hub" GridPane.rowIndex="1" GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
+                                <Label text="🚶 3 Mins Walk (200 m)" GridPane.rowIndex="1" GridPane.columnIndex="1" styleClass="sub-heading"/>
+
+                                <Label text="City Hospital &amp; Medical Center" GridPane.rowIndex="2" GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
+                                <Label text="🚗 5 Mins Drive (1.5 km)" GridPane.rowIndex="2" GridPane.columnIndex="1" styleClass="sub-heading"/>
+
+                                <Label text="Railway Station (Jalandhar City)" GridPane.rowIndex="3" GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
+                                <Label text="🚗 15 Mins Drive (5.0 km)" GridPane.rowIndex="3" GridPane.columnIndex="1" styleClass="sub-heading"/>
+                            </GridPane>
+                        </VBox>
+
+                        <!-- Reviews Breakdown -->
+                        <VBox spacing="15" styleClass="content-card">
+                            <Label text="Student Reviews Summary" styleClass="section-title"/>
+                            <HBox spacing="30" alignment="CENTER_LEFT">
+                                <VBox spacing="5" alignment="CENTER" style="-fx-background-color: #F9FAFB; -fx-padding: 15; -fx-background-radius: 10px; -fx-min-width: 120px;">
+                                    <Label text="4.5" styleClass="heading" style="-fx-font-size: 32px; -fx-text-fill: #214F4B;"/>
+                                    <Label text="⭐⭐⭐⭐★" style="-fx-text-fill: #F59E0B;"/>
+                                    <Label text="24 Reviews" styleClass="chat-time"/>
+                                </VBox>
+                                
+                                <VBox spacing="6" HBox.hgrow="ALWAYS">
+                                    <HBox spacing="10" alignment="CENTER_LEFT">
+                                        <Label text="5 Star" prefWidth="50" styleClass="chat-time"/>
+                                        <ProgressBar progress="0.75" HBox.hgrow="ALWAYS"/>
+                                        <Label text="18" prefWidth="20" styleClass="chat-time"/>
+                                    </HBox>
+                                    <HBox spacing="10" alignment="CENTER_LEFT">
+                                        <Label text="4 Star" prefWidth="50" styleClass="chat-time"/>
+                                        <ProgressBar progress="0.20" HBox.hgrow="ALWAYS"/>
+                                        <Label text="4" prefWidth="20" styleClass="chat-time"/>
+                                    </HBox>
+                                    <HBox spacing="10" alignment="CENTER_LEFT">
+                                        <Label text="3 Star" prefWidth="50" styleClass="chat-time"/>
+                                        <ProgressBar progress="0.05" HBox.hgrow="ALWAYS"/>
+                                        <Label text="2" prefWidth="20" styleClass="chat-time"/>
+                                    </HBox>
+                                    <HBox spacing="10" alignment="CENTER_LEFT">
+                                        <Label text="2 Star" prefWidth="50" styleClass="chat-time"/>
+                                        <ProgressBar progress="0.0" HBox.hgrow="ALWAYS"/>
+                                        <Label text="0" prefWidth="20" styleClass="chat-time"/>
+                                    </HBox>
+                                    <HBox spacing="10" alignment="CENTER_LEFT">
+                                        <Label text="1 Star" prefWidth="50" styleClass="chat-time"/>
+                                        <ProgressBar progress="0.0" HBox.hgrow="ALWAYS"/>
+                                        <Label text="0" prefWidth="20" styleClass="chat-time"/>
+                                    </HBox>
+                                </VBox>
+                            </HBox>
+                        </VBox>
+
+                    </VBox>
+
+                    <!-- RIGHT COLUMN: OWNER & AVAILABILITY / BOOKING CTA -->
+                    <VBox spacing="25" prefWidth="400">
+                        
+                        <!-- Owner Info -->
+                        <VBox spacing="15" styleClass="content-card">
+                            <Label text="Your Landlord Info" styleClass="section-title"/>
+                            <HBox spacing="15" alignment="CENTER_LEFT">
+                                <StackPane styleClass="mini-avatar">
+                                    <Label text="👨"/>
+                                </StackPane>
+                                <VBox>
+                                    <Label text="Mr. Rohit Sharma" styleClass="chat-name"/>
+                                    <Label text="PG Owner  •  Active 1 hr ago" styleClass="sub-heading" style="-fx-font-size: 11px;"/>
+                                </VBox>
+                            </HBox>
+                            <Separator/>
+                            <Button text="💬 Send Private Message" styleClass="btn-outline" maxWidth="Infinity" onAction="#openChat"/>
+                        </VBox>
+
+                        <!-- Room Availability & Pricing -->
+                        <VBox spacing="15" styleClass="content-card">
+                            <Label text="Room Availability &amp; Rates" styleClass="section-title"/>
+                            <VBox spacing="12">
+                                
+                                <HBox alignment="CENTER_LEFT" style="-fx-background-color: #F9FAFB; -fx-padding: 12; -fx-background-radius: 10px;">
+                                    <VBox>
+                                        <Label text="Room A1 (Double Sharing)" style="-fx-font-weight: bold;"/>
+                                        <Label text="2 beds available" styleClass="chat-time" style="-fx-text-fill: #16A34A;"/>
+                                    </VBox>
+                                    <Region HBox.hgrow="ALWAYS"/>
+                                    <Label text="₹6,500/mo" style="-fx-font-weight: 800; -fx-text-fill: #214F4B;"/>
+                                </HBox>
+
+                                <HBox alignment="CENTER_LEFT" style="-fx-background-color: #F9FAFB; -fx-padding: 12; -fx-background-radius: 10px;">
+                                    <VBox>
+                                        <Label text="Room A2 (Triple Sharing)" style="-fx-font-weight: bold;"/>
+                                        <Label text="1 bed available" styleClass="chat-time" style="-fx-text-fill: #16A34A;"/>
+                                    </VBox>
+                                    <Region HBox.hgrow="ALWAYS"/>
+                                    <Label text="₹6,000/mo" style="-fx-font-weight: 800; -fx-text-fill: #214F4B;"/>
+                                </HBox>
+
+                            </VBox>
+                        </VBox>
+
+                        <!-- CTA Book button -->
+                        <VBox styleClass="content-card" spacing="15" style="-fx-background-color: #214F4B;">
+                            <Label text="Secure Your Bed Instantly" styleClass="section-title" style="-fx-text-fill: #FFFFFF;"/>
+                            <Label text="Secure a place today by registering details and confirming reservations." styleClass="sub-heading" style="-fx-text-fill: #DFF1EA; -fx-font-size: 13px;"/>
+                            <Button text="⚡ PROCEED TO BOOKING" styleClass="btn-primary" style="-fx-background-color: #FFFFFF; -fx-text-fill: #214F4B; -fx-font-size: 14px;" maxWidth="Infinity" onAction="#openBooking"/>
+                        </VBox>
+
+                    </VBox>
+
+                </HBox>
+
+            </VBox>
+        </ScrollPane>
     </center>
 
 </BorderPane>

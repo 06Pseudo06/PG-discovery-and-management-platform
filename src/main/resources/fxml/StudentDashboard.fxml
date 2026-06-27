@@ -6,7 +6,8 @@
 <BorderPane xmlns="http://javafx.com/javafx/21"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.pgfinder.controller.StudentDashboardController"
-            stylesheets="@../css/student-dashboard.css">
+            stylesheets="@../css/student-dashboard.css"
+            prefWidth="1280" prefHeight="800">
 
     <!-- LEFT SIDEBAR -->
     <left>
@@ -19,276 +20,201 @@
                    styleClass="logo"/>
 
             <VBox spacing="12"
-      alignment="CENTER"
-      styleClass="profile-card">
+                  alignment="CENTER"
+                  styleClass="profile-card">
+                <StackPane styleClass="avatar-circle">
+                    <Label text="👨" styleClass="avatar-icon"/>
+                </StackPane>
+                <Label text="Hi, Alex" styleClass="profile-name"/>
+                <Label text="Welcome Back!" styleClass="profile-subtitle"/>
+            </VBox>
 
-    <StackPane styleClass="avatar-circle">
-
-        <Label text="👨"
-               styleClass="avatar-icon"/>
-
-    </StackPane>
-
-    <Label text="Hi, Alex"
-           styleClass="profile-name"/>
-
-    <Label text="Welcome Back!"
-           styleClass="profile-subtitle"/>
-
-</VBox>
-
-            <Button text="🏠 Dashboard"
-                    styleClass="menu-button"/>
-
-            <Button text="🔍 Browse PGs"
-                    styleClass="menu-button"
-                    onAction="#openBrowsePG"/>
-
-            <Button text="📍 My Stay"
-                    styleClass="menu-button"/>
-
-            <Button text="💬 Chat"
-                    styleClass="menu-button"/>
-
-            <Button text="📢 Announcements"
-                    styleClass="menu-button"/>
-
-            <Button text="📜 PG History"
-                    styleClass="menu-button"/>
-
-            <Button text="⭐ Reviews"
-                    styleClass="menu-button"/>
-
-            <Button text="⚙ Settings"
-                    styleClass="menu-button"/>
+            <Button text="🏠 Dashboard" styleClass="menu-button, menu-button-active" maxWidth="Infinity"/>
+            <Button text="🔍 Browse PGs" styleClass="menu-button" maxWidth="Infinity" onAction="#openBrowsePG"/>
+            <Button text="📍 My Stay" styleClass="menu-button" maxWidth="Infinity" onAction="#openMyStay"/>
+            <Button text="💬 Chat" styleClass="menu-button" maxWidth="Infinity" onAction="#openChat"/>
+            <Button text="📢 Announcements" styleClass="menu-button" maxWidth="Infinity" onAction="#openAnnouncements"/>
+            <Button text="📜 PG History" styleClass="menu-button" maxWidth="Infinity" onAction="#openPGHistory"/>
+            <Button text="⭐ Reviews" styleClass="menu-button" maxWidth="Infinity" onAction="#openReviews"/>
+            <Button text="⚙ Settings" styleClass="menu-button" maxWidth="Infinity" onAction="#openSettings"/>
 
         </VBox>
     </left>
 
     <!-- MAIN CONTENT -->
     <center>
-
-        <ScrollPane fitToWidth="true"
-                    hbarPolicy="NEVER">
-
-            <VBox spacing="25"
-                  styleClass="main-content">
+        <ScrollPane fitToWidth="true" hbarPolicy="NEVER">
+            <VBox spacing="25" styleClass="main-content">
 
                 <!-- HEADER -->
-                <HBox alignment="CENTER_LEFT"
-                      spacing="20">
-
+                <HBox alignment="CENTER_LEFT" spacing="20">
                     <VBox HBox.hgrow="ALWAYS">
-
-                        <Label text="Good Morning, Alex!"
-                               styleClass="heading"/>
-
-                        <Label text="Here's what's happening in your stay."
-                               styleClass="sub-heading"/>
-
+                        <Label text="Good Morning, Alex! ☀️" styleClass="heading"/>
+                        <Label text="Here is a quick overview of your accommodation activity." styleClass="sub-heading"/>
                     </VBox>
-
-                    <Button text="🔔"/>
-
-                    <Button text="👤"/>
-
+                    <HBox spacing="10" alignment="CENTER_RIGHT">
+                        <Button text="🔔" styleClass="btn-secondary" style="-fx-padding: 10 12;"/>
+                        <Button text="👤 Settings" styleClass="btn-outline" onAction="#openSettings"/>
+                    </HBox>
                 </HBox>
 
-                <!-- TOP CARDS -->
-                <HBox spacing="20">
-
-                    <VBox styleClass="stat-card-yellow">
-                        <Label text="Current PG"/>
-                        <Label text="Sunrise PG" styleClass="card-number"/>
+                <!-- TOP QUICK STAT CARDS -->
+                <GridPane hgap="20" vgap="10">
+                    <columnConstraints>
+                        <ColumnConstraints percentWidth="25"/>
+                        <ColumnConstraints percentWidth="25"/>
+                        <ColumnConstraints percentWidth="25"/>
+                        <ColumnConstraints percentWidth="25"/>
+                    </columnConstraints>
+                    
+                    <VBox styleClass="stat-card-yellow" GridPane.columnIndex="0">
+                        <Label text="Current Stay"/>
+                        <Label text="Sunrise PG" styleClass="card-number" style="-fx-font-size: 20px;"/>
                     </VBox>
 
-                    <VBox styleClass="stat-card-green">
+                    <VBox styleClass="stat-card-green" GridPane.columnIndex="1">
                         <Label text="Days Remaining"/>
-                        <Label text="147" styleClass="card-number"/>
+                        <Label text="147 Days" styleClass="card-number"/>
                     </VBox>
 
-                    <VBox styleClass="stat-card-light">
-                        <Label text="Pending Requests"/>
-                        <Label text="1" styleClass="card-number"/>
+                    <VBox styleClass="stat-card-light" GridPane.columnIndex="2">
+                        <Label text="Room &amp; Bed"/>
+                        <Label text="Room A1 • B2" styleClass="card-number"/>
                     </VBox>
 
-                    <VBox styleClass="stat-card-green">
-                        <Label text="Announcements"/>
-                        <Label text="3 New" styleClass="card-number"/>
+                    <VBox styleClass="stat-card-light" GridPane.columnIndex="3">
+                        <Label text="Pending Invoices"/>
+                        <Label text="₹0 (Paid)" styleClass="card-number" style="-fx-text-fill: #16A34A;"/>
+                    </VBox>
+                </GridPane>
+
+                <!-- ROW 2: ACTIVE STAY & ANNOUNCEMENTS -->
+                <HBox spacing="25">
+                    
+                    <!-- Current Stay Details -->
+                    <VBox styleClass="content-card" HBox.hgrow="ALWAYS" prefWidth="600" spacing="20">
+                        <Label text="Active Accommodation Summary" styleClass="section-title"/>
+                        
+                        <HBox spacing="20">
+                            <StackPane styleClass="room-image" style="-fx-background-color: #DFF1EA; -fx-min-width: 200px; -fx-min-height: 130px;">
+                                <Label text="Sunrise PG" styleClass="pg-title" style="-fx-font-size: 16px; -fx-text-fill: #214F4B;"/>
+                            </StackPane>
+                            
+                            <VBox spacing="6">
+                                <Label text="Sunrise PG" styleClass="pg-name" style="-fx-font-size: 20px;"/>
+                                <Label text="📍 Model Town, Jalandhar" styleClass="sub-heading"/>
+                                <Label text="🛏 Room A1 • Bed B2 (Double Sharing)" style="-fx-font-weight: bold;"/>
+                                <Separator style="-fx-padding: 5 0;"/>
+                                <Label text="Move In: 15 Jun 2026" styleClass="sub-heading"/>
+                                <Label text="Move Out: 15 Jun 2027" styleClass="sub-heading"/>
+                            </VBox>
+                        </HBox>
+
+                        <Separator/>
+                        <VBox spacing="10">
+                            <HBox alignment="CENTER_LEFT">
+                                <Label text="Contract Duration Progress" styleClass="sub-heading" style="-fx-font-weight: bold;"/>
+                                <Region HBox.hgrow="ALWAYS"/>
+                                <Label text="65% Completed" styleClass="sub-heading"/>
+                            </HBox>
+                            <ProgressBar progress="0.65" prefWidth="600"/>
+                        </VBox>
+                    </VBox>
+
+                    <!-- Latest Announcements -->
+                    <VBox styleClass="content-card" prefWidth="480" spacing="15">
+                        <Label text="Latest Hostels Announcements" styleClass="section-title"/>
+                        
+                        <!-- High Priority -->
+                        <HBox styleClass="announcement-item, announcement-item-high" spacing="10" alignment="CENTER_LEFT">
+                            <VBox spacing="4" HBox.hgrow="ALWAYS">
+                                <Label text="Water Maintenance Services" style="-fx-font-weight: bold; -fx-text-fill: #990000;"/>
+                                <Label text="Tomorrow 10:00 AM to 12:00 PM water supply will be restricted." styleClass="sub-heading" style="-fx-font-size: 12px;"/>
+                            </VBox>
+                            <Label text="CRITICAL" styleClass="gender-tag" style="-fx-background-color: #FADBD8; -fx-text-fill: #78281F; -fx-font-size: 9px;"/>
+                        </HBox>
+
+                        <!-- Medium Priority -->
+                        <HBox styleClass="announcement-item, announcement-item-medium" spacing="10" alignment="CENTER_LEFT">
+                            <VBox spacing="4" HBox.hgrow="ALWAYS">
+                                <Label text="Rent Collection Notice" style="-fx-font-weight: bold; -fx-text-fill: #9C640C;"/>
+                                <Label text="Please submit monthly room rent on or before July 5th." styleClass="sub-heading" style="-fx-font-size: 12px;"/>
+                            </VBox>
+                            <Label text="NOTICE" styleClass="gender-tag" style="-fx-background-color: #FCF3CF; -fx-text-fill: #7E5109; -fx-font-size: 9px;"/>
+                        </HBox>
+
+                        <!-- Low Priority -->
+                        <HBox styleClass="announcement-item, announcement-item-low" spacing="10" alignment="CENTER_LEFT">
+                            <VBox spacing="4" HBox.hgrow="ALWAYS">
+                                <Label text="WiFi Upgrade Completed" style="-fx-font-weight: bold; -fx-text-fill: #196F3D;"/>
+                                <Label text="New routers are installed across all hallways for higher speeds." styleClass="sub-heading" style="-fx-font-size: 12px;"/>
+                            </VBox>
+                            <Label text="INFO" styleClass="gender-tag" style="-fx-background-color: #D4EFDF; -fx-text-fill: #196F3D; -fx-font-size: 9px;"/>
+                        </HBox>
                     </VBox>
 
                 </HBox>
 
-                <!-- ROW 2 -->
-                <!-- ROW 2 -->
-<HBox spacing="20">
+                <!-- ROW 3: CHAT, HISTORY & RECOMMENDATIONS -->
+                <HBox spacing="25">
+                    
+                    <!-- Quick Chat with Owner -->
+                    <VBox styleClass="content-card" spacing="15" prefWidth="350">
+                        <Label text="Chat with Owner" styleClass="section-title"/>
+                        <HBox spacing="12" alignment="CENTER_LEFT">
+                            <StackPane styleClass="mini-avatar">
+                                <Label text="👨"/>
+                            </StackPane>
+                            <VBox spacing="2" HBox.hgrow="ALWAYS">
+                                <Label text="Mr. Rohit Sharma" styleClass="chat-name"/>
+                                <Label text="Owner: Technician will visit today." style="-fx-text-fill: #4B5563; -fx-font-size: 12px;"/>
+                                <Label text="10:30 AM" styleClass="chat-time"/>
+                            </VBox>
+                        </HBox>
+                        <Separator/>
+                        <Button text="Open Conversation" styleClass="btn-outline" maxWidth="Infinity" onAction="#openChat"/>
+                    </VBox>
 
-    <!-- Current Stay -->
-    <VBox styleClass="content-card"
-          prefWidth="600"
-          spacing="20">
+                    <!-- Mini Stay History -->
+                    <VBox styleClass="content-card" spacing="15" prefWidth="350">
+                        <Label text="My Accommodation Stays" styleClass="section-title"/>
+                        <VBox spacing="10">
+                            <Label text="● Sunrise PG (Current Stay)" style="-fx-font-weight: bold; -fx-text-fill: #214F4B;"/>
+                            <Label text="● Comfort Living Hostel (2025-2026)" style="-fx-text-fill: #4B5563;"/>
+                            <Label text="● Student Nest Hostel (2024-2025)" style="-fx-text-fill: #4B5563;"/>
+                        </VBox>
+                        <Separator/>
+                        <Button text="View Complete Timeline" styleClass="btn-secondary" maxWidth="Infinity" onAction="#openPGHistory"/>
+                    </VBox>
 
-        <Label text="Current Stay"
-               styleClass="section-title"/>
+                    <!-- Recommended PGs -->
+                    <VBox styleClass="content-card" spacing="15" HBox.hgrow="ALWAYS">
+                        <Label text="Recommended Accommodations" styleClass="section-title"/>
+                        <VBox spacing="10">
+                            
+                            <HBox styleClass="recommendation-card" spacing="10" alignment="CENTER_LEFT" onMouseClicked="#openBrowsePG" style="-fx-cursor: hand;">
+                                <VBox HBox.hgrow="ALWAYS">
+                                    <Label text="Green Residency" style="-fx-font-weight: bold;"/>
+                                    <Label text="📍 Urban Estate  •  Boys PG" styleClass="sub-heading" style="-fx-font-size: 11px;"/>
+                                </VBox>
+                                <Label text="₹7,000/mo" style="-fx-font-weight: 800; -fx-text-fill: #214F4B;"/>
+                            </HBox>
 
-        <HBox spacing="20">
+                            <HBox styleClass="recommendation-card" spacing="10" alignment="CENTER_LEFT" onMouseClicked="#openBrowsePG" style="-fx-cursor: hand;">
+                                <VBox HBox.hgrow="ALWAYS">
+                                    <Label text="Student Hub" style="-fx-font-weight: bold;"/>
+                                    <Label text="📍 University Road  •  Girls PG" styleClass="sub-heading" style="-fx-font-size: 11px;"/>
+                                </VBox>
+                                <Label text="₹6,200/mo" style="-fx-font-weight: 800; -fx-text-fill: #214F4B;"/>
+                            </HBox>
 
-            <StackPane styleClass="room-image">
-                <Label text="PG Image"/>
-            </StackPane>
-
-            <VBox spacing="10">
-
-                <Label text="Sunrise PG"
-                       styleClass="pg-name"/>
-
-                <Label text="📍 Model Town, Jalandhar"/>
-
-                <Label text="🛏 Room A1 • Bed B2"/>
-
-                <Separator/>
-
-                <Label text="Move In : 15 Jun 2026"/>
-
-                <Label text="Move Out : 15 Jun 2027"/>
-
-            </VBox>
-
-        </HBox>
-
-        <VBox spacing="10">
-
-            <Label text="147 Days Remaining"/>
-
-            <ProgressBar progress="0.65"
-                         prefWidth="500"/>
-
-        </VBox>
-
-    </VBox>
-
-    <!-- Announcements -->
-    <VBox styleClass="content-card"
-          prefWidth="500"
-          spacing="15">
-
-        <Label text="Latest Announcements"
-               styleClass="section-title"/>
-
-        <HBox styleClass="announcement-item">
-            <VBox>
-                <Label text="Water Maintenance"/>
-                <Label text="Tomorrow 10 AM - 12 PM"/>
-            </VBox>
-        </HBox>
-
-        <HBox styleClass="announcement-item">
-            <VBox>
-                <Label text="Rent Reminder"/>
-                <Label text="Please submit rent before 5th"/>
-            </VBox>
-        </HBox>
-
-        <HBox styleClass="announcement-item">
-            <VBox>
-                <Label text="WiFi Router Installed"/>
-                <Label text="Speed improved for all rooms"/>
-            </VBox>
-        </HBox>
-
-    </VBox>
-
-</HBox>
-
-                <!-- ROW 3 -->
-                <HBox spacing="20">
-
-                    <VBox styleClass="content-card"
-      spacing="15"
-      prefWidth="300">
-
-    <Label text="Chat with Owner"
-           styleClass="section-title"/>
-
-    <HBox spacing="10">
-
-        <StackPane styleClass="mini-avatar">
-            <Label text="👨"/>
-        </StackPane>
-
-        <VBox spacing="5">
-
-            <Label text="Mr. Rohit Sharma"
-                   styleClass="chat-name"/>
-
-            <Label text="Owner: Technician will visit today."/>
-
-            <Label text="10:30 AM"
-                   styleClass="chat-time"/>
-
-        </VBox>
-
-    </HBox>
-
-</VBox>
-
-                    <VBox styleClass="content-card"
-      spacing="12"
-      prefWidth="280">
-
-    <Label text="My PG History"
-           styleClass="section-title"/>
-
-    <Label text="● Sunrise PG (Current)"/>
-
-    <Label text="● Comfort Living (2025-2026)"/>
-
-    <Label text="● Student Nest (2024-2025)"/>
-
-</VBox>
-
-                    <VBox styleClass="content-card"
-      spacing="15"
-      prefWidth="320">
-
-    <Label text="Recommended PGs"
-           styleClass="section-title"/>
-
-    <VBox spacing="10"
-          styleClass="recommendation-card">
-
-        <Label text="Green Residency"/>
-
-        <Label text="₹6500/month"/>
-
-    </VBox>
-
-    <VBox spacing="10"
-          styleClass="recommendation-card">
-
-        <Label text="Student Hub"/>
-
-        <Label text="₹7000/month"/>
-
-    </VBox>
-
-    <VBox spacing="10"
-          styleClass="recommendation-card">
-
-        <Label text="Elite Stay"/>
-
-        <Label text="₹7500/month"/>
-
-    </VBox>
-
-</VBox>
+                        </VBox>
+                    </VBox>
 
                 </HBox>
 
             </VBox>
-
         </ScrollPane>
-
     </center>
 
 </BorderPane>
