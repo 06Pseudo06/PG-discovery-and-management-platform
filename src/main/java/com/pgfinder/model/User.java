@@ -7,16 +7,22 @@ public class User {
     private String passwordHash;
     private String role; // "STUDENT" or "OWNER"
     private String phone;
+    private String profileImagePath;
 
     public User() {}
 
     public User(int id, String name, String email, String passwordHash, String role, String phone) {
+        this(id, name, email, passwordHash, role, phone, null);
+    }
+
+    public User(int id, String name, String email, String passwordHash, String role, String phone, String profileImagePath) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.passwordHash = passwordHash;
         this.role = role;
         this.phone = phone;
+        this.profileImagePath = profileImagePath;
     }
 
     public int getId() { return id; }
@@ -36,4 +42,7 @@ public class User {
 
     public String getPhone() { return phone; }
     public void setPhone(String phone) { this.phone = phone; }
+
+    public String getProfileImagePath() { return profileImagePath; }
+    public void setProfileImagePath(String profileImagePath) { this.profileImagePath = profileImagePath; }
 }

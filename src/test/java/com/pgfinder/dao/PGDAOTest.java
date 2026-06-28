@@ -104,4 +104,44 @@ public class PGDAOTest {
             assertNotEquals("female", pg.getGenderPreference().toLowerCase(), "Male query should NEVER return female-only PG");
         }
     }
+
+    @Test
+    public void testOwnerCrudOperations() {
+        // Insert a new PG
+        PG newPg = new PG(0, 1, "Test PG", "123 Main St", "Pune", "Kothrud", "Nice place", "any", true, true, true, false, true, false);
+        PG inserted = pgDao.insert(newPg);
+        assertNotNull(inserted);
+        assertTrue(inserted.getId() > 0);
+
+        // Retrieve by owner id
+        List<PG> ownerPgs = pgDao.findByOwnerId(1);
+        boolean found = false;
+        for (PG pg : ownerPgs) {
+            if (pg.getId() == inserted.getId()) {
+                found = true;
+                assertEquals("Test PG", pg.getName());
+                assertTrue(pg.isAcAvailable());
+                assertFalse(pg.isLaundryAvailable());
+                break;
+            }
+        }
+        assertTrue(found, "Inserted PG should be found in owner's PG list");
+
+        // Update PG
+        inserted.setName("Updated PG Name");
+        inserted.setLaundryAvailable(true);
+        pgDao.update(inserted);
+
+        // Verify update
+        PG updated = pgDao.findById(inserted.getId());
+        assertNotNull(updated);
+        assertEquals("Updated PG Name", updated.getName());
+        assertTrue(updated.isLaundryAvailable());
+
+        // Delete PG
+        pgDao.delete(inserted.getId());
+
+        // Verify deletion
+        assertNull(pgDao.findById(inserted.getId()));
+    }
 }

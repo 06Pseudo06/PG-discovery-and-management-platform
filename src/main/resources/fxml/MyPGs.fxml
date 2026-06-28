@@ -62,7 +62,7 @@
                         <Label text="Manage Properties" styleClass="welcome-title"/>
                         <Label text="View, edit, and add rooms for your PG buildings." styleClass="welcome-subtitle"/>
                     </VBox>
-                    <Button text="+ Register New PG" styleClass="primary-button" style="-fx-font-size: 13px; -fx-padding: 10 20;"/>
+                    <Button text="+ Register New PG" onAction="#handleRegisterNewPG" styleClass="primary-button" style="-fx-font-size: 13px; -fx-padding: 10 20;"/>
                 </HBox>
 
                 <!-- STATS SUMMARY -->
@@ -77,7 +77,7 @@
                         <StackPane styleClass="stat-icon-container"><Label text="🏢" styleClass="stat-icon"/></StackPane>
                         <VBox>
                             <Label text="Properties Managed" styleClass="stat-label"/>
-                            <Label text="3 PGs" styleClass="owner-stat-number"/>
+                            <Label fx:id="totalPgsLabel" text="0 PGs" styleClass="owner-stat-number"/>
                         </VBox>
                     </HBox>
 
@@ -85,7 +85,7 @@
                         <StackPane styleClass="stat-icon-container"><Label text="🛏" styleClass="stat-icon"/></StackPane>
                         <VBox>
                             <Label text="Total Rooms Capacity" styleClass="stat-label"/>
-                            <Label text="24 Rooms" styleClass="owner-stat-number"/>
+                            <Label fx:id="totalRoomsLabel" text="0 Rooms" styleClass="owner-stat-number"/>
                         </VBox>
                     </HBox>
 
@@ -93,13 +93,13 @@
                         <StackPane styleClass="stat-icon-container"><Label text="📈" styleClass="stat-icon"/></StackPane>
                         <VBox>
                             <Label text="Average Occupancy" styleClass="stat-label"/>
-                            <Label text="75%" styleClass="owner-stat-number" style="-fx-text-fill: #0F4F46;"/>
+                            <Label fx:id="avgOccupancyLabel" text="0%" styleClass="owner-stat-number" style="-fx-text-fill: #0F4F46;"/>
                         </VBox>
                     </HBox>
                 </GridPane>
 
                 <!-- PROPERTY CARDS LIST -->
-                <VBox spacing="20">
+                <VBox fx:id="pgsContainer" spacing="20">
                     
                     <!-- PG Item 1 -->
                     <VBox styleClass="owner-large-card" spacing="15">

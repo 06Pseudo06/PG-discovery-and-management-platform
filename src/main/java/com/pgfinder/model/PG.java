@@ -11,10 +11,18 @@ public class PG {
     private String genderPreference; // "male", "female", "any"
     private boolean foodAvailable;
     private boolean wifiAvailable;
+    private boolean acAvailable;
+    private boolean laundryAvailable;
+    private boolean gymAvailable;
+    private boolean parkingAvailable;
 
     public PG() {}
 
     public PG(int id, int ownerId, String name, String address, String city, String area, String description, String genderPreference, boolean foodAvailable, boolean wifiAvailable) {
+        this(id, ownerId, name, address, city, area, description, genderPreference, foodAvailable, wifiAvailable, false, false, false, false);
+    }
+
+    public PG(int id, int ownerId, String name, String address, String city, String area, String description, String genderPreference, boolean foodAvailable, boolean wifiAvailable, boolean acAvailable, boolean laundryAvailable, boolean gymAvailable, boolean parkingAvailable) {
         this.id = id;
         this.ownerId = ownerId;
         this.name = name;
@@ -25,6 +33,10 @@ public class PG {
         this.genderPreference = genderPreference;
         this.foodAvailable = foodAvailable;
         this.wifiAvailable = wifiAvailable;
+        this.acAvailable = acAvailable;
+        this.laundryAvailable = laundryAvailable;
+        this.gymAvailable = gymAvailable;
+        this.parkingAvailable = parkingAvailable;
     }
 
     public int getId() { return id; }
@@ -56,4 +68,16 @@ public class PG {
 
     public boolean isWifiAvailable() { return wifiAvailable; }
     public void setWifiAvailable(boolean wifiAvailable) { this.wifiAvailable = wifiAvailable; }
+
+    public boolean isAcAvailable() { return acAvailable; }
+    public void setAcAvailable(boolean acAvailable) { this.acAvailable = acAvailable; }
+
+    public boolean isLaundryAvailable() { return laundryAvailable; }
+    public void setLaundryAvailable(boolean laundryAvailable) { this.laundryAvailable = laundryAvailable; }
+
+    public boolean isGymAvailable() { return gymAvailable; }
+    public void setGymAvailable(boolean gymAvailable) { this.gymAvailable = gymAvailable; }
+
+    public boolean isParkingAvailable() { return parkingAvailable; }
+    public void setParkingAvailable(boolean parkingAvailable) { this.parkingAvailable = parkingAvailable; }
 }

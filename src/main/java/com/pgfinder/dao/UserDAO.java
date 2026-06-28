@@ -83,6 +83,21 @@ public class UserDAO {
         }
     }
 
+    public void update(User user) {
+        String sql = "UPDATE users SET name = ?, password_hash = ?, phone = ?, profile_image_path = ? WHERE id = ?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, user.getName());
+            ps.setString(2, user.getPasswordHash());
+            ps.setString(3, user.getPhone());
+            ps.setString(4, user.getProfileImagePath());
+            ps.setInt(5, user.getId());
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Error executing update for User: " + user.getId(), e);
+        }
+    }
+
     private User mapRowToUser(ResultSet rs) throws SQLException {
         return new User(
             rs.getInt("id"),
@@ -90,7 +105,8 @@ public class UserDAO {
             rs.getString("email"),
             rs.getString("password_hash"),
             rs.getString("role"),
-            rs.getString("phone")
+            rs.getString("phone"),
+            rs.getString("profile_image_path")
         );
     }
 }

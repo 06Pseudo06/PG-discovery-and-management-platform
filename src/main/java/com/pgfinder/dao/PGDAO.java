@@ -128,6 +128,94 @@ public class PGDAO {
         return areas;
     }
 
+    public List<PG> findByOwnerId(int ownerId) {
+        List<PG> ownerPgs = new ArrayList<>();
+        String sql = "SELECT * FROM pgs WHERE owner_id = ?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, ownerId);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    ownerPgs.add(mapRowToPG(rs));
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error executing findByOwnerId for owner: " + ownerId, e);
+        }
+        return ownerPgs;
+    }
+
+    public PG insert(PG pg) {
+        String sql = "INSERT INTO pgs (owner_id, name, address, city, area, description, gender_preference, food_available, wifi_available, ac_available, laundry_available, gym_available, parking_available) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+            ps.setInt(1, pg.getOwnerId());
+            ps.setString(2, pg.getName());
+            ps.setString(3, pg.getAddress());
+            ps.setString(4, pg.getCity());
+            ps.setString(5, pg.getArea());
+            ps.setString(6, pg.getDescription());
+            ps.setString(7, pg.getGenderPreference());
+            ps.setBoolean(8, pg.isFoodAvailable());
+            ps.setBoolean(9, pg.isWifiAvailable());
+            ps.setBoolean(10, pg.isAcAvailable());
+            ps.setBoolean(11, pg.isLaundryAvailable());
+            ps.setBoolean(12, pg.isGymAvailable());
+            ps.setBoolean(13, pg.isParkingAvailable());
+
+            int affectedRows = ps.executeUpdate();
+            if (affectedRows == 0) {
+                throw new SQLException("Creating PG failed, no rows affected.");
+            }
+
+            try (ResultSet generatedKeys = ps.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    pg.setId(generatedKeys.getInt(1));
+                    return pg;
+                } else {
+                    throw new SQLException("Creating PG failed, no ID obtained.");
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error executing insert for PG: " + pg.getName(), e);
+        }
+    }
+
+    public void update(PG pg) {
+        String sql = "UPDATE pgs SET name = ?, address = ?, city = ?, area = ?, description = ?, gender_preference = ?, food_available = ?, wifi_available = ?, ac_available = ?, laundry_available = ?, gym_available = ?, parking_available = ? WHERE id = ?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, pg.getName());
+            ps.setString(2, pg.getAddress());
+            ps.setString(3, pg.getCity());
+            ps.setString(4, pg.getArea());
+            ps.setString(5, pg.getDescription());
+            ps.setString(6, pg.getGenderPreference());
+            ps.setBoolean(7, pg.isFoodAvailable());
+            ps.setBoolean(8, pg.isWifiAvailable());
+            ps.setBoolean(9, pg.isAcAvailable());
+            ps.setBoolean(10, pg.isLaundryAvailable());
+            ps.setBoolean(11, pg.isGymAvailable());
+            ps.setBoolean(12, pg.isParkingAvailable());
+            ps.setInt(13, pg.getId());
+
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Error executing update for PG: " + pg.getId(), e);
+        }
+    }
+
+    public void delete(int id) {
+        String sql = "DELETE FROM pgs WHERE id = ?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, id);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Error executing delete for PG: " + id, e);
+        }
+    }
+
     private PG mapRowToPG(ResultSet rs) throws SQLException {
         return new PG(
             rs.getInt("id"),
@@ -139,7 +227,11 @@ public class PGDAO {
             rs.getString("description"),
             rs.getString("gender_preference"),
             rs.getBoolean("food_available"),
-            rs.getBoolean("wifi_available")
+            rs.getBoolean("wifi_available"),
+            rs.getBoolean("ac_available"),
+            rs.getBoolean("laundry_available"),
+            rs.getBoolean("gym_available"),
+            rs.getBoolean("parking_available")
         );
     }
 }
