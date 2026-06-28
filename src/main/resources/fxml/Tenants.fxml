@@ -33,7 +33,7 @@
                 <Label text="5" styleClass="menu-badge"/>
             </HBox>
             
-            <Button text="👥  Tenants" styleClass="owner-menu-active" maxWidth="Infinity"/>
+            <Button text="👥  Tenants" styleClass="owner-menu-active" maxWidth="Infinity" onAction="#openTenants"/>
             <Button text="📢  Announcements" styleClass="owner-menu" maxWidth="Infinity" onAction="#openAnnouncements"/>
             
             <HBox alignment="CENTER_LEFT" styleClass="menu-item-with-badge">
@@ -41,9 +41,9 @@
                 <Label text="3" styleClass="menu-badge"/>
             </HBox>
             
-            <Button text="⭐  Reviews" styleClass="owner-menu" maxWidth="Infinity" onAction="#openDashboard"/>
-            <Button text="📊  Reports" styleClass="owner-menu" maxWidth="Infinity" onAction="#openDashboard"/>
-            <Button text="⚙  Settings" styleClass="owner-menu" maxWidth="Infinity" onAction="#openDashboard"/>
+            <Button text="⭐  Reviews" styleClass="owner-menu" maxWidth="Infinity" onAction="#openReviews"/>
+            <Button text="📊  Reports" styleClass="owner-menu" maxWidth="Infinity" onAction="#openReports"/>
+            <Button text="⚙  Settings" styleClass="owner-menu" maxWidth="Infinity" onAction="#openSettings"/>
 
             <Region VBox.vgrow="ALWAYS"/>
 

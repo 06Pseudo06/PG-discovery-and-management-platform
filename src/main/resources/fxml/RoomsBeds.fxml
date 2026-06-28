@@ -26,7 +26,7 @@
 
             <Button text="📁  Dashboard" styleClass="owner-menu" maxWidth="Infinity" onAction="#openDashboard"/>
             <Button text="🏢 My PGs" styleClass="owner-menu" maxWidth="Infinity" onAction="#openMyPGs"/>
-            <Button text="🛏  Rooms &amp; Beds" styleClass="owner-menu-active" maxWidth="Infinity"/>
+            <Button text="🛏  Rooms &amp; Beds" styleClass="owner-menu-active" maxWidth="Infinity" onAction="#openRoomsBeds"/>
             
             <HBox alignment="CENTER_LEFT" styleClass="menu-item-with-badge">
                 <Button text="📋  Requests" styleClass="owner-menu" HBox.hgrow="ALWAYS" maxWidth="Infinity" onAction="#openBookingRequests"/>
@@ -41,9 +41,9 @@
                 <Label text="3" styleClass="menu-badge"/>
             </HBox>
             
-            <Button text="⭐  Reviews" styleClass="owner-menu" maxWidth="Infinity" onAction="#openDashboard"/>
-            <Button text="📊  Reports" styleClass="owner-menu" maxWidth="Infinity" onAction="#openDashboard"/>
-            <Button text="⚙  Settings" styleClass="owner-menu" maxWidth="Infinity" onAction="#openDashboard"/>
+            <Button text="⭐  Reviews" styleClass="owner-menu" maxWidth="Infinity" onAction="#openReviews"/>
+            <Button text="📊  Reports" styleClass="owner-menu" maxWidth="Infinity" onAction="#openReports"/>
+            <Button text="⚙  Settings" styleClass="owner-menu" maxWidth="Infinity" onAction="#openSettings"/>
 
             <Region VBox.vgrow="ALWAYS"/>
 

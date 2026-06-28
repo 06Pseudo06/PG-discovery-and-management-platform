@@ -42,9 +42,9 @@
                 <Label text="3" styleClass="menu-badge"/>
             </HBox>
             
-            <Button text="⭐  Reviews" styleClass="owner-menu-active" maxWidth="Infinity"/>
-            <Button text="📊  Reports" styleClass="owner-menu" maxWidth="Infinity" onAction="#openDashboard"/>
-            <Button text="⚙  Settings" styleClass="owner-menu" maxWidth="Infinity" onAction="#openDashboard"/>
+            <Button text="⭐  Reviews" styleClass="owner-menu-active" maxWidth="Infinity" onAction="#openReviews"/>
+            <Button text="📊  Reports" styleClass="owner-menu" maxWidth="Infinity" onAction="#openReports"/>
+            <Button text="⚙  Settings" styleClass="owner-menu" maxWidth="Infinity" onAction="#openSettings"/>
 
             <Region VBox.vgrow="ALWAYS"/>
 

@@ -36,6 +36,10 @@ public class MyPGsController {
 
     @FXML
     public void initialize() {
+        refreshDashboard();
+    }
+
+    private void refreshDashboard() {
         refreshData();
     }
 
@@ -106,7 +110,13 @@ public class MyPGsController {
         titleLabel.setStyle("-fx-font-size: 18px;");
 
         String genderPref = pg.getGenderPreference();
-        String genderText = genderPref.substring(0, 1).toUpperCase() + genderPref.substring(1);
+        String genderText;
+        if (genderPref == null || genderPref.isBlank()) {
+            genderText = "Any";
+        } else {
+            genderText = genderPref.substring(0, 1).toUpperCase() + genderPref.substring(1);
+        }
+        
         Label subLabel = new Label("📍 " + pg.getArea() + ", " + pg.getCity() + "  •  " + genderText + " Accommodation");
         subLabel.getStyleClass().add("welcome-subtitle");
         subLabel.setStyle("-fx-text-fill: #666666;");
@@ -130,7 +140,13 @@ public class MyPGsController {
         deleteItem.setOnAction(e -> handleDeletePG(pg));
 
         actionsButton.getItems().addAll(editItem, manageInvItem, deleteItem);
-        header.getChildren().addAll(titleBox, spacer, actionsButton);
+
+        Button roomsButton = new Button("View Rooms & Beds");
+        roomsButton.getStyleClass().add("primary-button");
+        roomsButton.setOnAction(e -> openRoomsBeds(pg));
+        HBox.setMargin(roomsButton, new Insets(0, 10, 0, 0));
+
+        header.getChildren().addAll(titleBox, spacer, roomsButton, actionsButton);
 
         // Body Row (Photo and Info)
         HBox body = new HBox(25);
@@ -205,7 +221,7 @@ public class MyPGsController {
         showPGDialog(null).ifPresent(newPg -> {
             try {
                 pgDAO.insert(newPg);
-                refreshData();
+                refreshDashboard();
                 AlertUtil.showInfo("Success", "PG Registered", "PG property '" + newPg.getName() + "' registered successfully.");
             } catch (Exception ex) {
                 AlertUtil.showError("Error", "Registration Failed", ex.getMessage());
@@ -217,7 +233,7 @@ public class MyPGsController {
         showPGDialog(pg).ifPresent(updatedPg -> {
             try {
                 pgDAO.update(updatedPg);
-                refreshData();
+                refreshDashboard();
                 AlertUtil.showInfo("Success", "PG Updated", "PG details saved successfully.");
             } catch (Exception ex) {
                 AlertUtil.showError("Error", "Update Failed", ex.getMessage());
@@ -234,7 +250,7 @@ public class MyPGsController {
         if (confirm) {
             try {
                 pgDAO.delete(pg.getId());
-                refreshData();
+                refreshDashboard();
                 AlertUtil.showInfo("Deleted", "PG Building Removed", "'" + pg.getName() + "' was successfully unregistered.");
             } catch (Exception ex) {
                 AlertUtil.showError("Delete Error", "Action failed", ex.getMessage());
@@ -363,10 +379,19 @@ public class MyPGsController {
 
     @FXML
     public void openRoomsBeds(PG pg) {
-
         SelectedPGManager.setSelectedPG(pg);
         SceneManager.switchTo("RoomsBeds.fxml");
+    }
 
+    @FXML
+    public void openRoomsBeds() {
+        if (SelectedPGManager.getSelectedPG() != null) {
+            SceneManager.switchTo("RoomsBeds.fxml");
+        } else {
+            AlertUtil.showWarning("Context Missing", "No PG Selected", 
+                "Please select a specific PG property from your list first to view its detailed inventory.");
+            SceneManager.switchTo("MyPGs.fxml");
+        }
     }
 
     @FXML
@@ -395,8 +420,19 @@ public class MyPGsController {
     }
 
     @FXML
+    public void openReports() {
+        AlertUtil.showInfo("Reports Module", "Feature Coming Soon", "The reports dashboard and analytics module will be available in the next system update.");
+    }
+
+    @FXML
+    public void openSettings() {
+        SceneManager.switchTo("OwnerSettings.fxml");
+    }
+
+    @FXML
     public void handleLogout() {
         SessionManager.logout();
         SceneManager.switchTo("Login.fxml");
     }
 }
+

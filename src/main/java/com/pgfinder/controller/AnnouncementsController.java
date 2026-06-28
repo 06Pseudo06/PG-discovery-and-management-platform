@@ -1,6 +1,9 @@
 package com.pgfinder.controller;
 
+import com.pgfinder.model.PG;
+import com.pgfinder.util.AlertUtil;
 import com.pgfinder.util.SceneManager;
+import com.pgfinder.util.SelectedPGManager;
 import com.pgfinder.util.SessionManager;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -70,37 +73,64 @@ public class AnnouncementsController {
 
     // Sidebar navigation actions
     @FXML
-    private void openDashboard() {
+    public void openDashboard() {
         SceneManager.switchTo("OwnerDashboard.fxml");
     }
 
     @FXML
-    private void openMyPGs() {
+    public void openMyPGs() {
         SceneManager.switchTo("MyPGs.fxml");
     }
 
     @FXML
-    private void openRoomsBeds() {
+    public void openRoomsBeds() {
+        if (SelectedPGManager.getSelectedPG() != null) {
+            SceneManager.switchTo("RoomsBeds.fxml");
+        } else {
+            AlertUtil.showWarning("Context Missing", "No PG Selected", 
+                "Please select a specific PG property from your list first to view its detailed inventory.");
+            SceneManager.switchTo("MyPGs.fxml");
+        }
+    }
+
+    @FXML
+    public void openRoomsBeds(PG pg) {
+        SelectedPGManager.setSelectedPG(pg);
         SceneManager.switchTo("RoomsBeds.fxml");
     }
 
     @FXML
-    private void openBookingRequests() {
+    public void openBookingRequests() {
         SceneManager.switchTo("BookingRequests.fxml");
     }
 
     @FXML
-    private void openTenants() {
+    public void openTenants() {
         SceneManager.switchTo("Tenants.fxml");
     }
 
     @FXML
-    private void openChat() {
-        SceneManager.switchTo("Chat.fxml");
+    public void openAnnouncements() {
+        SceneManager.switchTo("Announcements.fxml");
     }
 
     @FXML
-    private void handleLogout() {
+    public void openReviews() {
+        SceneManager.switchTo("OwnerReviews.fxml");
+    }
+
+    @FXML
+    public void openReports() {
+        AlertUtil.showInfo("Reports Module", "Feature Coming Soon", "The reports dashboard and analytics module will be available in the next system update.");
+    }
+
+    @FXML
+    public void openSettings() {
+        SceneManager.switchTo("OwnerSettings.fxml");
+    }
+
+    @FXML
+    public void handleLogout() {
         SessionManager.logout();
         SceneManager.switchTo("Login.fxml");
     }

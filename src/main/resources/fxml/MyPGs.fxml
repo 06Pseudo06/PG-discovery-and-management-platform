@@ -45,7 +45,8 @@
         <Button
                 text="🛏 Rooms &amp; Beds"
                 styleClass="owner-menu"
-                maxWidth="Infinity"/>
+                maxWidth="Infinity"
+                onAction="#openRoomsBeds"/>
 
         <HBox alignment="CENTER_LEFT"
               styleClass="menu-item-with-badge">
@@ -95,19 +96,19 @@
                 text="⭐ Reviews"
                 styleClass="owner-menu"
                 maxWidth="Infinity"
-                onAction="#openDashboard"/>
+                onAction="#openReviews"/>
 
         <Button
                 text="📊 Reports"
                 styleClass="owner-menu"
                 maxWidth="Infinity"
-                onAction="#openDashboard"/>
+                onAction="#openReports"/>
 
         <Button
                 text="⚙ Settings"
                 styleClass="owner-menu"
                 maxWidth="Infinity"
-                onAction="#openDashboard"/>
+                onAction="#openSettings"/>
 
         <Region VBox.vgrow="ALWAYS"/>
 

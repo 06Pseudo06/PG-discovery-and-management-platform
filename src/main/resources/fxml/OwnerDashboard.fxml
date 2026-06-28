@@ -27,7 +27,7 @@
 
             <Button text="📁  Dashboard" styleClass="owner-menu-active" maxWidth="Infinity" onAction="#openDashboard"/>
             <Button text="🏢 My PGs" styleClass="owner-menu" maxWidth="Infinity" onAction="#openMyPGs"/>
-            <Button text="🛏  Rooms &amp; Beds" styleClass="owner-menu" maxWidth="Infinity" onAction="#openRoomsBeds"/>
+            <Button text="🛏  Rooms &amp; Beds" styleClass="owner-menu" maxWidth="Infinity"  onAction="#openRoomsBeds"/>
             
             <HBox alignment="CENTER_LEFT" styleClass="menu-item-with-badge">
                 <Button text="📋  Requests" styleClass="owner-menu" HBox.hgrow="ALWAYS" maxWidth="Infinity" onAction="#openBookingRequests"/>
@@ -42,9 +42,9 @@
                 <Label text="3" styleClass="menu-badge"/>
             </HBox>
             
-            <Button text="⭐  Reviews" styleClass="owner-menu" maxWidth="Infinity" onAction="#openDashboard"/> <!-- Placeholder reload -->
-            <Button text="📊  Reports" styleClass="owner-menu" maxWidth="Infinity" onAction="#openDashboard"/>
-            <Button text="⚙  Settings" styleClass="owner-menu" maxWidth="Infinity" onAction="#openDashboard"/>
+            <Button text="⭐  Reviews" styleClass="owner-menu" maxWidth="Infinity" onAction="#openReviews"/>
+            <Button text="📊  Reports" styleClass="owner-menu" maxWidth="Infinity" onAction="#openReports"/>
+            <Button text="⚙  Settings" styleClass="owner-menu" maxWidth="Infinity" onAction="#openSettings"/>
 
             <Region VBox.vgrow="ALWAYS"/>
 
@@ -178,7 +178,7 @@
                         <VBox styleClass="owner-large-card" spacing="15">
                             <HBox alignment="CENTER_LEFT">
                                 <Label text="Occupancy Overview" styleClass="section-title" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
-                                <Button text="View Details" styleClass="card-action-btn" onAction="#openRoomsBeds"/>
+                                <Button text="View Details" styleClass="card-action-btn" onAction="#openMyPGs"/>
                             </HBox>
                             
                             <HBox spacing="25" alignment="CENTER_LEFT">
@@ -235,7 +235,7 @@
                     <Label text="Quick Actions" styleClass="section-title"/>
                     <HBox spacing="15">
                         <Button text="🏠  Add New PG" styleClass="quick-action-btn" onAction="#openMyPGs"/>
-                        <Button text="🛏  Add Room" styleClass="quick-action-btn" onAction="#openRoomsBeds"/>
+                        <Button text="🛏  Add Room" styleClass="quick-action-btn" onAction="#openMyPGs"/>
                         <Button text="📋  View Bookings" styleClass="quick-action-btn" onAction="#openBookingRequests"/>
                         <Button text="📢  Add Announcement" styleClass="quick-action-btn" onAction="#openAnnouncements"/>
                         <Button text="💬  Chat with Tenants" styleClass="quick-action-btn" onAction="#openChat"/>

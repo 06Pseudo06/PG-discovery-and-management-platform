@@ -2,7 +2,11 @@ package com.pgfinder.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import com.pgfinder.model.PG;
+import com.pgfinder.util.AlertUtil;
 import com.pgfinder.util.SceneManager;
+import com.pgfinder.util.SelectedPGManager;
 import com.pgfinder.util.SessionManager;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -39,7 +43,13 @@ public class OwnerDashboardController implements Initializable {
 
     @FXML
     public void openRoomsBeds() {
-        SceneManager.switchTo("RoomsBeds.fxml");
+        if (SelectedPGManager.getSelectedPG() != null) {
+            SceneManager.switchTo("RoomsBeds.fxml");
+        } else {
+            AlertUtil.showWarning("Context Missing", "No PG Selected", 
+                "Please select a specific PG property from your list first to view its detailed inventory.");
+            SceneManager.switchTo("MyPGs.fxml");
+        }
     }
 
     @FXML
@@ -65,6 +75,16 @@ public class OwnerDashboardController implements Initializable {
     @FXML
     public void openChat() {
         SceneManager.switchTo("Chat.fxml");
+    }
+
+    @FXML
+    public void openReports() {
+        AlertUtil.showInfo("Reports Module", "Feature Coming Soon", "The reports dashboard and analytics module will be available in the next system update.");
+    }
+
+    @FXML
+    public void openSettings() {
+        SceneManager.switchTo("OwnerSettings.fxml");
     }
 
     @FXML
