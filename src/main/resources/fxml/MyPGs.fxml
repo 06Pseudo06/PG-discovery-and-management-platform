@@ -10,46 +10,115 @@
             prefWidth="1280" prefHeight="800">
 
     <!-- LEFT SIDEBAR -->
-    <left>
-        <VBox prefWidth="240" styleClass="owner-sidebar" spacing="8">
-            <HBox alignment="CENTER_LEFT" spacing="12" styleClass="logo-container">
-                <StackPane styleClass="logo-icon-bg">
-                    <Label text="🏠" styleClass="logo-icon"/>
-                </StackPane>
-                <VBox>
-                    <Label text="PGFinder" styleClass="owner-logo"/>
-                    <Label text="Owner Panel" styleClass="owner-subtitle"/>
-                </VBox>
-            </HBox>
+<left>
+    <VBox prefWidth="240" styleClass="owner-sidebar" spacing="8">
 
-            <Region prefHeight="20"/>
+        <HBox alignment="CENTER_LEFT"
+              spacing="12"
+              styleClass="logo-container">
 
-            <Button text="📁  Dashboard" styleClass="owner-menu" maxWidth="Infinity" onAction="#openDashboard"/>
-            <Button text="🏢 My PGs" styleClass="owner-menu-active" maxWidth="Infinity"/>
-            <Button text="🛏  Rooms &amp; Beds" styleClass="owner-menu" maxWidth="Infinity" onAction="#openRoomsBeds"/>
-            
-            <HBox alignment="CENTER_LEFT" styleClass="menu-item-with-badge">
-                <Button text="📋  Requests" styleClass="owner-menu" HBox.hgrow="ALWAYS" maxWidth="Infinity" onAction="#openBookingRequests"/>
-                <Label text="5" styleClass="menu-badge"/>
-            </HBox>
-            
-            <Button text="👥  Tenants" styleClass="owner-menu" maxWidth="Infinity" onAction="#openTenants"/>
-            <Button text="📢  Announcements" styleClass="owner-menu" maxWidth="Infinity" onAction="#openAnnouncements"/>
-            
-            <HBox alignment="CENTER_LEFT" styleClass="menu-item-with-badge">
-                <Button text="💬  Chats" styleClass="owner-menu" HBox.hgrow="ALWAYS" maxWidth="Infinity" onAction="#openChat"/>
-                <Label text="3" styleClass="menu-badge"/>
-            </HBox>
-            
-            <Button text="⭐  Reviews" styleClass="owner-menu" maxWidth="Infinity" onAction="#openDashboard"/>
-            <Button text="📊  Reports" styleClass="owner-menu" maxWidth="Infinity" onAction="#openDashboard"/>
-            <Button text="⚙  Settings" styleClass="owner-menu" maxWidth="Infinity" onAction="#openDashboard"/>
+            <StackPane styleClass="logo-icon-bg">
+                <Label text="🏠" styleClass="logo-icon"/>
+            </StackPane>
 
-            <Region VBox.vgrow="ALWAYS"/>
+            <VBox>
+                <Label text="PGFinder" styleClass="owner-logo"/>
+                <Label text="Owner Panel" styleClass="owner-subtitle"/>
+            </VBox>
 
-            <Button text="↪  Logout" styleClass="logout-button" maxWidth="Infinity" onAction="#handleLogout"/>
-        </VBox>
-    </left>
+        </HBox>
+
+        <Region prefHeight="20"/>
+
+        <Button
+                text="📁 Dashboard"
+                styleClass="owner-menu"
+                maxWidth="Infinity"
+                onAction="#openDashboard"/>
+
+        <Button
+                text="🏢 My PGs"
+                styleClass="owner-menu-active"
+                maxWidth="Infinity"/>
+
+        <!-- Removed onAction intentionally -->
+        <Button
+                text="🛏 Rooms &amp; Beds"
+                styleClass="owner-menu"
+                maxWidth="Infinity"/>
+
+        <HBox alignment="CENTER_LEFT"
+              styleClass="menu-item-with-badge">
+
+            <Button
+                    text="📋 Requests"
+                    styleClass="owner-menu"
+                    HBox.hgrow="ALWAYS"
+                    maxWidth="Infinity"
+                    onAction="#openBookingRequests"/>
+
+            <Label
+                    text="5"
+                    styleClass="menu-badge"/>
+
+        </HBox>
+
+        <Button
+                text="👥 Tenants"
+                styleClass="owner-menu"
+                maxWidth="Infinity"
+                onAction="#openTenants"/>
+
+        <Button
+                text="📢 Announcements"
+                styleClass="owner-menu"
+                maxWidth="Infinity"
+                onAction="#openAnnouncements"/>
+
+        <HBox alignment="CENTER_LEFT"
+              styleClass="menu-item-with-badge">
+
+            <Button
+                    text="💬 Chats"
+                    styleClass="owner-menu"
+                    HBox.hgrow="ALWAYS"
+                    maxWidth="Infinity"
+                    onAction="#openChat"/>
+
+            <Label
+                    text="3"
+                    styleClass="menu-badge"/>
+
+        </HBox>
+
+        <Button
+                text="⭐ Reviews"
+                styleClass="owner-menu"
+                maxWidth="Infinity"
+                onAction="#openDashboard"/>
+
+        <Button
+                text="📊 Reports"
+                styleClass="owner-menu"
+                maxWidth="Infinity"
+                onAction="#openDashboard"/>
+
+        <Button
+                text="⚙ Settings"
+                styleClass="owner-menu"
+                maxWidth="Infinity"
+                onAction="#openDashboard"/>
+
+        <Region VBox.vgrow="ALWAYS"/>
+
+        <Button
+                text="↪ Logout"
+                styleClass="logout-button"
+                maxWidth="Infinity"
+                onAction="#handleLogout"/>
+
+    </VBox>
+</left>
 
     <!-- MAIN BODY -->
     <center>
@@ -62,7 +131,7 @@
                         <Label text="Manage Properties" styleClass="welcome-title"/>
                         <Label text="View, edit, and add rooms for your PG buildings." styleClass="welcome-subtitle"/>
                     </VBox>
-                    <Button text="+ Register New PG" onAction="#handleRegisterNewPG" styleClass="primary-button" style="-fx-font-size: 13px; -fx-padding: 10 20;"/>
+                    <Button fx:id="registerPGButton" text="+ Register New PG" onAction="#handleRegisterNewPG" styleClass="primary-button" style="-fx-font-size: 13px; -fx-padding: 10 20;"/>
                 </HBox>
 
                 <!-- STATS SUMMARY -->
@@ -98,117 +167,21 @@
                     </HBox>
                 </GridPane>
 
-                <!-- PROPERTY CARDS LIST -->
-                <VBox fx:id="pgsContainer" spacing="20">
-                    
-                    <!-- PG Item 1 -->
-                    <VBox styleClass="owner-large-card" spacing="15">
-                        <HBox alignment="CENTER_LEFT">
-                            <VBox spacing="3">
-                                <Label text="Sunrise PG" styleClass="section-title" style="-fx-font-size: 18px;"/>
-                                <Label text="📍 Model Town, Jalandhar  •  Girls Accommodation" styleClass="welcome-subtitle" style="-fx-text-fill: #666666;"/>
-                            </VBox>
-                            <Region HBox.hgrow="ALWAYS"/>
-                            <MenuButton text="Actions" styleClass="card-action-btn">
-                                <items>
-                                    <MenuItem text="Edit Details"/>
-                                    <MenuItem text="Manage Inventory" onAction="#openRoomsBeds"/>
-                                    <MenuItem text="Announce to Tenants" onAction="#openAnnouncements"/>
-                                    <MenuItem text="Unregister PG" style="-fx-text-fill: #DC2626;"/>
-                                </items>
-                            </MenuButton>
-                        </HBox>
-                        
-                        <HBox spacing="25" alignment="CENTER_LEFT">
-                            <StackPane prefWidth="180" prefHeight="110" style="-fx-background-color: #E2ECE8; -fx-background-radius: 10px;">
-                                <Label text="Sunrise PG Photo" styleClass="pg-list-name" style="-fx-text-fill: #0F4F46;"/>
-                            </StackPane>
-                            
-                            <VBox spacing="10" HBox.hgrow="ALWAYS">
-                                <HBox spacing="40">
-                                    <VBox>
-                                        <Label text="Rooms" styleClass="stat-label"/>
-                                        <Label text="8 Rooms" style="-fx-font-weight: bold; -fx-font-size: 14px;"/>
-                                    </VBox>
-                                    <VBox>
-                                        <Label text="Beds Occupied" styleClass="stat-label"/>
-                                        <Label text="6 / 8 Beds" style="-fx-font-weight: bold; -fx-font-size: 14px;"/>
-                                    </VBox>
-                                    <VBox>
-                                        <Label text="Vacant Space" styleClass="stat-label"/>
-                                        <Label text="2 Beds Vacant" style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-text-fill: #16A34A;"/>
-                                    </VBox>
-                                </HBox>
-                                <Separator/>
-                                <VBox spacing="5">
-                                    <HBox alignment="CENTER_LEFT">
-                                        <Label text="Occupancy rate" styleClass="stat-label"/>
-                                        <Region HBox.hgrow="ALWAYS"/>
-                                        <Label text="75%" styleClass="stat-label" style="-fx-font-weight: bold; -fx-text-fill: #0F4F46;"/>
-                                    </HBox>
-                                    <ProgressBar progress="0.75" prefWidth="600" style="-fx-min-height: 8px;"/>
-                                </VBox>
-                            </VBox>
-                            
-                            <Button text="View Rooms &amp; Beds" styleClass="primary-button" onAction="#openRoomsBeds"/>
-                        </HBox>
-                    </VBox>
+               <!-- PROPERTY CARDS LIST -->
 
-                    <!-- PG Item 2 -->
-                    <VBox styleClass="owner-large-card" spacing="15">
-                        <HBox alignment="CENTER_LEFT">
-                            <VBox spacing="3">
-                                <Label text="Green Residency" styleClass="section-title" style="-fx-font-size: 18px;"/>
-                                <Label text="📍 Urban Estate, Jalandhar  •  Boys Accommodation" styleClass="welcome-subtitle" style="-fx-text-fill: #666666;"/>
-                            </VBox>
-                            <Region HBox.hgrow="ALWAYS"/>
-                            <MenuButton text="Actions" styleClass="card-action-btn">
-                                <items>
-                                    <MenuItem text="Edit Details"/>
-                                    <MenuItem text="Manage Inventory" onAction="#openRoomsBeds"/>
-                                    <MenuItem text="Announce to Tenants" onAction="#openAnnouncements"/>
-                                    <MenuItem text="Unregister PG" style="-fx-text-fill: #DC2626;"/>
-                                </items>
-                            </MenuButton>
-                        </HBox>
-                        
-                        <HBox spacing="25" alignment="CENTER_LEFT">
-                            <StackPane prefWidth="180" prefHeight="110" style="-fx-background-color: #E2ECE8; -fx-background-radius: 10px;">
-                                <Label text="Green Residency Photo" styleClass="pg-list-name" style="-fx-text-fill: #0F4F46;"/>
-                            </StackPane>
-                            
-                            <VBox spacing="10" HBox.hgrow="ALWAYS">
-                                <HBox spacing="40">
-                                    <VBox>
-                                        <Label text="Rooms" styleClass="stat-label"/>
-                                        <Label text="10 Rooms" style="-fx-font-weight: bold; -fx-font-size: 14px;"/>
-                                    </VBox>
-                                    <VBox>
-                                        <Label text="Beds Occupied" styleClass="stat-label"/>
-                                        <Label text="7 / 10 Beds" style="-fx-font-weight: bold; -fx-font-size: 14px;"/>
-                                    </VBox>
-                                    <VBox>
-                                        <Label text="Vacant Space" styleClass="stat-label"/>
-                                        <Label text="3 Beds Vacant" style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-text-fill: #16A34A;"/>
-                                    </VBox>
-                                </HBox>
-                                <Separator/>
-                                <VBox spacing="5">
-                                    <HBox alignment="CENTER_LEFT">
-                                        <Label text="Occupancy rate" styleClass="stat-label"/>
-                                        <Region HBox.hgrow="ALWAYS"/>
-                                        <Label text="70%" styleClass="stat-label" style="-fx-font-weight: bold; -fx-text-fill: #0F4F46;"/>
-                                    </HBox>
-                                    <ProgressBar progress="0.70" prefWidth="600" style="-fx-min-height: 8px;"/>
-                                </VBox>
-                            </VBox>
-                            
-                            <Button text="View Rooms &amp; Beds" styleClass="primary-button" onAction="#openRoomsBeds"/>
-                        </HBox>
-                    </VBox>
+                    <VBox spacing="15">
 
-                </VBox>
+                        <HBox alignment="CENTER_LEFT">
+                             <Label text="Your Properties" styleClass="section-title"/>
+                             <Region HBox.hgrow="ALWAYS"/>
+                             <Label fx:id="propertyCountLabel" text="0 Properties" styleClass="welcome-subtitle"/>
+                        </HBox>
+
+                     <!-- Dynamic PG Cards -->
+                        <VBox fx:id="pgsContainer" spacing="20"/>
+                    </VBox>
             </VBox>
+
         </ScrollPane>
     </center>
 </BorderPane>
