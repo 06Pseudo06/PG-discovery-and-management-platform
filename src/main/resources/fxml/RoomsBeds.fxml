@@ -59,11 +59,11 @@
                 <!-- TOP BAR NAVIGATION -->
                 <HBox alignment="CENTER_LEFT" spacing="15">
                     <Button text="← Back to My PGs" styleClass="secondary-button" onAction="#goBack"/>
-                    <VBox spacing="2" HBox.hgrow="ALWAYS" style="-fx-padding: 0 0 0 10;">
-                        <Label text="Sunrise PG - Rooms &amp; Beds Status" styleClass="page-title"/>
-                        <Label text="Model Town, Jalandhar" styleClass="welcome-subtitle" style="-fx-text-fill: #B2DBD4;"/>
+                    <VBox spacing="2" HBox.hgrow="ALWAYS" style="-fx-padding: 0 0 0 10;"> 
+                        <Label fx:id="pgTitleLabel" text="Rooms &amp; Beds" styleClass="page-title"/>
+                        <Label fx:id="pgLocationLabel" text="" styleClass="welcome-subtitle" style="-fx-text-fill: #B2DBD4;"/>
                     </VBox>
-                    <Button text="+ Create Room" styleClass="primary-button"/>
+                    <Button fx:id="createRoomButton" text="+ Create Room" styleClass="primary-button" onAction="#handleCreateRoom"/>
                 </HBox>
 
                 <!-- STATS COUNTER -->
@@ -72,27 +72,28 @@
                         <StackPane styleClass="stat-icon-container"><Label text="🛏" styleClass="stat-icon"/></StackPane>
                         <VBox>
                             <Label text="Total Beds Cap" styleClass="stat-label"/>
-                            <Label text="8 Beds" styleClass="owner-stat-number" style="-fx-font-size: 20px;"/>
+                            <Label fx:id="totalBedsLabel" text="0 Beds" styleClass="owner-stat-number" style="-fx-font-size: 20px;"/>
                         </VBox>
                     </HBox>
                     <HBox styleClass="owner-stat-card" HBox.hgrow="ALWAYS" alignment="CENTER_LEFT" spacing="15">
                         <StackPane styleClass="stat-icon-container" style="-fx-background-color: #EEF7F4;"><Label text="👥" styleClass="stat-icon" style="-fx-text-fill: #0F4F46;"/></StackPane>
                         <VBox>
                             <Label text="Beds Occupied" styleClass="stat-label"/>
-                            <Label text="6 Beds" styleClass="owner-stat-number" style="-fx-font-size: 20px;"/>
+                            <Label fx:id="occupiedBedsLabel" text="0 Beds" styleClass="owner-stat-number" style="-fx-font-size: 20px;"/>
                         </VBox>
                     </HBox>
                     <HBox styleClass="owner-stat-card" HBox.hgrow="ALWAYS" alignment="CENTER_LEFT" spacing="15">
                         <StackPane styleClass="stat-icon-container" style="-fx-background-color: #EBF5FF;"><Label text="🔑" styleClass="stat-icon" style="-fx-text-fill: #1E40AF;"/></StackPane>
                         <VBox>
                             <Label text="Vacant Spaces" styleClass="stat-label"/>
-                            <Label text="2 Beds Vacant" styleClass="owner-stat-number" style="-fx-font-size: 20px; -fx-text-fill: #16A34A;"/>
+                            <Label fx:id="vacantBedsLabel" text="0 Beds" styleClass="owner-stat-number" style="-fx-font-size:20px; -fx-text-fill:#16A34A;"/>
                         </VBox>
                     </HBox>
                 </HBox>
 
-                <!-- ROOM CARDS GRID -->
-                <VBox spacing="20">
+                <!-- Dynamic Room Container -->
+
+                <VBox fx:id="roomsContainer" spacing="20">
                     
                     <!-- Room A1 Details -->
                     <VBox spacing="15" styleClass="room-card">

@@ -8,6 +8,7 @@ import com.pgfinder.model.PG;
 import com.pgfinder.model.Room;
 import com.pgfinder.util.AlertUtil;
 import com.pgfinder.util.SceneManager;
+import com.pgfinder.util.SelectedPGManager;
 import com.pgfinder.util.SessionManager;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
@@ -122,7 +123,7 @@ public class MyPGsController {
         editItem.setOnAction(e -> handleEditPG(pg));
 
         MenuItem manageInvItem = new MenuItem("Manage Inventory");
-        manageInvItem.setOnAction(e -> openRoomsBeds());
+        manageInvItem.setOnAction(e -> openRoomsBeds(pg));
 
         MenuItem deleteItem = new MenuItem("Unregister PG");
         deleteItem.setStyle("-fx-text-fill: #DC2626;");
@@ -361,8 +362,11 @@ public class MyPGsController {
     }
 
     @FXML
-    public void openRoomsBeds() {
+    public void openRoomsBeds(PG pg) {
+
+        SelectedPGManager.setSelectedPG(pg);
         SceneManager.switchTo("RoomsBeds.fxml");
+
     }
 
     @FXML
