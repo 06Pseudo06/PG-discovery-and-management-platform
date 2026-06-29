@@ -1,7 +1,6 @@
 package com.pgfinder.controller;
 
 import com.pgfinder.dao.BedDAO;
-import com.pgfinder.dao.PGDAO;
 import com.pgfinder.dao.RoomDAO;
 import com.pgfinder.model.Bed;
 import com.pgfinder.model.PG;

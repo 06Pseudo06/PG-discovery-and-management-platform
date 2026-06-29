@@ -1,6 +1,5 @@
 package com.pgfinder.controller;
 
-import com.pgfinder.model.PG;
 import com.pgfinder.util.AlertUtil;
 import com.pgfinder.util.BookingRefreshHelper;
 import com.pgfinder.util.DashboardBadgeHelper;
