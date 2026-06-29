@@ -63,12 +63,51 @@ CREATE TABLE booking_requests (
     id INT AUTO_INCREMENT PRIMARY KEY,
     student_id INT NOT NULL,
     bed_id INT NOT NULL,
-    status ENUM('pending', 'approved', 'rejected') NOT NULL DEFAULT 'pending',
+    status ENUM('pending_owner', 'awaiting_student_confirmation', 'confirmed', 'rejected', 'cancelled') NOT NULL DEFAULT 'pending_owner',
     requested_move_in_date DATE NOT NULL,
+    end_date DATE NULL,
+    owner_remarks TEXT NULL,
+    student_notes TEXT NULL,
     created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     decided_at DATETIME NULL,
     FOREIGN KEY (student_id) REFERENCES users(id) ON DELETE RESTRICT,
     FOREIGN KEY (bed_id) REFERENCES beds(id) ON DELETE RESTRICT
+);
+
+-- 8. Messages Table
+CREATE TABLE messages (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    sender_id INT NOT NULL,
+    receiver_id INT NOT NULL,
+    booking_id INT NULL,
+    body TEXT NOT NULL,
+    is_read BOOLEAN NOT NULL DEFAULT FALSE,
+    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (sender_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (receiver_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (booking_id) REFERENCES booking_requests(id) ON DELETE SET NULL
+);
+
+-- 9. Announcements Table
+CREATE TABLE announcements (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    pg_id INT NOT NULL,
+    owner_id INT NOT NULL,
+    title VARCHAR(200) NOT NULL,
+    message TEXT NOT NULL,
+    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (pg_id) REFERENCES pgs(id) ON DELETE CASCADE,
+    FOREIGN KEY (owner_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+-- 10. Notifications Table
+CREATE TABLE IF NOT EXISTS notifications (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    message TEXT NOT NULL,
+    is_read BOOLEAN NOT NULL DEFAULT FALSE,
+    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
 -- 6. Verifications Table

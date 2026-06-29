@@ -25,7 +25,7 @@
                 <StackPane styleClass="avatar-circle">
                     <Label text="👨" styleClass="avatar-icon"/>
                 </StackPane>
-                <Label text="Hi, Alex" styleClass="profile-name"/>
+                <Label fx:id="profileNameLabel" text="Hi, Alex" styleClass="profile-name"/>
                 <Label text="Welcome Back!" styleClass="profile-subtitle"/>
             </VBox>
 
@@ -78,120 +78,8 @@
                 </VBox>
 
                 <!-- HOSTELS GRID -->
-                <TilePane hgap="25" vgap="25" prefColumns="3" styleClass="pg-grid">
-                    
-                    <!-- PG Card 1 -->
-                    <VBox styleClass="pg-card" prefWidth="300">
-                        <StackPane styleClass="pg-image" style="-fx-background-color: #DFF1EA;">
-                            <Label text="Sunrise PG" styleClass="pg-title" style="-fx-text-fill: #214F4B;"/>
-                            <HBox alignment="TOP_RIGHT" style="-fx-padding: 10;">
-                                <Button text="❤️" styleClass="favorite-button, favorite-button-active"/>
-                            </HBox>
-                        </StackPane>
-                        
-                        <VBox spacing="6">
-                            <HBox alignment="CENTER_LEFT">
-                                <Label text="Sunrise PG" styleClass="pg-title"/>
-                                <Region HBox.hgrow="ALWAYS"/>
-                                <Label text="⭐ 4.5" style="-fx-text-fill: #F59E0B; -fx-font-weight: bold;"/>
-                            </HBox>
-                            
-                            <Label text="📍 Model Town, Jalandhar" styleClass="sub-heading" style="-fx-font-size: 12px;"/>
-                            
-                            <HBox spacing="8" style="-fx-padding: 5 0;">
-                                <Label text="GIRLS" styleClass="gender-tag"/>
-                                <Label text="LIMITED STATUS" styleClass="status-tag-warning"/>
-                            </HBox>
-                            
-                            <Label text="WiFi • Food • AC • Laundry" styleClass="sub-heading" style="-fx-font-size: 11px;"/>
-                            <Label text="2 Beds Available" styleClass="sub-heading" style="-fx-text-fill: #16A34A; -fx-font-weight: bold;"/>
-                            
-                            <Separator style="-fx-padding: 5 0;"/>
-                            
-                            <HBox alignment="CENTER_LEFT">
-                                <Label text="₹6,500" styleClass="price-text"/>
-                                <Label text="/month" styleClass="sub-heading" style="-fx-font-size: 11px;"/>
-                                <Region HBox.hgrow="ALWAYS"/>
-                                <Button text="View Details" styleClass="btn-primary" onAction="#openPGDetails"/>
-                            </HBox>
-                        </VBox>
-                    </VBox>
+                <TilePane fx:id="pgGrid" hgap="25" vgap="25" prefColumns="3" styleClass="pg-grid"/>
 
-                    <!-- PG Card 2 -->
-                    <VBox styleClass="pg-card" prefWidth="300">
-                        <StackPane styleClass="pg-image" style="-fx-background-color: #DFF1EA;">
-                            <Label text="Green Residency" styleClass="pg-title" style="-fx-text-fill: #214F4B;"/>
-                            <HBox alignment="TOP_RIGHT" style="-fx-padding: 10;">
-                                <Button text="🖤" styleClass="favorite-button"/>
-                            </HBox>
-                        </StackPane>
-                        
-                        <VBox spacing="6">
-                            <HBox alignment="CENTER_LEFT">
-                                <Label text="Green Residency" styleClass="pg-title"/>
-                                <Region HBox.hgrow="ALWAYS"/>
-                                <Label text="⭐ 4.7" style="-fx-text-fill: #F59E0B; -fx-font-weight: bold;"/>
-                            </HBox>
-                            
-                            <Label text="📍 Urban Estate, Jalandhar" styleClass="sub-heading" style="-fx-font-size: 12px;"/>
-                            
-                            <HBox spacing="8" style="-fx-padding: 5 0;">
-                                <Label text="BOYS" styleClass="gender-tag" style="-fx-background-color: #EBF5FF; -fx-text-fill: #1E40AF;"/>
-                                <Label text="AVAILABLE" styleClass="status-tag"/>
-                            </HBox>
-                            
-                            <Label text="WiFi • Food • Gym • Parking" styleClass="sub-heading" style="-fx-font-size: 11px;"/>
-                            <Label text="5 Beds Available" styleClass="sub-heading" style="-fx-text-fill: #16A34A; -fx-font-weight: bold;"/>
-                            
-                            <Separator style="-fx-padding: 5 0;"/>
-                            
-                            <HBox alignment="CENTER_LEFT">
-                                <Label text="₹7,000" styleClass="price-text"/>
-                                <Label text="/month" styleClass="sub-heading" style="-fx-font-size: 11px;"/>
-                                <Region HBox.hgrow="ALWAYS"/>
-                                <Button text="View Details" styleClass="btn-primary" onAction="#openPGDetails"/>
-                            </HBox>
-                        </VBox>
-                    </VBox>
-
-                    <!-- PG Card 3 -->
-                    <VBox styleClass="pg-card" prefWidth="300">
-                        <StackPane styleClass="pg-image" style="-fx-background-color: #DFF1EA;">
-                            <Label text="Student Hub" styleClass="pg-title" style="-fx-text-fill: #214F4B;"/>
-                            <HBox alignment="TOP_RIGHT" style="-fx-padding: 10;">
-                                <Button text="🖤" styleClass="favorite-button"/>
-                            </HBox>
-                        </StackPane>
-                        
-                        <VBox spacing="6">
-                            <HBox alignment="CENTER_LEFT">
-                                <Label text="Student Hub" styleClass="pg-title"/>
-                                <Region HBox.hgrow="ALWAYS"/>
-                                <Label text="⭐ 4.4" style="-fx-text-fill: #F59E0B; -fx-font-weight: bold;"/>
-                            </HBox>
-                            
-                            <Label text="📍 LPU Highway, Phagwara" styleClass="sub-heading" style="-fx-font-size: 12px;"/>
-                            
-                            <HBox spacing="8" style="-fx-padding: 5 0;">
-                                <Label text="GIRLS" styleClass="gender-tag"/>
-                                <Label text="LIMITED STATUS" styleClass="status-tag-warning"/>
-                            </HBox>
-                            
-                            <Label text="WiFi • AC • Washing Machine" styleClass="sub-heading" style="-fx-font-size: 11px;"/>
-                            <Label text="1 Bed Available" styleClass="sub-heading" style="-fx-text-fill: #16A34A; -fx-font-weight: bold;"/>
-                            
-                            <Separator style="-fx-padding: 5 0;"/>
-                            
-                            <HBox alignment="CENTER_LEFT">
-                                <Label text="₹6,200" styleClass="price-text"/>
-                                <Label text="/month" styleClass="sub-heading" style="-fx-font-size: 11px;"/>
-                                <Region HBox.hgrow="ALWAYS"/>
-                                <Button text="View Details" styleClass="btn-primary" onAction="#openPGDetails"/>
-                            </HBox>
-                        </VBox>
-                    </VBox>
-
-                </TilePane>
 
             </VBox>
         </ScrollPane>

@@ -11,6 +11,7 @@ import com.pgfinder.util.SceneManager;
 import com.pgfinder.util.SelectedPGManager;
 import com.pgfinder.util.SessionManager;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -44,8 +45,10 @@ public class RoomsBedsController {
     public void initialize() {
         currentPG = SelectedPGManager.getSelectedPG();
         if (currentPG == null) {
-            AlertUtil.showWarning("No PG Selected", "Missing Context", "Redirecting back to your properties list.");
-            goBack();
+            Platform.runLater(() -> {
+                AlertUtil.showWarning("No PG Selected", "Missing Context", "Redirecting back to your properties list.");
+                SceneManager.switchTo("MyPGs.fxml");
+            });
             return;
         }
 

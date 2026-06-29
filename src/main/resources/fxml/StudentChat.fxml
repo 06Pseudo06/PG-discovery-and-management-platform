@@ -25,7 +25,7 @@
                 <StackPane styleClass="avatar-circle">
                     <Label text="👨" styleClass="avatar-icon"/>
                 </StackPane>
-                <Label text="Hi, Alex" styleClass="profile-name"/>
+                <Label fx:id="profileNameLabel" text="Hi, Alex" styleClass="profile-name"/>
                 <Label text="Welcome Back!" styleClass="profile-subtitle"/>
             </VBox>
 
@@ -51,7 +51,7 @@
                     <Label text="👨" styleClass="avatar-icon" style="-fx-font-size: 20px;"/>
                 </StackPane>
                 <VBox HBox.hgrow="ALWAYS">
-                    <Label text="Mr. Rohit Sharma" styleClass="chat-name" style="-fx-font-size: 16px;"/>
+                    <Label fx:id="chatPartnerLabel" text="Owner" styleClass="chat-name" style="-fx-font-size: 16px;"/>
                     <HBox spacing="5" alignment="CENTER_LEFT">
                         <StackPane styleClass="unread-indicator" style="-fx-background-color: #2ECC71;"/>
                         <Label text="Online • Owner of Sunrise PG" styleClass="sub-heading" style="-fx-font-size: 12px;"/>
@@ -61,33 +61,7 @@
 
             <!-- CONVERSATION SCROLL -->
             <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS" styleClass="content-card" style="-fx-padding: 10;">
-                <VBox fx:id="messagesContainer" spacing="15" styleClass="messages-area">
-                    
-                    <HBox alignment="CENTER_LEFT">
-                        <VBox spacing="4">
-                            <Label text="Mr. Rohit Sharma • 10:25 AM" styleClass="chat-time"/>
-                            <Label text="Hi Alex, hope you are settling in well at Sunrise PG."
-                                   styleClass="message-received"/>
-                        </VBox>
-                    </HBox>
-
-                    <HBox alignment="CENTER_RIGHT">
-                        <VBox spacing="4" alignment="TOP_RIGHT">
-                            <Label text="You • 10:28 AM" styleClass="chat-time"/>
-                            <Label text="Thank you, Rohit! I have a question about the water filter service in Room A."
-                                   styleClass="message-sent"/>
-                        </VBox>
-                    </HBox>
-
-                    <HBox alignment="CENTER_LEFT">
-                        <VBox spacing="4">
-                            <Label text="Mr. Rohit Sharma • 10:30 AM" styleClass="chat-time"/>
-                            <Label text="Sure! The service technician will visit today between 3 PM and 4 PM."
-                                   styleClass="message-received"/>
-                        </VBox>
-                    </HBox>
-                    
-                </VBox>
+                <VBox fx:id="messagesContainer" spacing="15" styleClass="messages-area"/>
             </ScrollPane>
 
             <!-- INPUT BAR -->

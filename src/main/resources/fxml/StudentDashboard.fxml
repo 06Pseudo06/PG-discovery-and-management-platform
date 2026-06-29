@@ -25,7 +25,7 @@
                 <StackPane styleClass="avatar-circle">
                     <Label text="👨" styleClass="avatar-icon"/>
                 </StackPane>
-                <Label text="Hi, Alex" styleClass="profile-name"/>
+                <Label fx:id="profileNameLabel" text="Hi, Alex" styleClass="profile-name"/>
                 <Label text="Welcome Back!" styleClass="profile-subtitle"/>
             </VBox>
 
@@ -49,11 +49,11 @@
                 <!-- HEADER -->
                 <HBox alignment="CENTER_LEFT" spacing="20">
                     <VBox HBox.hgrow="ALWAYS">
-                        <Label text="Good Morning, Alex! ☀️" styleClass="heading"/>
+                        <Label fx:id="greetingLabel" text="Good Morning, Alex! ☀️" styleClass="heading"/>
                         <Label text="Here is a quick overview of your accommodation activity." styleClass="sub-heading"/>
                     </VBox>
                     <HBox spacing="10" alignment="CENTER_RIGHT">
-                        <Button text="🔔" styleClass="btn-secondary" style="-fx-padding: 10 12;"/>
+                        <Button fx:id="notificationButton" text="🔔" styleClass="btn-secondary" style="-fx-padding: 10 12;" onAction="#openNotifications"/>
                         <Button text="👤 Settings" styleClass="btn-outline" onAction="#openSettings"/>
                     </HBox>
                 </HBox>
@@ -69,7 +69,7 @@
                     
                     <VBox styleClass="stat-card-yellow" GridPane.columnIndex="0">
                         <Label text="Current Stay"/>
-                        <Label text="Sunrise PG" styleClass="card-number" style="-fx-font-size: 20px;"/>
+                        <Label fx:id="currentStayLabel" text="No active stay" styleClass="card-number" style="-fx-font-size: 20px;"/>
                     </VBox>
 
                     <VBox styleClass="stat-card-green" GridPane.columnIndex="1">
@@ -79,7 +79,7 @@
 
                     <VBox styleClass="stat-card-light" GridPane.columnIndex="2">
                         <Label text="Room &amp; Bed"/>
-                        <Label text="Room A1 • B2" styleClass="card-number"/>
+                        <Label fx:id="roomBedLabel" text="—" styleClass="card-number"/>
                     </VBox>
 
                     <VBox styleClass="stat-card-light" GridPane.columnIndex="3">
@@ -101,11 +101,11 @@
                             </StackPane>
                             
                             <VBox spacing="6">
-                                <Label text="Sunrise PG" styleClass="pg-name" style="-fx-font-size: 20px;"/>
+                                <Label fx:id="activePgLabel" text="—" styleClass="pg-name" style="-fx-font-size: 20px;"/>
                                 <Label text="📍 Model Town, Jalandhar" styleClass="sub-heading"/>
                                 <Label text="🛏 Room A1 • Bed B2 (Double Sharing)" style="-fx-font-weight: bold;"/>
                                 <Separator style="-fx-padding: 5 0;"/>
-                                <Label text="Move In: 15 Jun 2026" styleClass="sub-heading"/>
+                                <Label fx:id="moveInLabel" text="—" styleClass="sub-heading"/>
                                 <Label text="Move Out: 15 Jun 2027" styleClass="sub-heading"/>
                             </VBox>
                         </HBox>
@@ -125,32 +125,7 @@
                     <VBox styleClass="content-card" prefWidth="480" spacing="15">
                         <Label text="Latest Hostels Announcements" styleClass="section-title"/>
                         
-                        <!-- High Priority -->
-                        <HBox styleClass="announcement-item, announcement-item-high" spacing="10" alignment="CENTER_LEFT">
-                            <VBox spacing="4" HBox.hgrow="ALWAYS">
-                                <Label text="Water Maintenance Services" style="-fx-font-weight: bold; -fx-text-fill: #990000;"/>
-                                <Label text="Tomorrow 10:00 AM to 12:00 PM water supply will be restricted." styleClass="sub-heading" style="-fx-font-size: 12px;"/>
-                            </VBox>
-                            <Label text="CRITICAL" styleClass="gender-tag" style="-fx-background-color: #FADBD8; -fx-text-fill: #78281F; -fx-font-size: 9px;"/>
-                        </HBox>
-
-                        <!-- Medium Priority -->
-                        <HBox styleClass="announcement-item, announcement-item-medium" spacing="10" alignment="CENTER_LEFT">
-                            <VBox spacing="4" HBox.hgrow="ALWAYS">
-                                <Label text="Rent Collection Notice" style="-fx-font-weight: bold; -fx-text-fill: #9C640C;"/>
-                                <Label text="Please submit monthly room rent on or before July 5th." styleClass="sub-heading" style="-fx-font-size: 12px;"/>
-                            </VBox>
-                            <Label text="NOTICE" styleClass="gender-tag" style="-fx-background-color: #FCF3CF; -fx-text-fill: #7E5109; -fx-font-size: 9px;"/>
-                        </HBox>
-
-                        <!-- Low Priority -->
-                        <HBox styleClass="announcement-item, announcement-item-low" spacing="10" alignment="CENTER_LEFT">
-                            <VBox spacing="4" HBox.hgrow="ALWAYS">
-                                <Label text="WiFi Upgrade Completed" style="-fx-font-weight: bold; -fx-text-fill: #196F3D;"/>
-                                <Label text="New routers are installed across all hallways for higher speeds." styleClass="sub-heading" style="-fx-font-size: 12px;"/>
-                            </VBox>
-                            <Label text="INFO" styleClass="gender-tag" style="-fx-background-color: #D4EFDF; -fx-text-fill: #196F3D; -fx-font-size: 9px;"/>
-                        </HBox>
+                        <VBox fx:id="notificationsPreviewBox" spacing="10"/>
                     </VBox>
 
                 </HBox>

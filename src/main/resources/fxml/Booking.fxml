@@ -25,7 +25,7 @@
                 <StackPane styleClass="avatar-circle">
                     <Label text="👨" styleClass="avatar-icon"/>
                 </StackPane>
-                <Label text="Hi, Alex" styleClass="profile-name"/>
+                <Label fx:id="profileNameLabel" text="Hi, Alex" styleClass="profile-name"/>
                 <Label text="Welcome Back!" styleClass="profile-subtitle"/>
             </VBox>
 
@@ -124,10 +124,10 @@
                                 </columnConstraints>
                                 
                                 <Label text="Monthly PG Rent" GridPane.rowIndex="0" GridPane.columnIndex="0" styleClass="sub-heading"/>
-                                <Label text="₹6,500" GridPane.rowIndex="0" GridPane.columnIndex="1" style="-fx-font-weight: bold; -fx-alignment: CENTER_RIGHT;"/>
+                                <Label fx:id="monthlyRentLabel" text="₹6,500" GridPane.rowIndex="0" GridPane.columnIndex="1" style="-fx-font-weight: bold; -fx-alignment: CENTER_RIGHT;"/>
 
                                 <Label text="Security Deposit (Refundable)" GridPane.rowIndex="1" GridPane.columnIndex="0" styleClass="sub-heading"/>
-                                <Label text="₹10,000" GridPane.rowIndex="1" GridPane.columnIndex="1" style="-fx-font-weight: bold;"/>
+                                <Label fx:id="depositLabel" text="₹10,000" GridPane.rowIndex="1" GridPane.columnIndex="1" style="-fx-font-weight: bold;"/>
 
                                 <Label text="Utility &amp; Maintenance Fee" GridPane.rowIndex="2" GridPane.columnIndex="0" styleClass="sub-heading"/>
                                 <Label text="₹0 (Free)" GridPane.rowIndex="2" GridPane.columnIndex="1" style="-fx-font-weight: bold; -fx-text-fill: #16A34A;"/>
@@ -138,7 +138,7 @@
                             <HBox alignment="CENTER_LEFT">
                                 <Label text="Estimated Initial Payment" style="-fx-font-weight: bold; -fx-font-size: 14px;"/>
                                 <Region HBox.hgrow="ALWAYS"/>
-                                <Label text="₹16,500" style="-fx-font-weight: 800; -fx-font-size: 18px; -fx-text-fill: #214F4B;"/>
+                                <Label fx:id="totalPaymentLabel" text="₹16,500" style="-fx-font-weight: 800; -fx-font-size: 18px; -fx-text-fill: #214F4B;"/>
                             </HBox>
                         </VBox>
 

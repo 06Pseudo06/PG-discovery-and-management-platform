@@ -31,7 +31,7 @@
             
             <HBox alignment="CENTER_LEFT" styleClass="menu-item-with-badge">
                 <Button text="📋  Requests" styleClass="owner-menu" HBox.hgrow="ALWAYS" maxWidth="Infinity" onAction="#openBookingRequests"/>
-                <Label text="5" styleClass="menu-badge"/>
+                <Label fx:id="pendingBadgeLabel" text="0" styleClass="menu-badge"/>
             </HBox>
             
             <Button text="👥  Tenants" styleClass="owner-menu" maxWidth="Infinity" onAction="#openTenants"/>
@@ -39,7 +39,7 @@
             
             <HBox alignment="CENTER_LEFT" styleClass="menu-item-with-badge">
                 <Button text="💬  Chats" styleClass="owner-menu" HBox.hgrow="ALWAYS" maxWidth="Infinity" onAction="#openChat"/>
-                <Label text="3" styleClass="menu-badge"/>
+                <Label fx:id="chatBadgeLabel" text="0" styleClass="menu-badge"/>
             </HBox>
             
             <Button text="⭐  Reviews" styleClass="owner-menu" maxWidth="Infinity" onAction="#openReviews"/>
@@ -103,7 +103,7 @@
                         <StackPane styleClass="stat-icon-container"><Label text="👥" styleClass="stat-icon"/></StackPane>
                         <VBox>
                             <Label text="Total Tenants" styleClass="stat-label"/>
-                            <Label text="18" styleClass="owner-stat-number"/>
+                            <Label fx:id="confirmedTenantsStatLabel" text="0" styleClass="owner-stat-number"/>
                             <Label text="Currently staying" styleClass="stat-sublabel"/>
                         </VBox>
                     </HBox>
@@ -112,7 +112,7 @@
                         <StackPane styleClass="stat-icon-container"><Label text="📋" styleClass="stat-icon"/></StackPane>
                         <VBox>
                             <Label text="Pending Requests" styleClass="stat-label"/>
-                            <Label text="5" styleClass="owner-stat-number"/>
+                            <Label fx:id="pendingRequestsStatLabel" text="0" styleClass="owner-stat-number"/>
                             <Label text="Awaiting review" styleClass="stat-sublabel"/>
                         </VBox>
                     </HBox>

@@ -25,7 +25,7 @@
                 <StackPane styleClass="avatar-circle">
                     <Label text="👨" styleClass="avatar-icon"/>
                 </StackPane>
-                <Label text="Hi, Alex" styleClass="profile-name"/>
+                <Label fx:id="profileNameLabel" text="Hi, Alex" styleClass="profile-name"/>
                 <Label text="Welcome Back!" styleClass="profile-subtitle"/>
             </VBox>
 
@@ -53,39 +53,43 @@
                 </VBox>
 
                 <!-- ROW 1: PG OVERVIEW CARD -->
-                <VBox spacing="20" styleClass="content-card">
+                <VBox fx:id="stayContentBox" spacing="20" styleClass="content-card">
                     <HBox spacing="25" alignment="CENTER_LEFT">
                         <StackPane styleClass="room-image" style="-fx-min-width: 250px; -fx-min-height: 160px; -fx-background-color: #DFF1EA;">
-                            <Label text="Sunrise PG" styleClass="pg-title" style="-fx-text-fill: #214F4B;"/>
+                            <Label fx:id="pgNameLabel" text="Sunrise PG" styleClass="pg-title" style="-fx-text-fill: #214F4B;"/>
                         </StackPane>
                         
                         <VBox spacing="8" HBox.hgrow="ALWAYS">
                             <HBox alignment="CENTER_LEFT">
-                                <Label text="Sunrise PG" styleClass="pg-name" style="-fx-font-size: 24px;"/>
+                                <Label fx:id="pgNameHeaderLabel" text="Sunrise PG" styleClass="pg-name" style="-fx-font-size: 24px;" visible="false" managed="false"/>
                                 <Region HBox.hgrow="ALWAYS"/>
-                                <Label text="ACTIVE CONTRACT" styleClass="status-tag"/>
+                                <Label fx:id="statusLabel" text="ACTIVE CONTRACT" styleClass="status-tag"/>
                             </HBox>
-                            <Label text="📍 Model Town, Jalandhar  •  Room A1  •  Bed B2 (Double Sharing)" style="-fx-font-size: 14px; -fx-text-fill: #4B5563;"/>
+                            <Label fx:id="locationLabel" text="📍 Model Town, Jalandhar  •  Room A1  •  Bed B2 (Double Sharing)" style="-fx-font-size: 14px; -fx-text-fill: #4B5563;"/>
                             <HBox spacing="35" style="-fx-padding: 10 0 0 0;">
                                 <VBox>
                                     <Label text="Rent Amount" styleClass="sub-heading" style="-fx-font-size: 11px;"/>
-                                    <Label text="₹6,500/month" style="-fx-font-weight: 800; -fx-font-size: 16px; -fx-text-fill: #214F4B;"/>
+                                    <Label fx:id="rentLabel" text="₹6,500/month" style="-fx-font-weight: 800; -fx-font-size: 16px; -fx-text-fill: #214F4B;"/>
                                 </VBox>
                                 <VBox>
                                     <Label text="Security Deposit" styleClass="sub-heading" style="-fx-font-size: 11px;"/>
-                                    <Label text="₹10,000 (Paid)" style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-text-fill: #111827;"/>
+                                    <Label fx:id="depositLabel" text="₹10,000 (Paid)" style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-text-fill: #111827;"/>
                                 </VBox>
                                 <VBox>
-                                    <Label text="Next Due Date" styleClass="sub-heading" style="-fx-font-size: 11px;"/>
-                                    <Label text="05 July 2026" style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-text-fill: #DC2626;"/>
+                                    <Label text="Move-in Date" styleClass="sub-heading" style="-fx-font-size: 11px;"/>
+                                    <Label fx:id="moveInLabel" text="05 July 2026" style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-text-fill: #DC2626;"/>
                                 </VBox>
                             </HBox>
                         </VBox>
                     </HBox>
                 </VBox>
 
+                <VBox fx:id="noStayBox" spacing="15" styleClass="content-card" visible="false" managed="false">
+                    <Label text="No active stay found."/>
+                </VBox>
+
                 <!-- ROW 2: DETAILED COLUMNS -->
-                <HBox spacing="25">
+                <HBox fx:id="detailsSection" spacing="25">
                     
                     <!-- COLUMN 1: CONTRACT & ROOMMATES -->
                     <VBox spacing="25" HBox.hgrow="ALWAYS" prefWidth="550">
@@ -109,16 +113,13 @@
                                 <Label text="12 Months" GridPane.rowIndex="2" GridPane.columnIndex="1" style="-fx-font-weight: bold;"/>
                                 
                                 <Label text="PG Owner" GridPane.rowIndex="3" GridPane.columnIndex="0" styleClass="sub-heading"/>
-                                <Label text="Mr. Rohit Sharma" GridPane.rowIndex="3" GridPane.columnIndex="1" style="-fx-font-weight: bold;"/>
+                                <Label fx:id="ownerNameLabel" text="Mr. Rohit Sharma" GridPane.rowIndex="3" GridPane.columnIndex="1" style="-fx-font-weight: bold;"/>
                                 
                                 <Label text="Owner Contact" GridPane.rowIndex="4" GridPane.columnIndex="0" styleClass="sub-heading"/>
-                                <Label text="+91 99887 76655" GridPane.rowIndex="4" GridPane.columnIndex="1" style="-fx-font-weight: bold;"/>
+                                <Label fx:id="ownerPhoneLabel" text="+91 99887 76655" GridPane.rowIndex="4" GridPane.columnIndex="1" style="-fx-font-weight: bold;"/>
                             </GridPane>
                             <Separator/>
-                            <VBox spacing="8">
-                                <Label text="Move-Out Progress (147 Days Remaining)" styleClass="sub-heading" style="-fx-font-size: 11px;"/>
-                                <ProgressBar progress="0.65" prefWidth="500"/>
-                            </VBox>
+                            <Button fx:id="cancelBookingBtn" text="Cancel Active Stay" styleClass="btn-secondary" maxWidth="Infinity" onAction="#handleCancelBooking"/>
                         </VBox>
 
                         <!-- Roommates Section -->

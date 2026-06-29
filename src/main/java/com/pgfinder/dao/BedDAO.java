@@ -250,6 +250,50 @@ public class BedDAO {
         }
     }
 
+    public boolean updateStatus(Connection conn, int bedId, String status) throws SQLException {
+        String sql = "UPDATE beds SET status = ? WHERE id = ?";
+        try (PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, status);
+            ps.setInt(2, bedId);
+            return ps.executeUpdate() > 0;
+        }
+    }
+
+    public Bed findById(Connection conn, int id) throws SQLException {
+        String sql = "SELECT * FROM beds WHERE id = ?";
+        try (PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, id);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return mapRowToBed(rs);
+                }
+            }
+        }
+        return null;
+    }
+
+    public int countVacantBedsByPgId(int pgId) {
+        String sql = """
+                SELECT COUNT(*)
+                FROM beds b
+                JOIN rooms r ON b.room_id = r.id
+                WHERE r.pg_id = ?
+                AND b.status = 'vacant'
+                """;
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, pgId);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt(1);
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error counting vacant beds for PG: " + pgId, e);
+        }
+        return 0;
+    }
+
     /* ==========================
        ROOM STATISTICS
        ========================== */

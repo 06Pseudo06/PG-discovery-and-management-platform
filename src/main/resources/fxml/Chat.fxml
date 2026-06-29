@@ -30,7 +30,7 @@
             
             <HBox alignment="CENTER_LEFT" styleClass="menu-item-with-badge">
                 <Button text="📋  Requests" styleClass="owner-menu" HBox.hgrow="ALWAYS" maxWidth="Infinity" onAction="#openBookingRequests"/>
-                <Label text="5" styleClass="menu-badge"/>
+                <Label fx:id="pendingBadgeLabel" text="0" styleClass="menu-badge"/>
             </HBox>
             
             <Button text="👥  Tenants" styleClass="owner-menu" maxWidth="Infinity" onAction="#openTenants"/>
@@ -38,7 +38,7 @@
             
             <HBox alignment="CENTER_LEFT" styleClass="menu-item-with-badge">
                 <Button text="💬  Chats" styleClass="owner-menu-active" HBox.hgrow="ALWAYS" maxWidth="Infinity" onAction="#openChat"/>
-                <Label text="3" styleClass="menu-badge"/>
+                <Label fx:id="chatBadgeLabel" text="0" styleClass="menu-badge"/>
             </HBox>
             
             <Button text="⭐  Reviews" styleClass="owner-menu" maxWidth="Infinity" onAction="#openReviews"/>
@@ -62,34 +62,7 @@
                 
                 <Separator/>
                 
-                <VBox spacing="6">
-                    <Button styleClass="chat-user, chat-user-active" maxWidth="Infinity" alignment="CENTER_LEFT">
-                        <graphic>
-                            <HBox spacing="8" alignment="CENTER_LEFT">
-                                <StackPane style="-fx-background-color: #2ECC71; -fx-background-radius: 10px; -fx-min-width: 8px; -fx-max-width: 8px; -fx-min-height: 8px; -fx-max-height: 8px;"/>
-                                <Label text="Rahul Sharma (Room A1)"/>
-                            </HBox>
-                        </graphic>
-                    </Button>
-
-                    <Button styleClass="chat-user" maxWidth="Infinity" alignment="CENTER_LEFT">
-                        <graphic>
-                            <HBox spacing="8" alignment="CENTER_LEFT">
-                                <StackPane style="-fx-background-color: #9CA3AF; -fx-background-radius: 10px; -fx-min-width: 8px; -fx-max-width: 8px; -fx-min-height: 8px; -fx-max-height: 8px;"/>
-                                <Label text="Aman Patel (Room B1)"/>
-                            </HBox>
-                        </graphic>
-                    </Button>
-
-                    <Button styleClass="chat-user" maxWidth="Infinity" alignment="CENTER_LEFT">
-                        <graphic>
-                            <HBox spacing="8" alignment="CENTER_LEFT">
-                                <StackPane style="-fx-background-color: #2ECC71; -fx-background-radius: 10px; -fx-min-width: 8px; -fx-max-width: 8px; -fx-min-height: 8px; -fx-max-height: 8px;"/>
-                                <Label text="Neha Verma (Room C2)"/>
-                            </HBox>
-                        </graphic>
-                    </Button>
-                </VBox>
+                <VBox fx:id="conversationsContainer" spacing="6"/>
             </VBox>
 
             <!-- CHAT VIEWPORT (RIGHT COLUMN OF CHAT) -->
@@ -101,44 +74,14 @@
                         <Label text="RS" styleClass="avatar-text"/>
                     </StackPane>
                     <VBox HBox.hgrow="ALWAYS">
-                        <Label text="Rahul Sharma" styleClass="chat-name" style="-fx-font-size: 15px;"/>
+                        <Label fx:id="chatPartnerLabel" text="Select a tenant" styleClass="chat-name" style="-fx-font-size: 15px;"/>
                         <Label text="Active staying tenant in Room A1, Bed B1" styleClass="stat-sublabel"/>
                     </VBox>
                 </HBox>
 
                 <!-- Messages area -->
                 <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS" style="-fx-background-color: #F9FAFB; -fx-padding: 10;">
-                    <VBox fx:id="messagesContainer" spacing="15" styleClass="messages-area">
-                        
-                        <HBox alignment="CENTER_LEFT">
-                            <VBox spacing="4">
-                                <Label text="Rahul Sharma • 10:20 AM" styleClass="stat-sublabel"/>
-                                <HBox spacing="5" alignment="CENTER_LEFT">
-                                    <Label text="Hi Sir, is Bed A4 available for my friend?" styleClass="message-received" style="-fx-padding: 10 14; -fx-font-size: 13px;"/>
-                                    <Label text="👍" style="-fx-font-size: 12px; -fx-text-fill: #888888;"/> <!-- Reaction indicator -->
-                                </HBox>
-                            </VBox>
-                        </HBox>
-
-                        <HBox alignment="CENTER_RIGHT">
-                            <VBox spacing="4" alignment="TOP_RIGHT">
-                                <Label text="You • 10:22 AM" styleClass="stat-sublabel"/>
-                                <HBox spacing="5" alignment="CENTER_RIGHT">
-                                    <Label text="Yes, Bed A4 is currently vacant. They can apply via the portal." styleClass="message-sent" style="-fx-padding: 10 14; -fx-font-size: 13px;"/>
-                                </HBox>
-                            </VBox>
-                        </HBox>
-
-                        <HBox alignment="CENTER_LEFT">
-                            <VBox spacing="4">
-                                <Label text="Rahul Sharma • 10:23 AM" styleClass="stat-sublabel"/>
-                                <HBox spacing="5" alignment="CENTER_LEFT">
-                                    <Label text="Perfect! Thank you so much, I will ask them to register." styleClass="message-received" style="-fx-padding: 10 14; -fx-font-size: 13px;"/>
-                                </HBox>
-                            </VBox>
-                        </HBox>
-
-                    </VBox>
+                    <VBox fx:id="messagesContainer" spacing="15" styleClass="messages-area"/>
                 </ScrollPane>
 
                 <!-- Message input footer -->

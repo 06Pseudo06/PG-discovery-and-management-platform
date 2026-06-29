@@ -9,7 +9,10 @@ public class BCryptUtil {
 
     public static boolean verify(String plainPassword, String hash) {
         try {
-            return BCrypt.checkpw(plainPassword, hash);
+            String normalizedHash = hash != null && hash.startsWith("$2b$")
+                    ? "$2a$" + hash.substring(4)
+                    : hash;
+            return BCrypt.checkpw(plainPassword, normalizedHash);
         } catch (Exception e) {
             return false;
         }

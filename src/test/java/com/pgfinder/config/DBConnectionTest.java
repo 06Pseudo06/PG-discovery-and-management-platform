@@ -23,6 +23,7 @@ public class DBConnectionTest {
             System.out.println("AutoCommit status: " + auto);
             
             // Delete associated bookings, beds, rooms if any exist for test PGs (id > 9)
+            stmt.executeUpdate("DELETE FROM booking_requests WHERE bed_id IN (SELECT id FROM beds WHERE room_id IN (SELECT id FROM rooms WHERE pg_id > 9))");
             stmt.executeUpdate("DELETE FROM beds WHERE room_id IN (SELECT id FROM rooms WHERE pg_id > 9)");
             stmt.executeUpdate("DELETE FROM rooms WHERE pg_id > 9");
             int deleted = stmt.executeUpdate("DELETE FROM pgs WHERE id > 9");

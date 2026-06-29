@@ -25,7 +25,7 @@
                 <StackPane styleClass="avatar-circle">
                     <Label text="👨" styleClass="avatar-icon"/>
                 </StackPane>
-                <Label text="Hi, Alex" styleClass="profile-name"/>
+                <Label fx:id="profileNameLabel" text="Hi, Alex" styleClass="profile-name"/>
                 <Label text="Welcome Back!" styleClass="profile-subtitle"/>
             </VBox>
 
@@ -56,10 +56,10 @@
                 <!-- PG TITLE & RATING HEADER -->
                 <VBox spacing="5">
                     <HBox alignment="CENTER_LEFT" spacing="15">
-                        <Label text="Sunrise PG" styleClass="heading" style="-fx-font-size: 32px;"/>
+                        <Label fx:id="pgTitleLabel" text="Sunrise PG" styleClass="heading" style="-fx-font-size: 32px;"/>
                         <Label text="⭐ 4.5 (24 Reviews)" style="-fx-text-fill: #F59E0B; -fx-font-weight: bold; -fx-font-size: 16px;"/>
                     </HBox>
-                    <Label text="📍 Model Town, Jalandhar  •  Girls PG" styleClass="sub-heading" style="-fx-font-size: 14px;"/>
+                    <Label fx:id="pgLocationLabel" text="📍 Model Town, Jalandhar  •  Girls PG" styleClass="sub-heading" style="-fx-font-size: 14px;"/>
                 </VBox>
 
                 <!-- AIRBNB STYLE PHOTO GALLERY -->
@@ -86,7 +86,7 @@
                         <!-- Description -->
                         <VBox spacing="15" styleClass="content-card">
                             <Label text="Description" styleClass="section-title"/>
-                            <Label text="Sunrise PG is a premium hostel workspace curated specifically for university students and corporate females. Situated at the premium commercial location of Model Town, Jalandhar, it offers immediate access to local cafes, transport nodes, and educational institutes. With high-end security systems, strict verification, daily housekeeping, and home-cooked meals, we ensure you feel right at home."
+                            <Label fx:id="pgDescriptionLabel" text="Sunrise PG is a premium hostel workspace curated specifically for university students and corporate females. Situated at the premium commercial location of Model Town, Jalandhar, it offers immediate access to local cafes, transport nodes, and educational institutes. With high-end security systems, strict verification, daily housekeeping, and home-cooked meals, we ensure you feel right at home."
                                    wrapText="true" style="-fx-font-size: 14px; -fx-text-fill: #4B5563; -fx-line-spacing: 1.5;"/>
                         </VBox>
 
@@ -216,6 +216,8 @@
                         <!-- CTA Book button -->
                         <VBox styleClass="content-card" spacing="15" style="-fx-background-color: #214F4B;">
                             <Label text="Secure Your Bed Instantly" styleClass="section-title" style="-fx-text-fill: #FFFFFF;"/>
+                            <Label fx:id="rentFromLabel" text="From ₹6,500/month" styleClass="sub-heading" style="-fx-text-fill: #DFF1EA; -fx-font-size: 13px;"/>
+                            <Label fx:id="vacantBedsLabel" text="2 vacant beds available" styleClass="sub-heading" style="-fx-text-fill: #A7F3D0; -fx-font-size: 12px;"/>
                             <Label text="Secure a place today by registering details and confirming reservations." styleClass="sub-heading" style="-fx-text-fill: #DFF1EA; -fx-font-size: 13px;"/>
                             <Button text="⚡ PROCEED TO BOOKING" styleClass="btn-primary" style="-fx-background-color: #FFFFFF; -fx-text-fill: #214F4B; -fx-font-size: 14px;" maxWidth="Infinity" onAction="#openBooking"/>
                         </VBox>
