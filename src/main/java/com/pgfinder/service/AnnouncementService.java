@@ -18,46 +18,43 @@ public class AnnouncementService {
     private final NotificationDAO notificationDAO = new NotificationDAO();
     private final PGDAO pgDAO = new PGDAO();
 
+
+
     public void postAnnouncement(int ownerId, int pgId, String title, String message) {
-        if (title == null || title.trim().isEmpty()) {
-            throw new BookingException("Announcement title is required.");
-        }
-        if (message == null || message.trim().isEmpty()) {
-            throw new BookingException("Announcement message is required.");
-        }
+        if (title == null || title.trim().isEmpty()) throw new BookingException("Announcement title is required.");
+        if (message == null || message.trim().isEmpty()) throw new BookingException("Announcement message is required.");
 
         PG pg = pgDAO.findById(pgId);
-        if (pg == null || pg.getOwnerId() != ownerId) {
-            throw new BookingException("You are not authorized to post for this PG.");
-        }
+        if (pg == null || pg.getOwnerId() != ownerId) throw new BookingException("Unauthorized.");
 
         try (Connection conn = DBConnection.getConnection()) {
             conn.setAutoCommit(false);
             try {
                 int id = announcementDAO.insert(conn, pgId, ownerId, title.trim(), message.trim());
-                if (id <= 0) {
-                    throw new BookingException("Unable to post announcement.");
-                }
+                if (id <= 0) throw new BookingException("Unable to post announcement.");
 
-                String notificationText = NotificationMessages.ANNOUNCEMENT_POSTED
-                        + " [" + title.trim() + "]";
+                String text = NotificationMessages.ANNOUNCEMENT_POSTED + " [" + title.trim() + "]";
                 for (int studentId : announcementDAO.findStudentIdsForPg(pgId)) {
-                    notificationDAO.insert(conn, studentId, notificationText);
+                    notificationDAO.insert(conn, studentId, text);
                 }
-
                 conn.commit();
-            } catch (BookingException ex) {
+            } catch (Exception ex) {
                 conn.rollback();
-                throw ex;
-            } catch (SQLException ex) {
-                conn.rollback();
-                throw new BookingException("Unable to post announcement. Please try again.");
+                throw new BookingException("Error saving announcement.");
             } finally {
                 conn.setAutoCommit(true);
             }
         } catch (SQLException ex) {
-            throw new BookingException("Unable to post announcement. Please try again.");
+            throw new BookingException("Database connection failure.");
         }
+    }
+
+    public boolean updateAnnouncement(int id, int pgId, String title, String message) {
+        return announcementDAO.update(id, pgId, title.trim(), message.trim());
+    }
+
+    public boolean deleteAnnouncement(int id) {
+        return announcementDAO.delete(id);
     }
 
     public List<Announcement> getOwnerAnnouncements(int ownerId) {
@@ -67,4 +64,4 @@ public class AnnouncementService {
     public List<Announcement> getStudentAnnouncements(int studentId) {
         return announcementDAO.findForStudent(studentId);
     }
-}
+} 
