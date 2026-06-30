@@ -66,80 +66,48 @@
                 </HBox>
 
                 <!-- REVIEWS BREAKDOWN ROW -->
-                <HBox spacing="20">
-                    <VBox styleClass="owner-large-card" prefWidth="350" alignment="CENTER" spacing="15">
-                        <Label text="Average Tenant Rating" styleClass="stat-label"/>
-                        <Label text="4.6 / 5.0" styleClass="welcome-title" style="-fx-font-size: 36px; -fx-text-fill: #0F4F46;"/>
-                        <Label text="⭐⭐⭐⭐★" style="-fx-font-size: 22px; -fx-text-fill: #F59E0B;"/>
-                        <Label text="Based on 24 reviews" styleClass="stat-sublabel"/>
-                    </VBox>
+<HBox spacing="20">
+    <VBox styleClass="owner-large-card" prefWidth="350" alignment="CENTER" spacing="15">
+        <Label text="Average Tenant Rating" styleClass="stat-label"/>
+        <Label fx:id="avgRatingLabel" text="0.0 / 5.0" styleClass="welcome-title" style="-fx-font-size: 36px; -fx-text-fill: #0F4F46;"/>
+        <Label fx:id="avgStarsLabel" text="☆☆☆☆☆" style="-fx-font-size: 22px; -fx-text-fill: #F59E0B;"/>
+        <Label fx:id="totalReviewsLabel" text="Based on 0 reviews" styleClass="stat-sublabel"/>
+    </VBox>
 
-                    <VBox styleClass="owner-large-card" HBox.hgrow="ALWAYS" spacing="8">
-                        <Label text="Rating Distribution" styleClass="section-title"/>
-                        <HBox spacing="10" alignment="CENTER_LEFT">
-                            <Label text="5 Star" prefWidth="50" styleClass="stat-sublabel"/>
-                            <ProgressBar progress="0.75" HBox.hgrow="ALWAYS"/>
-                            <Label text="18" prefWidth="20" styleClass="stat-sublabel"/>
-                        </HBox>
-                        <HBox spacing="10" alignment="CENTER_LEFT">
-                            <Label text="4 Star" prefWidth="50" styleClass="stat-sublabel"/>
-                            <ProgressBar progress="0.20" HBox.hgrow="ALWAYS"/>
-                            <Label text="4" prefWidth="20" styleClass="stat-sublabel"/>
-                        </HBox>
-                        <HBox spacing="10" alignment="CENTER_LEFT">
-                            <Label text="3 Star" prefWidth="50" styleClass="stat-sublabel"/>
-                            <ProgressBar progress="0.05" HBox.hgrow="ALWAYS"/>
-                            <Label text="2" prefWidth="20" styleClass="stat-sublabel"/>
-                        </HBox>
-                    </VBox>
-                </HBox>
+    <VBox styleClass="owner-large-card" HBox.hgrow="ALWAYS" spacing="8">
+        <Label text="Rating Distribution" styleClass="section-title"/>
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <Label text="5 Star" prefWidth="50" styleClass="stat-sublabel"/>
+            <ProgressBar fx:id="progress5" progress="0.0" HBox.hgrow="ALWAYS"/>
+            <Label fx:id="labelCount5" text="0" prefWidth="20" styleClass="stat-sublabel"/>
+        </HBox>
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <Label text="4 Star" prefWidth="50" styleClass="stat-sublabel"/>
+            <ProgressBar fx:id="progress4" progress="0.0" HBox.hgrow="ALWAYS"/>
+            <Label fx:id="labelCount4" text="0" prefWidth="20" styleClass="stat-sublabel"/>
+        </HBox>
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <Label text="3 Star" prefWidth="50" styleClass="stat-sublabel"/>
+            <ProgressBar fx:id="progress3" progress="0.0" HBox.hgrow="ALWAYS"/>
+            <Label fx:id="labelCount3" text="0" prefWidth="20" styleClass="stat-sublabel"/>
+        </HBox>
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <Label text="2 Star" prefWidth="50" styleClass="stat-sublabel"/>
+            <ProgressBar fx:id="progress2" progress="0.0" HBox.hgrow="ALWAYS"/>
+            <Label fx:id="labelCount2" text="0" prefWidth="20" styleClass="stat-sublabel"/>
+        </HBox>
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <Label text="1 Star" prefWidth="50" styleClass="stat-sublabel"/>
+            <ProgressBar fx:id="progress1" progress="0.0" HBox.hgrow="ALWAYS"/>
+            <Label fx:id="labelCount1" text="0" prefWidth="20" styleClass="stat-sublabel"/>
+        </HBox>
+    </VBox>
+</HBox>
 
-                <!-- REVIEWS FEED -->
-                <VBox spacing="15">
-                    <Label text="Active Feedback Feed" styleClass="section-title" style="-fx-text-fill: #FFFFFF;"/>
-                    
-                    <!-- Review card 1 -->
-                    <VBox styleClass="owner-large-card" spacing="12">
-                        <HBox alignment="CENTER_LEFT" spacing="12">
-                            <StackPane styleClass="avatar-circle"><Label text="RS" styleClass="avatar-text"/></StackPane>
-                            <VBox HBox.hgrow="ALWAYS">
-                                <HBox alignment="CENTER_LEFT">
-                                    <Label text="Rahul Sharma" styleClass="item-main-title" style="-fx-font-size: 15px;"/>
-                                    <Label text="•  Tenant in Sunrise PG (Room A1)" styleClass="item-subtitle" style="-fx-padding: 0 0 0 10;"/>
-                                    <Region HBox.hgrow="ALWAYS"/>
-                                    <Label text="⭐⭐⭐⭐⭐" style="-fx-text-fill: #F59E0B; -fx-font-size: 14px;"/>
-                                </HBox>
-                            </VBox>
-                        </HBox>
-                        <Separator/>
-                        <Label text="Absolutely loved my stay here. Rooms were premium, food was exceptional, and housekeeping was daily. Strongly recommended!" wrapText="true" style="-fx-text-fill: #4B5563; -fx-font-size: 13.5px;"/>
-                        <Separator/>
-                        <HBox alignment="CENTER_RIGHT">
-                            <Button text="Quick Reply" styleClass="review-action-btn" style="-fx-padding: 6 12; -fx-font-size: 11px;"/>
-                        </HBox>
-                    </VBox>
-
-                    <!-- Review card 2 -->
-                    <VBox styleClass="owner-large-card" spacing="12">
-                        <HBox alignment="CENTER_LEFT" spacing="12">
-                            <StackPane styleClass="avatar-circle"><Label text="AP" styleClass="avatar-text"/></StackPane>
-                            <VBox HBox.hgrow="ALWAYS">
-                                <HBox alignment="CENTER_LEFT">
-                                    <Label text="Aman Patel" styleClass="item-main-title" style="-fx-font-size: 15px;"/>
-                                    <Label text="•  Tenant in Green Residency (Room B)" styleClass="item-subtitle" style="-fx-padding: 0 0 0 10;"/>
-                                    <Region HBox.hgrow="ALWAYS"/>
-                                    <Label text="⭐⭐⭐⭐★" style="-fx-text-fill: #F59E0B; -fx-font-size: 14px;"/>
-                                </HBox>
-                            </VBox>
-                        </HBox>
-                        <Separator/>
-                        <Label text="Great location and the owner Rohit was very responsive. The WiFi was sometimes slow, but rooms were clean and food was decent." wrapText="true" style="-fx-text-fill: #4B5563; -fx-font-size: 13.5px;"/>
-                        <Separator/>
-                        <HBox alignment="CENTER_RIGHT">
-                            <Button text="Quick Reply" styleClass="review-action-btn" style="-fx-padding: 6 12; -fx-font-size: 11px;"/>
-                        </HBox>
-                    </VBox>
-                </VBox>
+<VBox spacing="15">
+    <Label text="Active Feedback Feed" styleClass="section-title" style="-fx-text-fill: #FFFFFF;"/>
+    <VBox fx:id="reviewsContainer" spacing="15" />
+</VBox>
 
             </VBox>
         </ScrollPane>

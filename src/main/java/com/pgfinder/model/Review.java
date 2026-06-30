@@ -12,6 +12,8 @@ public class Review {
     private int ownerBehaviorRating;
     private String comment;
     private LocalDateTime createdAt;
+    private String studentName;
+    private String pgName;
 
     public Review() {}
 
@@ -25,6 +27,8 @@ public class Review {
         this.ownerBehaviorRating = ownerBehaviorRating;
         this.comment = comment;
         this.createdAt = createdAt;
+        this.studentName = studentName;
+        this.pgName = pgName;
     }
 
     public int getId() { return id; }
@@ -53,4 +57,10 @@ public class Review {
 
     public LocalDateTime getCreatedAt() { return createdAt; }
     public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
+
+    public String getStudentName() { return studentName; }
+    public void setStudentName(String studentName) { this.studentName = studentName; }
+
+    public String getPgName() { return pgName; }
+    public void setPgName(String pgName) { this.pgName = pgName; }
 }

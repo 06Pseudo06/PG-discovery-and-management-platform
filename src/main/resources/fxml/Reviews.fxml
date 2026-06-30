@@ -9,7 +9,6 @@
             stylesheets="@../css/student-dashboard.css"
             prefWidth="1280" prefHeight="800">
 
-    <!-- LEFT SIDEBAR -->
     <left>
         <VBox fx:id="sidebar"
               prefWidth="250"
@@ -22,10 +21,11 @@
             <VBox spacing="12"
                   alignment="CENTER"
                   styleClass="profile-card">
+  
                 <StackPane styleClass="avatar-circle">
                     <Label text="👨" styleClass="avatar-icon"/>
                 </StackPane>
-                <Label text="Hi, Alex" styleClass="profile-name"/>
+                <Label text="Hi, Student" styleClass="profile-name"/>
                 <Label text="Welcome Back!" styleClass="profile-subtitle"/>
             </VBox>
 
@@ -41,27 +41,24 @@
         </VBox>
     </left>
 
-    <!-- MAIN CONTENT -->
     <center>
         <ScrollPane fitToWidth="true" hbarPolicy="NEVER">
             <VBox spacing="25" styleClass="main-content">
-                
-                <!-- HEADER -->
+  
                 <VBox spacing="5">
                     <Label text="Reviews &amp; Feedback" styleClass="heading"/>
                     <Label text="Share your stay experience or edit your past reviews." styleClass="sub-heading"/>
                 </VBox>
 
-                <!-- REVIEW SECTION SPLIT -->
                 <HBox spacing="25">
-                    
-                    <!-- LEFT COLUMN: WRITE A REVIEW -->
+                
                     <VBox spacing="20" HBox.hgrow="ALWAYS" prefWidth="550">
                         <VBox spacing="20" styleClass="content-card">
+                     
                             <Label text="Write a New Review" styleClass="section-title"/>
                             
                             <VBox spacing="8">
-                                <Label text="Select PG Stay" style="-fx-font-weight: bold;"/>
+                               <Label text="Select PG Stay" style="-fx-font-weight: bold;"/>
                                 <ComboBox fx:id="pgSelect" promptText="Choose PG Stay" prefWidth="400"/>
                             </VBox>
 
@@ -96,55 +93,19 @@
                         </VBox>
                     </VBox>
 
-                    <!-- RIGHT COLUMN: RATINGS OVERVIEW & PREVIOUS -->
                     <VBox spacing="20" prefWidth="480">
                         
-                        <!-- OVERVIEW CARD -->
                         <VBox styleClass="content-card" spacing="15" alignment="CENTER">
                             <Label text="My Average Rating Given" styleClass="sub-heading" style="-fx-font-weight: bold;"/>
-                            <Label text="4.5" styleClass="heading" style="-fx-font-size: 48px; -fx-text-fill: #214F4B;"/>
-                            <Label text="⭐⭐⭐⭐★" style="-fx-font-size: 22px; -fx-text-fill: #F59E0B;"/>
-                            <Label text="Based on 2 past stays" styleClass="sub-heading" style="-fx-font-size: 12px;"/>
+                            <Label fx:id="avgRatingLabel" text="0.0" styleClass="heading" style="-fx-transform-right: 0; -fx-font-size: 48px; -fx-text-fill: #214F4B;"/>
+                            <Label fx:id="avgStarsLabel" text="☆☆☆☆☆" style="-fx-font-size: 22px; -fx-text-fill: #F59E0B;"/>
+                            <Label fx:id="totalReviewsLabel" text="Based on 0 past stays" styleClass="sub-heading" style="-fx-font-size: 12px;"/>
                         </VBox>
 
-                        <!-- PREVIOUS REVIEWS FEED -->
                         <VBox spacing="15">
                             <Label text="My Previous Reviews" styleClass="section-title"/>
                             
-                            <!-- Review Item 1 -->
-                            <VBox styleClass="content-card" spacing="10">
-                                <HBox alignment="CENTER_LEFT">
-                                    <VBox>
-                                        <Label text="Comfort Living Hostel" styleClass="chat-name" style="-fx-font-size: 15px;"/>
-                                        <Label text="Stayed: Jul 2025 - May 2026" styleClass="chat-time"/>
-                                    </VBox>
-                                    <Region HBox.hgrow="ALWAYS"/>
-                                    <Label text="⭐⭐⭐⭐★" style="-fx-text-fill: #F59E0B; -fx-font-size: 14px;"/>
-                                </HBox>
-                                <Label text="Great location and the owner Mr. Aman was very responsive. The WiFi was sometimes slow, but rooms were clean and food was decent." wrapText="true" style="-fx-text-fill: #4B5563; -fx-font-size: 13px;"/>
-                                <Separator/>
-                                <HBox alignment="CENTER_RIGHT">
-                                    <Button text="✏ Edit Review" styleClass="btn-outline" style="-fx-padding: 6 12; -fx-font-size: 11px;" onAction="#handleEditReview"/>
-                                </HBox>
-                            </VBox>
-
-                            <!-- Review Item 2 -->
-                            <VBox styleClass="content-card" spacing="10">
-                                <HBox alignment="CENTER_LEFT">
-                                    <VBox>
-                                        <Label text="Student Nest Hostel" styleClass="chat-name" style="-fx-font-size: 15px;"/>
-                                        <Label text="Stayed: Jul 2024 - Jun 2025" styleClass="chat-time"/>
-                                    </VBox>
-                                    <Region HBox.hgrow="ALWAYS"/>
-                                    <Label text="⭐⭐⭐⭐⭐" style="-fx-text-fill: #F59E0B; -fx-font-size: 14px;"/>
-                                </HBox>
-                                <Label text="Absolutely loved my stay here. Rooms were premium, food was exceptional, and housekeeping was daily. Strongly recommended!" wrapText="true" style="-fx-text-fill: #4B5563; -fx-font-size: 13px;"/>
-                                <Separator/>
-                                <HBox alignment="CENTER_RIGHT">
-                                    <Button text="✏ Edit Review" styleClass="btn-outline" style="-fx-padding: 6 12; -fx-font-size: 11px;" onAction="#handleEditReview"/>
-                                </HBox>
-                            </VBox>
-
+                            <VBox fx:id="pastReviewsContainer" spacing="15" />
                         </VBox>
                     </VBox>
 
@@ -155,3 +116,4 @@
     </center>
 
 </BorderPane>
+ 
