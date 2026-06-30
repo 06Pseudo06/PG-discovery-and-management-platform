@@ -8,21 +8,6 @@ import java.util.List;
 
 public class PGDAO {
 
-    public PG findById(int id) {
-        String sql = "SELECT * FROM pgs WHERE id = ?";
-        try (Connection conn = DBConnection.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
-            ps.setInt(1, id);
-            try (ResultSet rs = ps.executeQuery()) {
-                if (rs.next()) {
-                    return mapRowToPG(rs);
-                }
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException("Error executing findById for PG: " + id, e);
-        }
-        return null;
-    }
 
     public List<PG> findAll() {
         List<PG> pgs = new ArrayList<>();
@@ -144,6 +129,49 @@ public class PGDAO {
         }
         return ownerPgs;
     }
+
+    public PG findById(int pgId) {
+
+    String sql = """
+        SELECT *
+        FROM pgs
+        WHERE id = ?
+        """;
+
+    try (
+            Connection conn = DBConnection.getConnection();
+            PreparedStatement ps = conn.prepareStatement(sql)
+    ) {
+
+        ps.setInt(1, pgId);
+
+        ResultSet rs = ps.executeQuery();
+
+        if (rs.next()) {
+
+            PG pg = new PG();
+
+            pg.setId(rs.getInt("id"));
+            pg.setOwnerId(rs.getInt("owner_id"));
+            pg.setName(rs.getString("name"));
+            pg.setAddress(rs.getString("address"));
+            pg.setArea(rs.getString("area"));
+            pg.setCity(rs.getString("city"));
+
+            return pg;
+        }
+
+    } catch (SQLException e) {
+
+        throw new RuntimeException(
+                "Unable to load PG by id.",
+                e
+        );
+
+    }
+
+    return null;
+}
 
     public PG insert(PG pg) {
         String sql = "INSERT INTO pgs (owner_id, name, address, city, area, description, gender_preference, food_available, wifi_available, ac_available, laundry_available, gym_available, parking_available) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";

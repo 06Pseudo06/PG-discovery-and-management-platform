@@ -9,10 +9,10 @@ import java.util.List;
 
 public class MessageDAO {
 
-    public int insert(Connection conn, int senderId, int receiverId, Integer bookingId, String body)
+    public int insert(Connection conn, int senderId, int receiverId, Integer bookingId, String content)
             throws SQLException {
         String sql = """
-                INSERT INTO messages (sender_id, receiver_id, booking_id, body, is_read)
+                INSERT INTO messages (sender_id, receiver_id, booking_id, content, is_read)
                 VALUES (?, ?, ?, ?, FALSE)
                 """;
         try (PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
@@ -23,7 +23,7 @@ public class MessageDAO {
             } else {
                 ps.setNull(3, Types.INTEGER);
             }
-            ps.setString(4, body);
+            ps.setString(4, content);
             if (ps.executeUpdate() == 0) {
                 return -1;
             }
@@ -169,20 +169,40 @@ public class MessageDAO {
         return 0;
     }
 
-    private Message mapRow(ResultSet rs) throws SQLException {
-        Message message = new Message();
-        message.setId(rs.getInt("id"));
-        message.setSenderId(rs.getInt("sender_id"));
-        message.setReceiverId(rs.getInt("receiver_id"));
-        int bookingId = rs.getInt("booking_id");
-        if (!rs.wasNull()) {
-            message.setBookingId(bookingId);
-        }
-        message.setBody(rs.getString("body"));
-        message.setRead(rs.getBoolean("is_read"));
-        message.setCreatedAt(rs.getTimestamp("created_at").toLocalDateTime());
-        message.setSenderName(rs.getString("sender_name"));
-        message.setReceiverName(rs.getString("receiver_name"));
-        return message;
+private Message mapRow(ResultSet rs) throws SQLException {
+
+    Message message = new Message();
+
+    message.setId(rs.getInt("id"));
+
+    message.setSenderId(rs.getInt("sender_id"));
+
+    message.setReceiverId(rs.getInt("receiver_id"));
+
+    int bookingId = rs.getInt("booking_id");
+
+    if (!rs.wasNull()) {
+        message.setBookingId(bookingId);
     }
+
+    /*
+     * Database column = content
+     * Java model field = body
+     */
+    message.setBody(rs.getString("content"));
+
+    message.setRead(rs.getBoolean("is_read"));
+
+    Timestamp ts = rs.getTimestamp("created_at");
+
+    if (ts != null) {
+        message.setCreatedAt(ts.toLocalDateTime());
+    }
+
+    message.setSenderName(rs.getString("sender_name"));
+
+    message.setReceiverName(rs.getString("receiver_name"));
+
+    return message;
+}
 }

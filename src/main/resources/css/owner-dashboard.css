@@ -1,577 +1,617 @@
-/* ==========================================================================
-   OWNER DESIGN SYSTEM & STYLESHEET (owner-dashboard.css)
-   Theme: Dark Green Workspace (#0F4F46) & Light Sidebar (#F4F9F6)
-   ========================================================================== */
+/*
+ * owner-dashboard.css
+ * Theme: Modern SaaS Minimalist — PGFinder Owner Panel
+ * Primary:  #0F766E  (teal)
+ * Surface:  #FFFFFF
+ * Canvas:   #F1F5F9
+ * Text:     #0F172A / #475569 / #94A3B8
+ */
 
-/* GLOBAL & ROOT STYLES */
+/* =========================================================================
+   ROOT & RESET
+   ========================================================================= */
+
 .root {
-    -fx-font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-    -fx-background-color: #0F4F46;
+    -fx-font-family: "Inter", "Segoe UI", sans-serif;
+    -fx-base: #FFFFFF;
+    -fx-background: #F1F5F9;
+    -fx-text-base-color: #134E4A;
 }
 
-/* LEFT SIDEBAR STYLING */
-.owner-sidebar {
-    -fx-background-color: #F4F9F6;
-    -fx-padding: 30 18;
+/* =========================================================================
+   SIDEBAR
+   ========================================================================= */
+
+.sidebar-container {
+    -fx-background-color: linear-gradient(to bottom,#FFFFFF,#F2FCF8);
+    -fx-border-color: #E2E8F0;
+    -fx-border-width: 0 1 0 0;
+    -fx-padding: 26 16;
     -fx-spacing: 6;
-    -fx-border-color: transparent #E2ECE8 transparent transparent;
-    -fx-border-width: 1px;
 }
 
-.logo-container {
-    -fx-padding: 0 0 15 10;
+.sidebar-header {
+    -fx-padding: 0 4 16 4;
 }
 
-.logo-icon-bg {
-    -fx-background-color: #0F4F46;
-    -fx-background-radius: 10px;
-    -fx-min-width: 40px;
-    -fx-max-width: 40px;
-    -fx-min-height: 40px;
-    -fx-max-height: 40px;
+.sidebar-divider {
+    -fx-background-color: #E8F5F1;
+    -fx-padding: 0.5;
+}
+/* Logo badge — bigger, more presence */
+.sidebar-logo-badge {
+    -fx-background-color: #F0FDFA;
+    -fx-background-radius: 14;
+    -fx-padding: 10;
+    -fx-min-width: 52;
+    -fx-min-height: 52;
     -fx-alignment: CENTER;
 }
 
-.logo-icon {
+.sidebar-logo-icon {
+    -fx-font-size: 22px;
+}
+
+.sidebar-brand-title {
     -fx-font-size: 18px;
-    -fx-text-fill: #FFFFFF;
-}
-
-.owner-logo {
-    -fx-font-size: 20px;
     -fx-font-weight: 800;
-    -fx-text-fill: #0F4F46;
+    -fx-text-fill: #134E4A;
+    -fx-letter-spacing: -0.3px;
 }
 
-.owner-subtitle {
+.sidebar-brand-subtitle {
     -fx-font-size: 11px;
-    -fx-text-fill: #6B7280;
-    -fx-font-weight: bold;
+    -fx-text-fill: #64748B;
+    -fx-font-weight: 600;
+    -fx-letter-spacing: 0.4px;
 }
 
-/* SIDEBAR NAVIGATION BUTTONS */
-.owner-menu {
+/* ── Nav buttons ── */
+
+.menu-btn {
     -fx-background-color: transparent;
-    -fx-font-size: 13.5px;
-    -fx-font-weight: bold;
-    -fx-text-fill: #4B5563;
+    -fx-text-fill: #475569;
     -fx-alignment: CENTER_LEFT;
-    -fx-padding: 12 16;
+    -fx-padding: 13 16;
+    -fx-font-size: 13.5px;
+    -fx-font-weight: 600;
+    -fx-background-radius: 12;
     -fx-cursor: hand;
-    -fx-background-radius: 8px;
-    -fx-graphic-text-gap: 10px;
+    -fx-graphic-text-gap: 10;
 }
 
-.owner-menu:hover {
-    -fx-background-color: #EAFEF6;
-    -fx-text-fill: #0F4F46;
+.menu-btn:hover{
+    -fx-background-color:#ECFDF5;
+    -fx-text-fill:#14B8A6;
+    -fx-translate-x: 4;
 }
 
-.owner-menu-active, .owner-menu:focused {
-    -fx-background-color: #E1EFE9;
-    -fx-font-size: 13.5px;
-    -fx-font-weight: bold;
-    -fx-text-fill: #0F4F46;
-    -fx-alignment: CENTER_LEFT;
+/* Active: left-border accent instead of just background tint */
+.menu-btn-active {
+
+    -fx-background-color:#14B8A6;
+    -fx-text-fill:white;
+    -fx-effect:dropshadow(
+        gaussian,
+        rgba(20,184,166,.35),
+        18,
+        0,
+        0,
+        6
+    );
+    -fx-background-radius: 12;
+    -fx-font-weight: 700;
     -fx-padding: 12 16;
-    -fx-background-radius: 8px;
+  
 }
 
-/* BADGE COUNTS INSIDE SIDEBAR */
-.menu-item-with-badge {
-    -fx-spacing: 0;
-}
-
-.menu-badge {
-    -fx-background-color: #0F4F46;
-    -fx-text-fill: #FFFFFF;
-    -fx-font-size: 10px;
-    -fx-font-weight: bold;
-    -fx-padding: 2 6;
-    -fx-background-radius: 10px;
-    -fx-translate-x: -35;
-}
-
-.logout-button {
-    -fx-background-color: #EEF4F1;
-    -fx-font-size: 13.5px;
-    -fx-font-weight: bold;
-    -fx-text-fill: #4B5563;
-    -fx-alignment: CENTER_LEFT;
-    -fx-padding: 12 16;
-    -fx-background-radius: 8px;
-    -fx-cursor: hand;
-}
-
-.logout-button:hover {
-    -fx-background-color: #FEE2E2;
+.menu-logout-btn {
+    -fx-background-color: transparent;
     -fx-text-fill: #DC2626;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 11 14;
+    -fx-font-size: 13.5px;
+    -fx-font-weight: 600;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
 }
 
-/* MAIN DASHBOARD PANEL CONTENT */
-.main-scrollpane {
-    -fx-background-color: #0F4F46;
-    -fx-border-color: transparent;
+.menu-logout-btn:hover {
+    -fx-background-color: #FEF2F2;
 }
 
-.main-scrollpane > .viewport {
-    -fx-background-color: #0F4F46;
+/* =========================================================================
+   MAIN CANVAS
+   ========================================================================= */
+
+.content-scrollpane {
+     -fx-background-color:#F4FBF8;
+    -fx-background: #F1F5F9;
 }
 
-.owner-main-content {
-    -fx-padding: 35;
+.content-scrollpane > .viewport {
+      -fx-background-color:#F4FBF8;
 }
 
-.welcome-title {
-    -fx-font-size: 28px;
-    -fx-font-weight: 800;
-    -fx-text-fill: #FFFFFF;
+.main-content-vbox{
+    -fx-padding:36;
+    -fx-spacing:28;
 }
 
-.welcome-subtitle {
-    -fx-font-size: 14px;
-    -fx-text-fill: #B2DBD4;
+/* =========================================================================
+   HEADER
+   ========================================================================= */
+
+.top-header-bar {
+    -fx-padding: 0 0 4 0;
 }
 
-/* DATE DISPLAY CONTAINER */
-.date-card {
-    -fx-background-color: rgba(255, 255, 255, 0.08);
-    -fx-border-color: rgba(255, 255, 255, 0.15);
-    -fx-border-width: 1px;
-    -fx-border-radius: 12px;
-    -fx-background-radius: 12px;
-    -fx-padding: 10 18;
-}
-
-.date-icon {
-    -fx-font-size: 18px;
-}
-
-.date-text {
-    -fx-font-size: 13px;
-    -fx-font-weight: bold;
-    -fx-text-fill: #FFFFFF;
-}
-
-.time-text {
-    -fx-font-size: 11px;
-    -fx-text-fill: #B2DBD4;
-}
-
-/* TOP STAT CARDS */
-.owner-stat-card {
-    -fx-background-color: #FFFFFF;
-    -fx-background-radius: 16px;
-    -fx-padding: 20;
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 15, 0, 0, 4);
-}
-
-.stat-icon-container {
-    -fx-background-color: #EEF7F4;
-    -fx-background-radius: 10px;
-    -fx-min-width: 46px;
-    -fx-max-width: 46px;
-    -fx-min-height: 46px;
-    -fx-max-height: 46px;
-    -fx-alignment: CENTER;
-}
-
-.stat-icon {
-    -fx-font-size: 20px;
-    -fx-text-fill: #0F4F46;
-}
-
-.stat-label {
-    -fx-font-size: 12px;
-    -fx-text-fill: #6B7280;
-    -fx-font-weight: bold;
-}
-
-.owner-stat-number {
+.header-welcome-title {
     -fx-font-size: 26px;
     -fx-font-weight: 800;
-    -fx-text-fill: #111827;
-    -fx-padding: 2 0;
+    -fx-text-fill: #134E4A;
+    -fx-letter-spacing: -0.5px;
 }
 
-.stat-sublabel {
-    -fx-font-size: 11px;
-    -fx-text-fill: #9CA3AF;
-}
-
-/* GENERAL WHITE BASE CARDS */
-.owner-large-card {
-    -fx-background-color: #FFFFFF;
-    -fx-background-radius: 16px;
-    -fx-padding: 24;
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 15, 0, 0, 4);
-}
-
-.section-title {
-    -fx-font-size: 17px;
-    -fx-font-weight: bold;
-    -fx-text-fill: #111827;
-}
-
-.card-action-btn {
-    -fx-background-color: #FFFFFF;
-    -fx-border-color: #D1D5DB;
-    -fx-border-radius: 8px;
-    -fx-background-radius: 8px;
-    -fx-text-fill: #0F4F46;
-    -fx-font-size: 12px;
-    -fx-font-weight: bold;
-    -fx-padding: 6 14;
-    -fx-cursor: hand;
-}
-
-.card-action-btn:hover {
-    -fx-background-color: #F9FAFB;
-    -fx-border-color: #9CA3AF;
-}
-
-/* BOOKING REQUEST LISTS */
-.request-item {
-    -fx-background-color: transparent;
-    -fx-padding: 12 0;
-    -fx-border-color: transparent transparent #E5E7EB transparent;
-    -fx-border-width: 1px;
-}
-
-.avatar-circle {
-    -fx-background-color: #DFF1EA;
-    -fx-background-radius: 20px;
-    -fx-min-width: 40px;
-    -fx-max-width: 40px;
-    -fx-min-height: 40px;
-    -fx-max-height: 40px;
-    -fx-alignment: CENTER;
-}
-
-.avatar-text {
-    -fx-font-size: 12px;
-    -fx-font-weight: bold;
-    -fx-text-fill: #0F4F46;
-}
-
-.item-main-title {
-    -fx-font-size: 14px;
-    -fx-font-weight: bold;
-    -fx-text-fill: #111827;
-}
-
-.item-subtitle {
-    -fx-font-size: 12px;
-    -fx-text-fill: #6B7280;
-}
-
-.time-ago-label {
-    -fx-font-size: 12px;
-    -fx-text-fill: #9CA3AF;
-    -fx-padding: 0 15 0 0;
-}
-
-.review-action-btn {
-    -fx-background-color: #0F4F46;
-    -fx-text-fill: #FFFFFF;
+.header-welcome-date {
     -fx-font-size: 13px;
-    -fx-font-weight: bold;
-    -fx-background-radius: 8px;
-    -fx-padding: 6 16;
-    -fx-cursor: hand;
+    -fx-text-fill: #64748B;
+    -fx-font-weight: 500;
 }
 
-.review-action-btn:hover {
-    -fx-background-color: #0A3731;
+/* ── System Status signal bar ── */
+
+.status-signal-card {
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 12;
+    -fx-border-color: #E2E8F0;
+    -fx-border-width: 1;
+    -fx-padding: 14 20;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.04), 6, 0, 0, 2);
 }
 
-/* DONUT CHART SIMULATION STYLING */
-.donut-percentage {
+.status-signal-dot {
+    -fx-font-size: 18px;
+}
+
+.status-signal-value {
     -fx-font-size: 20px;
     -fx-font-weight: 800;
-    -fx-text-fill: #111827;
+    -fx-text-fill: #134E4A;
 }
 
-.donut-label {
-    -fx-font-size: 10px;
-    -fx-text-fill: #6B7280;
-    -fx-font-weight: bold;
-}
-
-/* OCCUPANCY LEGEND DETAILS */
-.legend-text {
-    -fx-font-size: 13px;
-    -fx-text-fill: #4B5563;
-}
-
-.legend-count {
-    -fx-font-size: 13px;
-    -fx-font-weight: bold;
-    -fx-text-fill: #111827;
-}
-
-/* YOUR PGS LISTING */
-.pg-list-icon {
-    -fx-font-size: 16px;
-    -fx-text-fill: #0F4F46;
-}
-
-.pg-list-name {
-    -fx-font-size: 14px;
-    -fx-font-weight: bold;
-    -fx-text-fill: #111827;
-}
-
-.pg-list-stats {
-    -fx-font-size: 12px;
-    -fx-text-fill: #0F4F46;
-    -fx-font-weight: bold;
-}
-
-/* BOTTOM ACTION FOOTER BUTTONS */
-.quick-action-btn {
-    -fx-background-color: #FFFFFF;
-    -fx-border-color: #D1D5DB;
-    -fx-border-radius: 10px;
-    -fx-background-radius: 10px;
-    -fx-font-size: 13px;
-    -fx-font-weight: bold;
-    -fx-text-fill: #374151;
-    -fx-padding: 12 18;
-    -fx-cursor: hand;
-    -fx-alignment: CENTER;
-}
-
-.quick-action-btn:hover {
-    -fx-background-color: #EAFEF6;
-    -fx-border-color: #0F4F46;
-    -fx-text-fill: #0F4F46;
-}
-
-/* INPUTS FOR OWNER WORKSPACE */
-.text-field, .combo-box, .text-area {
-    -fx-background-color: #FFFFFF;
-    -fx-border-color: #D1D5DB;
-    -fx-border-width: 1px;
-    -fx-border-radius: 8px;
-    -fx-background-radius: 8px;
-    -fx-padding: 10 14;
-    -fx-font-size: 13px;
-    -fx-text-fill: #1F2937;
-}
-
-.text-field:focused, .combo-box:focused, .text-area:focused {
-    -fx-border-color: #0F4F46;
-    -fx-effect: dropshadow(gaussian, rgba(15, 79, 70, 0.15), 5, 0, 0, 0);
-}
-
-/* ROOMS & BEDS COLOR CLASSES */
-.room-card {
-    -fx-background-color: #FFFFFF;
-    -fx-background-radius: 16px;
-    -fx-padding: 22;
-    -fx-spacing: 15;
-    -fx-border-color: #E5E7EB;
-    -fx-border-width: 1px;
-    -fx-border-radius: 16px;
-}
-
-.room-title {
-    -fx-font-size: 18px;
-    -fx-font-weight: bold;
-    -fx-text-fill: #111827;
-}
-
-.bed-occupied {
-    -fx-background-color: #0F4F46;
-    -fx-text-fill: #FFFFFF;
-    -fx-font-size: 12px;
-    -fx-font-weight: bold;
-    -fx-padding: 10 16;
-    -fx-background-radius: 8px;
-    -fx-min-width: 60px;
-    -fx-alignment: CENTER;
-}
-
-.bed-vacant {
-    -fx-background-color: #DFF1EA;
-    -fx-text-fill: #0F4F46;
-    -fx-font-size: 12px;
-    -fx-font-weight: bold;
-    -fx-padding: 10 16;
-    -fx-background-radius: 8px;
-    -fx-min-width: 60px;
-    -fx-alignment: CENTER;
-    -fx-border-color: #A3D8C6;
-    -fx-border-width: 1px;
-    -fx-border-radius: 8px;
-}
-
-.bed-maintenance {
-    -fx-background-color: #FEE2E2;
-    -fx-text-fill: #DC2626;
-    -fx-font-size: 12px;
-    -fx-font-weight: bold;
-    -fx-padding: 10 16;
-    -fx-background-radius: 8px;
-    -fx-min-width: 60px;
-    -fx-alignment: CENTER;
-    -fx-border-color: #FCA5A5;
-    -fx-border-width: 1px;
-    -fx-border-radius: 8px;
-}
-
-/* PRIORITY LABELS FOR ANNOUNCEMENTS */
-.priority-high {
-    -fx-background-color: #FEE2E2;
-    -fx-text-fill: #DC2626;
+.status-signal-label {
     -fx-font-size: 11px;
-    -fx-font-weight: bold;
-    -fx-padding: 4 8;
-    -fx-background-radius: 6px;
+    -fx-text-fill: #94A3B8;
+    -fx-font-weight: 600;
+    -fx-letter-spacing: 0.3px;
 }
 
-.priority-medium {
-    -fx-background-color: #FFFBEB;
-    -fx-text-fill: #D97706;
-    -fx-font-size: 11px;
-    -fx-font-weight: bold;
-    -fx-padding: 4 8;
-    -fx-background-radius: 6px;
+.status-divider {
+    -fx-background-color: #E2E8F0;
+    -fx-min-width: 1;
+    -fx-pref-width: 1;
+    -fx-min-height: 32;
+    -fx-pref-height: 32;
 }
 
-.priority-low {
-    -fx-background-color: #F0FDF4;
-    -fx-text-fill: #16A34A;
-    -fx-font-size: 11px;
-    -fx-font-weight: bold;
-    -fx-padding: 4 8;
-    -fx-background-radius: 6px;
+/* =========================================================================
+   KPI CARDS  — fill the full grid cell
+   ========================================================================= */
+
+.kpi-card{
+
+    -fx-background-color:#FFFFFF;
+    -fx-border-color:#D9F1EA;
+    -fx-border-width:1;
+    -fx-background-radius:18;
+    -fx-border-radius:18;
+    -fx-padding:24;
+    -fx-spacing:12;
+    -fx-effect:dropshadow( gaussian, rgba(15,23,42,0.08), 18, 0, 0, 8);
 }
 
-/* TOP-BAR ON SUB-SCREENS */
-.top-bar {
-    -fx-background-color: #FFFFFF;
-    -fx-padding: 18 24;
-    -fx-border-color: transparent transparent #E5E7EB transparent;
-    -fx-border-width: 1px;
+.kpi-card:hover {
+    -fx-translate-y:-4;
+    -fx-scale-x:1.01;
+    -fx-scale-y:1.01;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.09), 14, 0, 0, 5);
 }
 
-.page-title {
-    -fx-font-size: 20px;
-    -fx-font-weight: bold;
-    -fx-text-fill: #111827;
+/* Positive variant — left accent stripe via border */
+.kpi-card-positive {
+    -fx-background-color: #ffffff;
 }
 
-.primary-button {
-    -fx-background-color: #0F4F46;
-    -fx-text-fill: #FFFFFF;
-    -fx-font-size: 13px;
-    -fx-font-weight: bold;
-    -fx-background-radius: 8px;
-    -fx-padding: 10 18;
-    -fx-cursor: hand;
+.kpi-card-info {
+    -fx-background-color: #EFF6FF;
 }
 
-.primary-button:hover {
-    -fx-background-color: #0A3731;
+.kpi-card-warning {
+    -fx-background-color: #ffffff;
 }
 
-.secondary-button {
-    -fx-background-color: #F3F4F6;
-    -fx-text-fill: #374151;
-    -fx-font-size: 13px;
-    -fx-font-weight: bold;
-    -fx-background-radius: 8px;
-    -fx-padding: 10 18;
-    -fx-cursor: hand;
-    -fx-border-color: #D1D5DB;
-    -fx-border-width: 1px;
-    -fx-border-radius: 8px;
-}
 
-.secondary-button:hover {
-    -fx-background-color: #E5E7EB;
-}
-
-/* CHAT STYLING FOR OWNER SCREEN */
-.chat-sidebar {
-    -fx-background-color: #FFFFFF;
-    -fx-padding: 20;
-    -fx-spacing: 10;
-    -fx-border-color: transparent #E5E7EB transparent transparent;
-    -fx-border-width: 1px;
-}
-
-.sidebar-title {
-    -fx-font-size: 15px;
-    -fx-font-weight: bold;
-    -fx-text-fill: #374151;
+.kpi-card-header {
     -fx-padding: 0 0 10 0;
 }
 
-.chat-user {
-    -fx-background-color: transparent;
-    -fx-text-fill: #1F2937;
-    -fx-font-weight: bold;
-    -fx-font-size: 13.5px;
-    -fx-padding: 12 14;
-    -fx-alignment: CENTER_LEFT;
+.kpi-card-icon {
+    -fx-font-size: 26px;
+}
+
+.kpi-hero-label {
+    -fx-font-size: 12px;
+    -fx-font-weight: 600;
+    -fx-text-fill: #64748B;
+    -fx-letter-spacing: 0.2px;
+}
+
+.kpi-hero-value {
+    -fx-font-size: 40px;
+    -fx-font-weight: 800;
+    -fx-text-fill: #134E4A;
+    -fx-padding: 12 0 4 0;
+    -fx-letter-spacing: -1px;
+}
+
+.kpi-trend-text {
+    -fx-font-size: 12px;
+    -fx-text-fill: #94A3B8;
+    -fx-font-weight: 500;
+}
+
+/* =========================================================================
+   QUICK ACTIONS
+   ========================================================================= */
+
+.section-label {
+    -fx-font-size: 13px;
+    -fx-font-weight: 700;
+    -fx-text-fill: #64748B;
+    -fx-letter-spacing: 0.5px;
+}
+
+.action-tile {
+    -fx-background-color:#FCFFFE;
+    -fx-border-color:#D6F5EC;
+    -fx-background-radius: 12;
+    -fx-border-width: 1;
+    -fx-padding: 20 12;
+    -fx-pref-height: 108;
+    -fx-alignment: CENTER;
     -fx-cursor: hand;
-    -fx-background-radius: 8px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.03), 6, 0, 0, 1);
 }
 
-.chat-user:hover {
-    -fx-background-color: #F3F4F6;
+.action-tile:hover {
+    -fx-background-color:#F1FDF8;
+    -fx-border-color:#10B981;
+    -fx-translate-y: -2;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.08), 12, 0, 0, 4);
 }
 
-.chat-user-active {
-    -fx-background-color: #EAFEF6;
-    -fx-text-fill: #0F4F46;
+.action-tile-icon {
+    -fx-font-size: 28px;
 }
 
-.chat-header {
+.action-tile-text {
+    -fx-font-size: 13px;
+    -fx-font-weight: 600;
+    -fx-text-fill: #334155;
+    -fx-text-alignment: CENTER;
+}
+
+/* =========================================================================
+   SECTION CARDS  (Properties, Activity, Messages wrapper)
+   ========================================================================= */
+
+.section-card {
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 14;
+    -fx-border-color:#D9F1EA;
+    -fx-border-width: 1;
+    -fx-padding: 20;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.03), 8, 0, 0, 2);
+}
+
+.section-card-title {
+    -fx-font-size: 18px;
+    -fx-font-weight: 800;
+    -fx-padding: 0 0 16 0;
+    -fx-text-fill: #134E4A;
+}
+
+.link-btn {
+    -fx-background-color: transparent;
+    -fx-text-fill: #14B8A6;
+    -fx-font-size: 12px;
+    -fx-font-weight: 600;
+    -fx-cursor: hand;
+    -fx-padding: 4 0;
+}
+
+.link-btn:hover {
+    -fx-text-fill: #0D5F58;
+}
+
+/* =========================================================================
+   PROPERTY CARDS
+   ========================================================================= */
+
+.property-card {
+    
+    -fx-background-color:#F6FFFC;
+    -fx-border-color:#CBEFE4;
+    -fx-background-radius: 10;
+    -fx-border-width: 1;
+    -fx-padding: 14 16;
+    -fx-cursor: hand;
+}
+
+.property-card:hover {
+    -fx-background-color:#ECFCF7;
+    -fx-border-color:#22C55E;
+
+}
+
+.property-card-icon {
+    -fx-font-size: 24px;
+}
+
+.property-card-name {
+    -fx-font-size: 14px;
+    -fx-font-weight: 700;
+    -fx-text-fill: #134E4A;
+}
+
+.property-card-address {
+    -fx-font-size: 12px;
+    -fx-text-fill: #64748B;
+    -fx-font-weight: 500;
+}
+
+.property-card-occupancy {
+    -fx-font-size: 12px;
+    -fx-font-weight: 600;
+    -fx-text-fill: #10B981;
+    -fx-alignment: CENTER_RIGHT;
+}
+
+.property-card-rent {
+    -fx-font-size: 13px;
+    -fx-font-weight: 700;
+    -fx-text-fill: #134E4A;
+    -fx-alignment: CENTER_RIGHT;
+}
+
+.property-manage-btn{
+    -fx-background-color:#10B981;
+    -fx-text-fill:white;
+    -fx-background-radius:10;
+    -fx-border-radius:10;
+    -fx-padding:8 20;
+    -fx-font-weight:700;
+}
+
+.property-manage-btn:hover{
+    -fx-background-color:#059669;
+}
+
+/* =========================================================================
+   ACTIVITY FEED
+   ========================================================================= */
+
+.activity-row {
+    -fx-padding: 10 4;
+    -fx-border-color: transparent transparent #F1F5F9 transparent;
+    -fx-border-width: 0 0 1 0;
+}
+
+.activity-dot {
+    -fx-font-size: 10px;
+    -fx-min-width: 10;
+}
+
+.activity-dot-green  { -fx-text-fill: #10B981; }
+.activity-dot-blue   { -fx-text-fill: #3B82F6; }
+.activity-dot-amber  { -fx-text-fill: #F59E0B; }
+.activity-dot-slate  { -fx-text-fill: #94A3B8; }
+
+.activity-title {
+    -fx-font-size: 13px;
+    -fx-font-weight: 600;
+    -fx-text-fill: #134E4A;
+}
+
+.activity-meta {
+    -fx-font-size: 12px;
+    -fx-text-fill: #64748B;
+}
+
+.activity-time {
+    -fx-font-size: 11px;
+    -fx-text-fill: #94A3B8;
+    -fx-font-weight: 500;
+}
+
+/* =========================================================================
+   CHAT PREVIEW CARDS
+   ========================================================================= */
+
+.chat-preview-card {
+    -fx-padding: 10 4;
+    -fx-border-color: transparent transparent #F1F5F9 transparent;
+    -fx-border-width: 0 0 1 0;
+    -fx-cursor: hand;
+}
+
+.chat-preview-card:hover {
+    -fx-background-color: #F6FFFB;
+    -fx-background-radius: 8;
+}
+
+.chat-avatar {
+    -fx-background-color:#14B8A6;
+    -fx-background-radius: 999;
+    -fx-min-width: 38;
+    -fx-min-height: 38;
+    -fx-pref-width: 38;
+    -fx-pref-height: 38;
+    -fx-alignment: CENTER;
+}
+
+.chat-avatar-purple {
+    -fx-background-color: #7C3AED;
+}
+
+.chat-avatar-letter {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 15px;
+    -fx-font-weight: 700;
+}
+
+.chat-sender-name {
+    -fx-font-size: 13px;
+    -fx-font-weight: 700;
+    -fx-text-fill: #134E4A;
+}
+
+.chat-time {
+    -fx-font-size: 11px;
+    -fx-text-fill: #94A3B8;
+}
+
+.chat-preview-text {
+    -fx-font-size: 12px;
+    -fx-text-fill: #64748B;
+    -fx-font-style: italic;
+}
+
+/* =========================================================================
+   EMPTY STATES
+   ========================================================================= */
+
+.empty-state {
+    -fx-padding: 32 24;
+    -fx-background-color: #F6FFFB;
+    -fx-background-radius: 10;
+    -fx-border-color: #E2E8F0;
+    -fx-border-style: segments(6, 4);
+    -fx-border-width: 1;
+    -fx-border-radius: 10;
+    -fx-alignment: CENTER;
+}
+
+.empty-state-icon {
+    -fx-font-size: 30px;
+}
+
+.empty-state-title {
+    -fx-font-size: 14px;
+    -fx-font-weight: 600;
+    -fx-text-fill: #475569;
+}
+
+.empty-state-sub {
+    -fx-font-size: 12px;
+    -fx-text-fill: #94A3B8;
+}
+
+/* =========================================================================
+   UTILITIES
+   ========================================================================= */
+
+.separator {
+    -fx-background-color: #E2E8F0;
+}
+
+/* Backward-compat aliases — keep if other FXML files reference these */
+.premium-white-card {
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 14;
+    -fx-border-color:#D9F1EA;
+    -fx-border-width: 1;
+    -fx-padding: 20;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.03), 8, 0, 0, 2);
+} 
+
+
+/* ============================================================
+   OWNER PROFILE
+   ============================================================ */
+
+.owner-profile-section {
+    -fx-alignment: center;
+    -fx-spacing: 8;
+    -fx-background-color:white;
+    -fx-background-radius:18;
+    -fx-padding:20;
+    -fx-effect:dropshadow(
+        gaussian,
+        rgba(15,23,42,.08),
+        10,
+        0,
+        0,
+        3
+    );
+}
+
+
+.owner-avatar-container {
+    -fx-background-color: #ECFDF5;
+    -fx-background-radius: 999;
+    -fx-padding: 5;
+    -fx-effect: dropshadow(
+            gaussian,
+            rgba(16,185,129,0.18),
+            12,
+            0,
+            0,
+            2
+    );
+}
+
+.owner-avatar {
+
+    -fx-background-radius: 999;
+    -fx-border-color:#10B981;
+    -fx-border-width:3;
+    -fx-border-radius:999;
+    -fx-effect:dropshadow(
+        gaussian,
+        rgba(16,185,129,.25),
+        12,
+        0,
+        0,
+        2
+    );
+}
+
+.owner-profile-name {
     -fx-font-size: 16px;
-    -fx-font-weight: bold;
-    -fx-text-fill: #111827;
+    -fx-font-weight: 800;
+    -fx-text-fill: #0F172A;
 }
 
-.messages-area {
-    -fx-padding: 10;
+.owner-profile-email {
+    -fx-font-size: 11px;
+    -fx-text-fill: #64748B;
+    -fx-font-weight: 500;
 }
 
-.message-sent {
-    -fx-background-color: #0F4F46;
-    -fx-text-fill: #FFFFFF;
-    -fx-background-radius: 14px 14px 2px 14px;
+
+.kpi-icon-circle {
+
+    -fx-background-color: #ECFDF5;
+    -fx-background-radius: 999;
+    -fx-pref-width: 42;
+    -fx-pref-height: 42;
+    -fx-min-width: 42;
+    -fx-min-height: 42;
+    -fx-alignment: center;
 }
 
-.message-received {
-    -fx-background-color: #F3F4F6;
-    -fx-text-fill: #1F2937;
-    -fx-background-radius: 14px 14px 14px 2px;
-}
-
-.send-button {
-    -fx-background-color: #0F4F46;
-    -fx-text-fill: #FFFFFF;
-    -fx-font-size: 13.5px;
-    -fx-font-weight: bold;
-    -fx-padding: 10 20;
-    -fx-background-radius: 8px;
-    -fx-cursor: hand;
-}
-
-.send-button:hover {
-    -fx-background-color: #0A3731;
-}
-
-.scroll-pane {
-    -fx-background-color: transparent;
-    -fx-background-insets: 0;
-    -fx-padding: 0;
-}
-
-.scroll-pane > .viewport {
-    -fx-background-color: transparent;
+.kpi-card-icon {
+    -fx-font-size: 18px;
 }

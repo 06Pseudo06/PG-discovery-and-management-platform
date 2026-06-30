@@ -1,248 +1,649 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Region?>
 
 <BorderPane xmlns="http://javafx.com/javafx/21"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.pgfinder.controller.OwnerDashboardController"
             stylesheets="@../css/owner-dashboard.css"
-            prefWidth="1280" prefHeight="800">
+            prefWidth="1280"
+            prefHeight="820">
 
-    <!-- LEFT SIDEBAR -->
+    <!-- ================================================================= -->
+    <!-- SIDEBAR                                                            -->
+    <!-- ================================================================= -->
+
     <left>
-        <VBox prefWidth="240" styleClass="owner-sidebar" spacing="8">
-            <HBox alignment="CENTER_LEFT" spacing="12" styleClass="logo-container">
-                <StackPane styleClass="logo-icon-bg">
-                    <Label text="🏠" styleClass="logo-icon"/>
+
+        <VBox styleClass="sidebar-container"
+              prefWidth="248">
+
+            <!-- Brand -->
+            <HBox spacing="14"
+                  alignment="CENTER_LEFT"
+                  styleClass="sidebar-header">
+
+                <StackPane styleClass="sidebar-logo-badge">
+                    <Label text="🏠"
+                           styleClass="sidebar-logo-icon"/>
                 </StackPane>
-                <VBox>
-                    <Label text="PGFinder" styleClass="owner-logo"/>
-                    <Label text="Owner Panel" styleClass="owner-subtitle"/>
+
+                <VBox spacing="2">
+                    <Label text="PGFinder"
+                           styleClass="sidebar-brand-title"/>
+                    <Label text="Owner Panel"
+                           styleClass="sidebar-brand-subtitle"/>
                 </VBox>
+
             </HBox>
 
-            <Region prefHeight="20"/>
+           <Separator styleClass="sidebar-divider"/>
 
-            <Button text="📁  Dashboard" styleClass="owner-menu-active" maxWidth="Infinity" onAction="#openDashboard"/>
-            <Button text="🏢 My PGs" styleClass="owner-menu" maxWidth="Infinity" onAction="#openMyPGs"/>
-            <Button text="🛏  Rooms &amp; Beds" styleClass="owner-menu" maxWidth="Infinity"  onAction="#openRoomsBeds"/>
-            
-            <HBox alignment="CENTER_LEFT" styleClass="menu-item-with-badge">
-                <Button text="📋  Requests" styleClass="owner-menu" HBox.hgrow="ALWAYS" maxWidth="Infinity" onAction="#openBookingRequests"/>
-                <Label fx:id="pendingBadgeLabel" text="0" styleClass="menu-badge"/>
-            </HBox>
-            
-            <Button text="👥  Tenants" styleClass="owner-menu" maxWidth="Infinity" onAction="#openTenants"/>
-            <Button text="📢  Announcements" styleClass="owner-menu" maxWidth="Infinity" onAction="#openAnnouncements"/>
-            
-            <HBox alignment="CENTER_LEFT" styleClass="menu-item-with-badge">
-                <Button text="💬  Chats" styleClass="owner-menu" HBox.hgrow="ALWAYS" maxWidth="Infinity" onAction="#openChat"/>
-                <Label fx:id="chatBadgeLabel" text="0" styleClass="menu-badge"/>
-            </HBox>
-            
-            <Button text="⭐  Reviews" styleClass="owner-menu" maxWidth="Infinity" onAction="#openReviews"/>
-            <Button text="📊  Reports" styleClass="owner-menu" maxWidth="Infinity" onAction="#openReports"/>
-            <Button text="⚙  Settings" styleClass="owner-menu" maxWidth="Infinity" onAction="#openSettings"/>
+<VBox spacing="6"
+      alignment="CENTER"
+      styleClass="owner-profile-section">
+
+    <StackPane styleClass="owner-avatar-container">
+
+        <ImageView fx:id="ownerProfileImage"
+                   fitWidth="72"
+                   fitHeight="72"
+                   preserveRatio="true"
+                   styleClass="owner-avatar"/>
+
+    </StackPane>
+
+    <Label fx:id="ownerNameLabel"
+           text="Owner"
+           styleClass="owner-profile-name"/>
+
+   <Label
+    fx:id="ownerEmailLabel"
+    text="Property Owner"
+    styleClass="owner-profile-email"/>
+
+
+</VBox>
+
+<Separator styleClass="sidebar-divider"/>
+
+<Region prefHeight="12"/>
+
+
+
+            <!-- Nav items -->
+            <Button text="📊  Dashboard"
+                    styleClass="menu-btn-active"
+                    maxWidth="Infinity"
+                    onAction="#openDashboard"/>
+
+            <Button text="🏢  My PGs"
+                    styleClass="menu-btn"
+                    maxWidth="Infinity"
+                    onAction="#openMyPGs"/>
+
+            <Button text="🛏  Rooms &amp; Beds"
+                    styleClass="menu-btn"
+                    maxWidth="Infinity"
+                    onAction="#openRoomsBeds"/>
+
+            <Button text="📋  Booking Requests"
+                    styleClass="menu-btn"
+                    maxWidth="Infinity"
+                    onAction="#openBookingRequests"/>
+
+            <Button text="👥  Tenants"
+                    styleClass="menu-btn"
+                    maxWidth="Infinity"
+                    onAction="#openTenants"/>
+
+            <Button text="📢  Announcements"
+                    styleClass="menu-btn"
+                    maxWidth="Infinity"
+                    onAction="#openAnnouncements"/>
+
+            <Button text="⭐  Reviews"
+                    styleClass="menu-btn"
+                    maxWidth="Infinity"
+                    onAction="#openReviews"/>
+
+            <Button text="💬  Chat"
+                    styleClass="menu-btn"
+                    maxWidth="Infinity"
+                    onAction="#openChat"/>
+
+            <Button text="⚙  Settings"
+                    styleClass="menu-btn"
+                    maxWidth="Infinity"
+                    onAction="#openSettings"/>
 
             <Region VBox.vgrow="ALWAYS"/>
 
-            <Button text="↪  Logout" styleClass="logout-button" maxWidth="Infinity" onAction="#handleLogout"/>
+            <Separator styleClass="sidebar-divider"/>
+            <Region prefHeight="8"/>
+
+            <Button text="🚪  Logout"
+                    styleClass="menu-logout-btn"
+                    maxWidth="Infinity"
+                    onAction="#handleLogout"/>
+
         </VBox>
+
     </left>
 
-    <!-- MAIN BODY -->
+    <!-- ================================================================= -->
+    <!-- MAIN CONTENT                                                       -->
+    <!-- ================================================================= -->
+
     <center>
-        <ScrollPane fitToWidth="true" fitToHeight="true" styleClass="main-scrollpane">
-            <VBox spacing="25" styleClass="owner-main-content">
-                
-                <!-- HEADER WELCOME -->
-                <HBox alignment="CENTER_LEFT">
-                    <VBox spacing="5" HBox.hgrow="ALWAYS">
-                        <Label text="Welcome back, Owner! 👋" styleClass="welcome-title"/>
-                        <Label text="Manage your PGs, bookings and tenants from here." styleClass="welcome-subtitle"/>
+
+        <ScrollPane fitToWidth="true"
+                    hbarPolicy="NEVER"
+                    styleClass="content-scrollpane">
+
+            <VBox spacing="20"
+                  styleClass="main-content-vbox">
+
+                <!-- ══════════════════════════════════════════════════ -->
+                <!-- HEADER ROW                                         -->
+                <!-- ══════════════════════════════════════════════════ -->
+
+                <HBox alignment="CENTER_LEFT"
+                      spacing="20"
+                      styleClass="top-header-bar">
+
+                    <!-- Welcome text -->
+                    <VBox spacing="4"
+                          HBox.hgrow="ALWAYS">
+
+                        <Label fx:id="headerWelcomeTitle"
+                               text="Welcome Back! 👋"
+                               styleClass="header-welcome-title"/>
+
+                        <Label fx:id="headerWelcomeDate"
+                               text="Tuesday, 30 June 2025"
+                               styleClass="header-welcome-date"/>
+
                     </VBox>
-                    <HBox styleClass="date-card" alignment="CENTER" spacing="10">
-                        <Label text="📅" styleClass="date-icon"/>
-                        <VBox alignment="CENTER_LEFT">
-                            <Label text="18 May 2025, Sunday" styleClass="date-text"/>
-                            <Label text="10:30 AM" styleClass="time-text"/>
+
+                    <!-- System Status — rewritten as a live signal card -->
+                    <HBox styleClass="status-signal-card"
+                          spacing="24"
+                          alignment="CENTER">
+
+                        <VBox alignment="CENTER"
+                              spacing="4">
+                            <Label text="🟢"
+                                   styleClass="status-signal-dot"/>
+                            <Label text="Online"
+                                   styleClass="status-signal-label"/>
                         </VBox>
+
+                        <Region styleClass="status-divider"/>
+
+                        <VBox alignment="CENTER"
+                              spacing="4">
+                            <Label fx:id="statusPendingCount"
+                                   text="0"
+                                   styleClass="status-signal-value"/>
+                            <Label text="Pending"
+                                   styleClass="status-signal-label"/>
+                        </VBox>
+
+                        <VBox alignment="CENTER"
+                              spacing="4">
+                            <Label fx:id="statusUnreadCount"
+                                   text="0"
+                                   styleClass="status-signal-value"/>
+                            <Label text="Unread"
+                                   styleClass="status-signal-label"/>
+                        </VBox>
+
+                        <VBox alignment="CENTER"
+                              spacing="4">
+                            <Label fx:id="statusPropertiesCount"
+                                   text="0"
+                                   styleClass="status-signal-value"/>
+                            <Label text="Properties"
+                                   styleClass="status-signal-label"/>
+                        </VBox>
+
                     </HBox>
+
                 </HBox>
+<!-- ══════════════════════════════════════════════════ -->
+<!-- KPI CARDS -->
+<!-- ══════════════════════════════════════════════════ -->
 
-                <!-- TOP ANALYTICS STATS -->
-                <GridPane hgap="20" vgap="10">
-                    <columnConstraints>
-                        <ColumnConstraints percentWidth="25"/>
-                        <ColumnConstraints percentWidth="25"/>
-                        <ColumnConstraints percentWidth="25"/>
-                        <ColumnConstraints percentWidth="25"/>
-                    </columnConstraints>
-                    
-                    <HBox styleClass="owner-stat-card" GridPane.columnIndex="0" alignment="CENTER_LEFT" spacing="15">
-                        <StackPane styleClass="stat-icon-container"><Label text="🏠" styleClass="stat-icon"/></StackPane>
-                        <VBox>
-                            <Label text="Total PGs" styleClass="stat-label"/>
-                            <Label text="3" styleClass="owner-stat-number"/>
-                            <Label text="Active PGs" styleClass="stat-sublabel"/>
+<HBox spacing="16" fillHeight="true">
+
+    <!-- TOTAL PGs -->
+    <VBox HBox.hgrow="ALWAYS"
+          maxWidth="Infinity"
+          prefHeight="180"
+          spacing="12"
+          styleClass="kpi-card">
+
+        <HBox alignment="CENTER_LEFT"
+              spacing="10"
+              styleClass="kpi-card-header">
+
+            <StackPane styleClass="kpi-icon-circle">
+                <Label text="🏠" styleClass="kpi-card-icon"/>
+            </StackPane>
+
+            <Label text="Total PGs"
+                   styleClass="kpi-hero-label"/>
+
+        </HBox>
+
+        <Label fx:id="totalPgsLabel"
+               text="0"
+               styleClass="kpi-hero-value"/>
+
+        <Region VBox.vgrow="ALWAYS"/>
+
+        <Label text="Registered properties"
+               styleClass="kpi-trend-text"/>
+
+    </VBox>
+
+    <!-- OCCUPIED BEDS -->
+    <VBox HBox.hgrow="ALWAYS"
+          maxWidth="Infinity"
+          prefHeight="180"
+          spacing="12"
+          styleClass="kpi-card"
+          style="-fx-background-color:#F0FDF4;">
+
+        <HBox alignment="CENTER_LEFT"
+              spacing="10"
+              styleClass="kpi-card-header">
+
+            <StackPane styleClass="kpi-icon-circle">
+                <Label text="👥" styleClass="kpi-card-icon"/>
+            </StackPane>
+
+            <Label text="Occupied Beds"
+                   styleClass="kpi-hero-label"/>
+
+        </HBox>
+
+        <Label fx:id="confirmedTenantsStatLabel"
+               text="0"
+               styleClass="kpi-hero-value"/>
+
+        <Region VBox.vgrow="ALWAYS"/>
+
+        <Label text="Active tenants"
+               styleClass="kpi-trend-text"/>
+
+    </VBox>
+
+    <!-- AVAILABLE BEDS -->
+    <VBox HBox.hgrow="ALWAYS"
+          maxWidth="Infinity"
+          prefHeight="180"
+          spacing="12"
+          styleClass="kpi-card"
+          style="-fx-background-color:#EFF6FF;">
+
+        <HBox alignment="CENTER_LEFT"
+              spacing="10"
+              styleClass="kpi-card-header">
+
+            <StackPane styleClass="kpi-icon-circle">
+                <Label text="🛏" styleClass="kpi-card-icon"/>
+            </StackPane>
+
+            <Label text="Available Beds"
+                   styleClass="kpi-hero-label"/>
+
+        </HBox>
+
+        <Label fx:id="availableBedsLabel"
+               text="0"
+               styleClass="kpi-hero-value"/>
+
+        <Region VBox.vgrow="ALWAYS"/>
+
+        <Label text="Ready to fill"
+               styleClass="kpi-trend-text"/>
+
+    </VBox>
+
+    <!-- PENDING REQUESTS -->
+    <VBox HBox.hgrow="ALWAYS"
+          maxWidth="Infinity"
+          prefHeight="180"
+          spacing="12"
+          styleClass="kpi-card"
+          style="-fx-background-color:#FFFBEB;">
+
+        <HBox alignment="CENTER_LEFT"
+              spacing="10"
+              styleClass="kpi-card-header">
+
+            <StackPane styleClass="kpi-icon-circle">
+                <Label text="📋" styleClass="kpi-card-icon"/>
+            </StackPane>
+
+            <Label text="Pending Requests"
+                   styleClass="kpi-hero-label"/>
+
+        </HBox>
+
+        <Label fx:id="pendingRequestsStatLabel"
+               text="0"
+               styleClass="kpi-hero-value"/>
+
+        <Region VBox.vgrow="ALWAYS"/>
+
+        <Label text="Awaiting approval"
+               styleClass="kpi-trend-text"/>
+
+    </VBox>
+
+</HBox>
+                <!-- ══════════════════════════════════════════════════ -->
+                <!-- QUICK ACTIONS                                      -->
+                <!-- ══════════════════════════════════════════════════ -->
+
+                <VBox spacing="12">
+
+                    <Label text="Quick Actions"
+                           styleClass="section-label"/>
+
+                    <HBox spacing="14">
+
+                        <VBox styleClass="action-tile"
+                              alignment="CENTER"
+                              spacing="10"
+                              onMouseClicked="#openMyPGs"
+                              HBox.hgrow="ALWAYS"
+                              maxWidth="Infinity">
+                            <Label text="🏢"
+                                   styleClass="action-tile-icon"/>
+                            <Label text="Manage PGs"
+                                   styleClass="action-tile-text"/>
                         </VBox>
+
+                        <VBox styleClass="action-tile"
+                              alignment="CENTER"
+                              spacing="10"
+                              onMouseClicked="#openRoomsBeds"
+                              HBox.hgrow="ALWAYS"
+                              maxWidth="Infinity">
+                            <Label text="🛏"
+                                   styleClass="action-tile-icon"/>
+                            <Label text="Rooms &amp; Beds"
+                                   styleClass="action-tile-text"/>
+                        </VBox>
+
+                        <VBox styleClass="action-tile"
+                              alignment="CENTER"
+                              spacing="10"
+                              onMouseClicked="#openBookingRequests"
+                              HBox.hgrow="ALWAYS"
+                              maxWidth="Infinity">
+                            <Label text="📋"
+                                   styleClass="action-tile-icon"/>
+                            <Label text="Bookings"
+                                   styleClass="action-tile-text"/>
+                        </VBox>
+
+                        <VBox styleClass="action-tile"
+                              alignment="CENTER"
+                              spacing="10"
+                              onMouseClicked="#openChat"
+                              HBox.hgrow="ALWAYS"
+                              maxWidth="Infinity">
+                            <Label text="💬"
+                                   styleClass="action-tile-icon"/>
+                            <Label text="Messages"
+                                   styleClass="action-tile-text"/>
+                        </VBox>
+
+                        <VBox styleClass="action-tile"
+                              alignment="CENTER"
+                              spacing="10"
+                              onMouseClicked="#openTenants"
+                              HBox.hgrow="ALWAYS"
+                              maxWidth="Infinity">
+                            <Label text="👥"
+                                   styleClass="action-tile-icon"/>
+                            <Label text="Tenants"
+                                   styleClass="action-tile-text"/>
+                        </VBox>
+
                     </HBox>
 
-                    <HBox styleClass="owner-stat-card" GridPane.columnIndex="1" alignment="CENTER_LEFT" spacing="15">
-                        <StackPane styleClass="stat-icon-container"><Label text="🛏" styleClass="stat-icon"/></StackPane>
-                        <VBox>
-                            <Label text="Total Rooms" styleClass="stat-label"/>
-                            <Label text="24" styleClass="owner-stat-number"/>
-                            <Label text="Across all PGs" styleClass="stat-sublabel"/>
-                        </VBox>
-                    </HBox>
-
-                    <HBox styleClass="owner-stat-card" GridPane.columnIndex="2" alignment="CENTER_LEFT" spacing="15">
-                        <StackPane styleClass="stat-icon-container"><Label text="👥" styleClass="stat-icon"/></StackPane>
-                        <VBox>
-                            <Label text="Total Tenants" styleClass="stat-label"/>
-                            <Label fx:id="confirmedTenantsStatLabel" text="0" styleClass="owner-stat-number"/>
-                            <Label text="Currently staying" styleClass="stat-sublabel"/>
-                        </VBox>
-                    </HBox>
-
-                    <HBox styleClass="owner-stat-card" GridPane.columnIndex="3" alignment="CENTER_LEFT" spacing="15">
-                        <StackPane styleClass="stat-icon-container"><Label text="📋" styleClass="stat-icon"/></StackPane>
-                        <VBox>
-                            <Label text="Pending Requests" styleClass="stat-label"/>
-                            <Label fx:id="pendingRequestsStatLabel" text="0" styleClass="owner-stat-number"/>
-                            <Label text="Awaiting review" styleClass="stat-sublabel"/>
-                        </VBox>
-                    </HBox>
-                </GridPane>
-
-                <!-- WORKSPACE DETAILS -->
-                <HBox spacing="20">
-                    
-                    <!-- RECENT REQUESTS -->
-                    <VBox styleClass="owner-large-card" HBox.hgrow="ALWAYS" prefWidth="650" spacing="15">
-                        <HBox alignment="CENTER_LEFT">
-                            <Label text="Recent Booking Requests" styleClass="section-title" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
-                            <Button text="View All" styleClass="card-action-btn" onAction="#openBookingRequests"/>
-                        </HBox>
-                        
-                        <VBox spacing="10">
-                            <HBox alignment="CENTER_LEFT" styleClass="request-item" spacing="15">
-                                <StackPane styleClass="avatar-circle"><Label text="RS" styleClass="avatar-text"/></StackPane>
-                                <VBox HBox.hgrow="ALWAYS">
-                                    <Label text="Rahul Sharma" styleClass="item-main-title"/>
-                                    <Label text="Sunrise PG • Room A" styleClass="item-subtitle"/>
-                                </VBox>
-                                <Label text="2 mins ago" styleClass="time-ago-label"/>
-                                <Button text="Review" styleClass="review-action-btn" onAction="#openBookingRequests"/>
-                            </HBox>
-
-                            <HBox alignment="CENTER_LEFT" styleClass="request-item" spacing="15">
-                                <StackPane styleClass="avatar-circle"><Label text="AP" styleClass="avatar-text"/></StackPane>
-                                <VBox HBox.hgrow="ALWAYS">
-                                    <Label text="Aman Patel" styleClass="item-main-title"/>
-                                    <Label text="Green Residency • Room B" styleClass="item-subtitle"/>
-                                </VBox>
-                                <Label text="15 mins ago" styleClass="time-ago-label"/>
-                                <Button text="Review" styleClass="review-action-btn" onAction="#openBookingRequests"/>
-                            </HBox>
-
-                            <HBox alignment="CENTER_LEFT" styleClass="request-item" spacing="15">
-                                <StackPane styleClass="avatar-circle"><Label text="NK" styleClass="avatar-text"/></StackPane>
-                                <VBox HBox.hgrow="ALWAYS">
-                                    <Label text="Neha Kumari" styleClass="item-main-title"/>
-                                    <Label text="Sunrise PG • Room C" styleClass="item-subtitle"/>
-                                </VBox>
-                                <Label text="30 mins ago" styleClass="time-ago-label"/>
-                                <Button text="Review" styleClass="review-action-btn" onAction="#openBookingRequests"/>
-                            </HBox>
-
-                            <HBox alignment="CENTER_LEFT" styleClass="request-item" spacing="15">
-                                <StackPane styleClass="avatar-circle"><Label text="VK" styleClass="avatar-text"/></StackPane>
-                                <VBox HBox.hgrow="ALWAYS">
-                                    <Label text="Vikram Kumar" styleClass="item-main-title"/>
-                                    <Label text="Student Hub • Room A" styleClass="item-subtitle"/>
-                                </VBox>
-                                <Label text="1 hour ago" styleClass="time-ago-label"/>
-                                <Button text="Review" styleClass="review-action-btn" onAction="#openBookingRequests"/>
-                            </HBox>
-                        </VBox>
-                    </VBox>
-
-                    <!-- OCCUPANCY LEGEND & PGS LIST -->
-                    <VBox spacing="20" prefWidth="420">
-                        
-                        <!-- Occupancy Overview (Circular donut) -->
-                        <VBox styleClass="owner-large-card" spacing="15">
-                            <HBox alignment="CENTER_LEFT">
-                                <Label text="Occupancy Overview" styleClass="section-title" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
-                                <Button text="View Details" styleClass="card-action-btn" onAction="#openMyPGs"/>
-                            </HBox>
-                            
-                            <HBox spacing="25" alignment="CENTER_LEFT">
-                                <StackPane prefWidth="100" prefHeight="100">
-                                    <!-- Real Progress Indicator styled via CSS -->
-                                    <ProgressIndicator fx:id="occupancyIndicator" progress="0.75" prefWidth="90" prefHeight="90" styleClass="occupancy-donut"/>
-                                    <VBox alignment="CENTER" mouseTransparent="true">
-                                        <Label text="75%" styleClass="donut-percentage"/>
-                                        <Label text="Occupied" styleClass="donut-label"/>
-                                    </VBox>
-                                </StackPane>
-                                
-                                <VBox spacing="12" HBox.hgrow="ALWAYS">
-                                    <HBox alignment="CENTER_LEFT" spacing="10">
-                                        <Circle radius="5" fill="#0F4F46"/>
-                                        <Label text="Occupied" styleClass="legend-text" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
-                                        <Label text="18 Rooms" styleClass="legend-count"/>
-                                    </HBox>
-                                    <HBox alignment="CENTER_LEFT" spacing="10">
-                                        <Circle radius="5" fill="#BFE3D6"/>
-                                        <Label text="Vacant" styleClass="legend-text" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
-                                        <Label text="6 Rooms" styleClass="legend-count"/>
-                                    </HBox>
-                                </VBox>
-                            </HBox>
-                        </VBox>
-
-                        <!-- PGs Overview -->
-                        <VBox styleClass="owner-large-card" spacing="15">
-                            <Label text="Your PGs Overview" styleClass="section-title"/>
-                            <VBox spacing="14">
-                                <HBox alignment="CENTER_LEFT" spacing="10" onMouseClicked="#openMyPGs" style="-fx-cursor: hand;">
-                                    <Label text="🏠" styleClass="pg-list-icon"/>
-                                    <Label text="Sunrise PG" styleClass="pg-list-name" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
-                                    <Label text="8 Rooms  •  6 Tenants" styleClass="pg-list-stats"/>
-                                </HBox>
-                                <HBox alignment="CENTER_LEFT" spacing="10" onMouseClicked="#openMyPGs" style="-fx-cursor: hand;">
-                                    <Label text="🏠" styleClass="pg-list-icon"/>
-                                    <Label text="Green Residency" styleClass="pg-list-name" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
-                                    <Label text="10 Rooms  •  7 Tenants" styleClass="pg-list-stats"/>
-                                </HBox>
-                                <HBox alignment="CENTER_LEFT" spacing="10" onMouseClicked="#openMyPGs" style="-fx-cursor: hand;">
-                                    <Label text="🏠" styleClass="pg-list-icon"/>
-                                    <Label text="Student Hub" styleClass="pg-list-name" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
-                                    <Label text="6 Rooms  •  5 Tenants" styleClass="pg-list-stats"/>
-                                </HBox>
-                            </VBox>
-                        </VBox>
-                    </VBox>
-                </HBox>
-
-                <!-- QUICK ACTIONS -->
-                <VBox styleClass="owner-large-card" spacing="15">
-                    <Label text="Quick Actions" styleClass="section-title"/>
-                    <HBox spacing="15">
-                        <Button text="🏠  Add New PG" styleClass="quick-action-btn" onAction="#openMyPGs"/>
-                        <Button text="🛏  Add Room" styleClass="quick-action-btn" onAction="#openMyPGs"/>
-                        <Button text="📋  View Bookings" styleClass="quick-action-btn" onAction="#openBookingRequests"/>
-                        <Button text="📢  Add Announcement" styleClass="quick-action-btn" onAction="#openAnnouncements"/>
-                        <Button text="💬  Chat with Tenants" styleClass="quick-action-btn" onAction="#openChat"/>
-                    </HBox>
                 </VBox>
 
-            </VBox>
-        </ScrollPane>
-    </center>
+                <!-- ══════════════════════════════════════════════════ -->
+                <!-- MANAGED PROPERTIES                                 -->
+                <!-- ══════════════════════════════════════════════════ -->
+
+                <VBox spacing="12"
+                      styleClass="section-card">
+
+                    <HBox alignment="CENTER_LEFT">
+                        <Label text="Managed Properties"
+                               styleClass="section-card-title"
+                               HBox.hgrow="ALWAYS"/>
+                        <Button text="View All →"
+                                styleClass="link-btn"
+                                onAction="#openMyPGs"/>
+                    </HBox>
+
+                    <!-- 
+                        CONTROLLER: populate #propertiesContainer at runtime.
+                        Template card shape shown here; replace/remove this VBox
+                        and inject real PropertyCard nodes from Java.
+                    -->
+                    <VBox fx:id="propertiesContainer"
+                          spacing="10">
+
+                        <!-- ── Template property card (Java removes + re-adds) ── -->
+                        <HBox styleClass="property-card"
+                              alignment="CENTER_LEFT"
+                              spacing="16">
+
+                            <Label text="🏠"
+                                   styleClass="property-card-icon"/>
+
+                            <VBox spacing="3"
+                                  HBox.hgrow="ALWAYS">
+                                <Label text="Temp PG"
+                                       styleClass="property-card-name"/>
+                                <Label text="📍  Symbiosis Road, Pune"
+                                       styleClass="property-card-address"/>
+                            </VBox>
+
+                            <VBox spacing="3"
+                                  alignment="CENTER_RIGHT">
+                                <Label text="18 / 20 Occupied"
+                                       styleClass="property-card-occupancy"/>
+                                <Label text="₹ 8,500 / mo"
+                                       styleClass="property-card-rent"/>
+                            </VBox>
+
+                            <Button text="Manage →"
+                                    styleClass="property-manage-btn"
+                                    onAction="#openMyPGs"/>
+
+                        </HBox>
+
+                        <!-- Empty state — controller shows this when list is empty -->
+                        <VBox fx:id="propertiesEmptyState"
+                              alignment="CENTER"
+                              spacing="10"
+                              styleClass="empty-state"
+                              managed="false"
+                              visible="false">
+                            <Label text="📦"
+                                   styleClass="empty-state-icon"/>
+                            <Label text="No properties listed yet"
+                                   styleClass="empty-state-title"/>
+                            <Label text="Add your first PG to get started."
+                                   styleClass="empty-state-sub"/>
+                        </VBox>
+
+                    </VBox>
+
+                </VBox>
+
+                <!-- ══════════════════════════════════════════════════ -->
+                <!-- LOWER TWIN COLUMNS                                 -->
+                <!-- ══════════════════════════════════════════════════ -->
+
+                <HBox spacing="16">
+
+                    <!-- RECENT ACTIVITY ──────────────────────────── -->
+
+                    <VBox spacing="12"
+                          HBox.hgrow="ALWAYS"
+                          styleClass="section-card">
+
+                        <Label text="Recent Activity"
+                               styleClass="section-card-title"/>
+
+                        <!--
+                            CONTROLLER: populate #activityFeedContainer.
+                            Template rows shown for layout reference.
+                        -->
+                        <VBox fx:id="activityFeedContainer"
+                              spacing="2">
+
+                            <HBox styleClass="activity-row"
+                                  alignment="CENTER_LEFT"
+                                  spacing="14">
+                                <Label text="●"
+                                       styleClass="activity-dot activity-dot-green"/>
+                                <VBox HBox.hgrow="ALWAYS"
+                                      spacing="2">
+                                    <Label text="Booking approved"
+                                           styleClass="activity-title"/>
+                                    <Label text="Rahul S. — Room 204"
+                                           styleClass="activity-meta"/>
+                                </VBox>
+                                <Label text="2 min ago"
+                                       styleClass="activity-time"/>
+                            </HBox>
+
+                            <HBox styleClass="activity-row"
+                                  alignment="CENTER_LEFT"
+                                  spacing="14">
+                                <Label text="●"
+                                       styleClass="activity-dot activity-dot-blue"/>
+                                <VBox HBox.hgrow="ALWAYS"
+                                      spacing="2">
+                                    <Label text="New tenant joined"
+                                           styleClass="activity-title"/>
+                                    <Label text="Priya M. — Temp PG"
+                                           styleClass="activity-meta"/>
+                                </VBox>
+                                <Label text="1 hr ago"
+                                       styleClass="activity-time"/>
+                            </HBox>
+
+                            <HBox styleClass="activity-row"
+                                  alignment="CENTER_LEFT"
+                                  spacing="14">
+                                <Label text="●"
+                                       styleClass="activity-dot activity-dot-amber"/>
+                                <VBox HBox.hgrow="ALWAYS"
+                                      spacing="2">
+                                    <Label text="Notice published"
+                                           styleClass="activity-title"/>
+                                    <Label text="Water outage — 10 AM"
+                                           styleClass="activity-meta"/>
+                                </VBox>
+                                <Label text="3 hr ago"
+                                       styleClass="activity-time"/>
+                            </HBox>
+
+                            <HBox styleClass="activity-row"
+                                  alignment="CENTER_LEFT"
+                                  spacing="14">
+                                <Label text="●"
+                                       styleClass="activity-dot activity-dot-slate"/>
+                                <VBox HBox.hgrow="ALWAYS"
+                                      spacing="2">
+                                    <Label text="Room updated"
+                                           styleClass="activity-title"/>
+                                    <Label text="Room 101 — AC added"
+                                           styleClass="activity-meta"/>
+                                </VBox>
+                                <Label text="Yesterday"
+                                       styleClass="activity-time"/>
+                            </HBox>
+
+                            <!-- Empty state -->
+                            <VBox fx:id="activityEmptyState"
+                                  alignment="CENTER"
+                                  spacing="10"
+                                  styleClass="empty-state"
+                                  managed="false"
+                                  visible="false">
+                                <Label text="📭"
+                                       styleClass="empty-state-icon"/>
+                                <Label text="No recent activity"
+                                       styleClass="empty-state-title"/>
+                            </VBox>
+
+                        </VBox>
+
+                    </VBox>
+
+                    <!-- RECENT MESSAGES ──────────────────────────── -->
+
+                    <VBox spacing="12"
+      minWidth="320"
+      prefWidth="360"
+      styleClass="section-card">
+
+    <HBox alignment="CENTER_LEFT">
+
+        <Label text="Recent Messages"
+               styleClass="section-card-title"/>
+
+        <Region HBox.hgrow="ALWAYS"/>
+
+        <Hyperlink text="Open Chat →"
+                   onAction="#openChat"/>
+
+    </HBox>
+
+    <!-- Controller populates this -->
+    <VBox fx:id="recentChatsContainer"
+          spacing="2"/>
+
+    <!-- Empty state -->
+    <VBox fx:id="messagesEmptyState"
+          alignment="CENTER"
+          spacing="10"
+          styleClass="empty-state"
+          managed="false"
+          visible="false">
+
+        <Label text="💬"
+               styleClass="empty-state-icon"/>
+
+        <Label text="No messages yet"
+               styleClass="empty-state-title"/>
+
+    </VBox>
+
+</VBox>
+           </HBox>
+</VBox>  
+</ScrollPane>
+
+</center>
+
 </BorderPane>

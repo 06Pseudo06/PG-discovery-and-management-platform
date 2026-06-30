@@ -41,6 +41,7 @@ public class MyPGsController {
 
     private void refreshDashboard() {
         refreshData();
+
     }
 
     private void refreshData() {
