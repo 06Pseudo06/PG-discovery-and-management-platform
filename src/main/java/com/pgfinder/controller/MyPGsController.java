@@ -17,6 +17,10 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import java.util.List;
 import java.util.Optional;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.shape.Circle;
+import java.io.File;
 
 public class MyPGsController {
 
@@ -30,18 +34,62 @@ public class MyPGsController {
     private Label totalRoomsLabel;
     @FXML
     private Label avgOccupancyLabel;
-
     @FXML
     private VBox pgsContainer;
+    @FXML
+    private ImageView ownerProfileImage;
+    @FXML
+    private Label ownerNameLabel;
+    @FXML
+    private Label ownerEmailLabel;
+
 
     @FXML
     public void initialize() {
+
+        initializeHeader();
         refreshDashboard();
     }
 
     private void refreshDashboard() {
         refreshData();
 
+    }
+
+    private void initializeHeader() {
+
+        if (!SessionManager.isLoggedIn()) {
+            ownerNameLabel.setText("Guest");
+            ownerEmailLabel.setText("");
+            return;
+        }
+
+        var owner = SessionManager.getCurrentUser();
+        ownerNameLabel.setText(owner.getName());
+        ownerEmailLabel.setText("Property Owner");
+
+        String imagePath = owner.getProfileImagePath();
+
+        if (imagePath != null && !imagePath.isBlank()) {
+            File file = new File(imagePath);
+
+            if (file.exists()) {
+                Circle clip = new Circle(36,36,36);
+                ownerProfileImage.setClip(clip);
+                ownerProfileImage.setFitWidth(72);
+                ownerProfileImage.setFitHeight(72);
+                ownerProfileImage.setPreserveRatio(false);
+                ownerProfileImage.setImage(
+                        new Image(file.toURI().toString())
+                );
+            }
+        }
+    }
+
+    private Label createAmenityChip(String text) {
+        Label chip = new Label(text);
+        chip.getStyleClass().add("amenity-chip");
+        return chip;
     }
 
     private void refreshData() {
@@ -83,7 +131,8 @@ public class MyPGsController {
             occupiedBeds += pgOccupied;
 
             // Render PG card
-            VBox card = createPGCard(pg, rooms.size(), pgBeds, pgOccupied);
+            // Render PG card
+            HBox card = createPGCard(pg, rooms.size(), pgBeds, pgOccupied);
             pgsContainer.getChildren().add(card);
         }
 
@@ -97,125 +146,245 @@ public class MyPGsController {
         }
     }
 
-    private VBox createPGCard(PG pg, int roomsCount, int bedsCount, int occupiedBeds) {
-        VBox card = new VBox(15);
-        card.getStyleClass().add("owner-large-card");
+    // Note: Change the return type from VBox to HBox!
+private HBox createPGCard(PG pg, int roomsCount, int bedsCount, int occupiedBeds) {
 
-        // Header Row (Title and Actions)
-        HBox header = new HBox();
-        header.setAlignment(Pos.CENTER_LEFT);
+    HBox card = new HBox(25);
+    card.getStyleClass().add("pg-card");
+    card.setPadding(new Insets(24));
+    card.setAlignment(Pos.CENTER_LEFT);
 
-        VBox titleBox = new VBox(3);
-        Label titleLabel = new Label(pg.getName());
-        titleLabel.getStyleClass().add("section-title");
-        titleLabel.setStyle("-fx-font-size: 18px;");
+    // =========================
+    // Left Image
+    // =========================
 
-        String genderPref = pg.getGenderPreference();
-        String genderText;
-        if (genderPref == null || genderPref.isBlank()) {
-            genderText = "Any";
-        } else {
-            genderText = genderPref.substring(0, 1).toUpperCase() + genderPref.substring(1);
-        }
-        
-        Label subLabel = new Label("📍 " + pg.getArea() + ", " + pg.getCity() + "  •  " + genderText + " Accommodation");
-        subLabel.getStyleClass().add("welcome-subtitle");
-        subLabel.setStyle("-fx-text-fill: #666666;");
+    StackPane photoPlaceholder = new StackPane();
+    photoPlaceholder.setPrefSize(240, 250);
+    photoPlaceholder.getStyleClass().add("pg-image-placeholder");
 
-        titleBox.getChildren().addAll(titleLabel, subLabel);
+    Label icon = new Label("🏠");
+    icon.getStyleClass().add("pg-image-icon");
 
-        Region spacer = new Region();
-        HBox.setHgrow(spacer, Priority.ALWAYS);
+    photoPlaceholder.getChildren().add(icon);
 
-        MenuButton actionsButton = new MenuButton("Actions");
-        actionsButton.getStyleClass().add("card-action-btn");
+    // =========================
+    // Right Section
+    // =========================
 
-        MenuItem editItem = new MenuItem("Edit Details");
-        editItem.setOnAction(e -> handleEditPG(pg));
+    VBox rightSide = new VBox(18);
+    rightSide.getStyleClass().add("pg-details-container");
 
-        MenuItem manageInvItem = new MenuItem("Manage Inventory");
-        manageInvItem.setOnAction(e -> openRoomsBeds(pg));
+    HBox.setHgrow(rightSide, Priority.ALWAYS);
+    rightSide.setMaxWidth(Double.MAX_VALUE);
 
-        MenuItem deleteItem = new MenuItem("Unregister PG");
-        deleteItem.setStyle("-fx-text-fill: #DC2626;");
-        deleteItem.setOnAction(e -> handleDeletePG(pg));
+    // ---------- Header ----------
 
-        actionsButton.getItems().addAll(editItem, manageInvItem, deleteItem);
+    HBox header = new HBox(12);
+    header.setAlignment(Pos.CENTER_LEFT);
 
-        Button roomsButton = new Button("View Rooms & Beds");
-        roomsButton.getStyleClass().add("primary-button");
-        roomsButton.setOnAction(e -> openRoomsBeds(pg));
-        HBox.setMargin(roomsButton, new Insets(0, 10, 0, 0));
+    Label titleLabel = new Label(pg.getName());
+    titleLabel.getStyleClass().add("pg-title");
 
-        header.getChildren().addAll(titleBox, spacer, roomsButton, actionsButton);
+    Region spacer = new Region();
+    HBox.setHgrow(spacer, Priority.ALWAYS);
 
-        // Body Row (Photo and Info)
-        HBox body = new HBox(25);
-        body.setAlignment(Pos.CENTER_LEFT);
+    Button roomsButton = new Button("🛏 View Rooms & Beds");
+    roomsButton.getStyleClass().add("secondary-button");
+    roomsButton.setOnAction(e -> openRoomsBeds(pg));
+    roomsButton.getStyleClass().add("secondary-btn");
 
-        StackPane photoPlaceholder = new StackPane();
-        photoPlaceholder.setPrefSize(180, 110);
-        photoPlaceholder.setStyle("-fx-background-color: #E2ECE8; -fx-background-radius: 10px;");
-        Label photoLabel = new Label(pg.getName() + " Photo");
-        photoLabel.getStyleClass().add("pg-list-name");
-        photoLabel.setStyle("-fx-text-fill: #0F4F46;");
-        photoPlaceholder.getChildren().add(photoLabel);
+    MenuButton actionsButton = new MenuButton("Manage");
+    actionsButton.getStyleClass().add("primary-btn");
 
-        VBox infoBox = new VBox(10);
-        HBox.setHgrow(infoBox, Priority.ALWAYS);
+    MenuItem editItem = new MenuItem("Edit Details");
+    editItem.setOnAction(e -> handleEditPG(pg));
 
-        HBox statsRow = new HBox(40);
-        statsRow.getChildren().addAll(
-            createStatCol("Rooms", roomsCount + " Rooms"),
-            createStatCol("Beds Occupied", occupiedBeds + " / " + bedsCount + " Beds"),
-            createStatCol("Vacant Space", (bedsCount - occupiedBeds) + " Beds Vacant", true)
-        );
+    MenuItem deleteItem = new MenuItem("Unregister PG");
+    deleteItem.setOnAction(e -> handleDeletePG(pg));
 
-        Separator sep = new Separator();
+    actionsButton.getItems().addAll(editItem, deleteItem);
 
-        VBox progressBox = new VBox(5);
-        HBox progressHeader = new HBox();
-        progressHeader.setAlignment(Pos.CENTER_LEFT);
-        Label rateLabel = new Label("Occupancy rate");
-        rateLabel.getStyleClass().add("stat-label");
-        Region rateSpacer = new Region();
-        HBox.setHgrow(rateSpacer, Priority.ALWAYS);
+    header.getChildren().addAll(
+            titleLabel,
+            spacer,
+            roomsButton,
+            actionsButton
+    );
 
-        double ratePercent = bedsCount > 0 ? (double) occupiedBeds / bedsCount : 0.0;
-        Label rateValLabel = new Label(String.format("%.1f%%", ratePercent * 100));
-        rateValLabel.getStyleClass().addAll("stat-label");
-        rateValLabel.setStyle("-fx-font-weight: bold; -fx-text-fill: #0F4F46;");
-        progressHeader.getChildren().addAll(rateLabel, rateSpacer, rateValLabel);
+    HBox.setMargin(roomsButton, new Insets(0, 12, 0, 0));
 
-        ProgressBar bar = new ProgressBar(ratePercent);
-        bar.setPrefWidth(600);
-        bar.setStyle("-fx-min-height: 8px;");
+    // ---------- Subtitle ----------
 
-        progressBox.getChildren().addAll(progressHeader, bar);
-        infoBox.getChildren().addAll(statsRow, sep, progressBox);
-        body.getChildren().addAll(photoPlaceholder, infoBox);
+    String genderPref =
+            (pg.getGenderPreference() == null || pg.getGenderPreference().isBlank())
+                    ? "Any"
+                    : pg.getGenderPreference();
 
-        // Append to Card VBox
-        card.getChildren().addAll(header, body);
-        return card;
-    }
+    Label subLabel = new Label(
+            "📍 " + pg.getArea() + ", " +
+            pg.getCity() +
+            " • " +
+            genderPref +
+            " Accommodation"
+    );
 
-    private VBox createStatCol(String title, String val) {
-        return createStatCol(title, val, false);
-    }
+    subLabel.getStyleClass().add("pg-subtitle");
 
-    private VBox createStatCol(String title, String val, boolean highlightGreen) {
-        VBox col = new VBox(2);
-        Label titleLbl = new Label(title);
-        titleLbl.getStyleClass().add("stat-label");
-        Label valLbl = new Label(val);
-        valLbl.setStyle("-fx-font-weight: bold; -fx-font-size: 14px;");
-        if (highlightGreen) {
-            valLbl.setStyle(valLbl.getStyle() + " -fx-text-fill: #16A34A;");
-        }
-        col.getChildren().addAll(titleLbl, valLbl);
-        return col;
-    }
+    // ---------- Stats ----------
+
+    HBox statsRow = new HBox(40);
+    statsRow.getStyleClass().add("stats-row");
+
+    statsRow.getChildren().addAll(
+
+            createStatCol(
+                    "Rooms",
+                    "🚪",
+                    String.valueOf(roomsCount),
+                    "Rooms",
+                    false
+            ),
+
+            createStatCol(
+                    "Beds Occupied",
+                    "🛏",
+                    occupiedBeds + " / " + bedsCount,
+                    "Beds",
+                    true
+            ),
+
+            createStatCol(
+                    "Vacant Space",
+                    "🪑",
+                    String.valueOf(bedsCount - occupiedBeds),
+                    "Beds Vacant",
+                    true
+            )
+    );
+
+    // ---------- Occupancy ----------
+
+    VBox progressBox = new VBox(8);
+
+    HBox progressHeader = new HBox();
+
+    Label rateLabel = new Label("Occupancy Rate");
+    rateLabel.getStyleClass().add("occupancy-label");
+
+    Region rateSpacer = new Region();
+    HBox.setHgrow(rateSpacer, Priority.ALWAYS);
+
+    double ratePercent =
+            bedsCount == 0
+                    ? 0
+                    : (double) occupiedBeds / bedsCount;
+
+    Label rateValue = new Label(
+            String.format("%.1f%%", ratePercent * 100)
+    );
+
+    rateValue.getStyleClass().add("occupancy-value");
+
+    progressHeader.getChildren().addAll(
+            rateLabel,
+            rateSpacer,
+            rateValue
+    );
+
+    ProgressBar progressBar = new ProgressBar(ratePercent);
+    progressBar.setMaxWidth(Double.MAX_VALUE);
+    progressBar.getStyleClass().add("occupancy-progress");
+
+    progressBox.getChildren().addAll(
+            progressHeader,
+            progressBar
+    );
+
+    // ---------- Amenities ----------
+
+    HBox amenities = new HBox(10);
+
+    if (pg.isWifiAvailable())
+        amenities.getChildren().add(createAmenityChip("📶 WiFi"));
+
+    if (pg.isFoodAvailable())
+        amenities.getChildren().add(createAmenityChip("🍽 Food"));
+
+    if (pg.isParkingAvailable())
+        amenities.getChildren().add(createAmenityChip("🚗 Parking"));
+
+    rightSide.getChildren().addAll(
+            header,
+            subLabel,
+            statsRow,
+            progressBox,
+            amenities
+    );
+
+    card.getChildren().addAll(
+            photoPlaceholder,
+            rightSide
+    );
+
+    return card;
+}
+
+private HBox createStatCol(
+        String title,
+        String icon,
+        String value,
+        String unit,
+        boolean highlight
+) {
+
+    HBox container = new HBox(12);
+    container.setAlignment(Pos.CENTER_LEFT);
+
+    StackPane iconPane = new StackPane();
+
+    iconPane.getStyleClass().add("stat-icon-circle");
+
+    Label iconLabel = new Label(icon);
+    iconLabel.getStyleClass().add("stat-icon");
+
+    iconPane.getChildren().add(iconLabel);
+
+    VBox text = new VBox(2);
+
+    Label titleLabel = new Label(title);
+    titleLabel.getStyleClass().add("stat-title");
+
+    HBox valueRow = new HBox(4);
+    valueRow.setAlignment(Pos.BOTTOM_LEFT);
+
+    Label valueLabel = new Label(value);
+
+    valueLabel.getStyleClass().add(
+            highlight
+                    ? "stat-value-green"
+                    : "stat-value"
+    );
+
+    Label unitLabel = new Label(unit);
+    unitLabel.getStyleClass().add("stat-unit");
+
+    valueRow.getChildren().addAll(
+            valueLabel,
+            unitLabel
+    );
+
+    text.getChildren().addAll(
+            titleLabel,
+            valueRow
+    );
+
+    container.getChildren().addAll(
+            iconPane,
+            text
+    );
+
+    return container;
+}
 
     @FXML
     private void handleRegisterNewPG() {

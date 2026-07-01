@@ -130,7 +130,7 @@ public class PGDAO {
         return ownerPgs;
     }
 
-    public PG findById(int pgId) {
+public PG findById(int pgId) {
 
     String sql = """
         SELECT *
@@ -145,20 +145,12 @@ public class PGDAO {
 
         ps.setInt(1, pgId);
 
-        ResultSet rs = ps.executeQuery();
+        try (ResultSet rs = ps.executeQuery()) {
 
-        if (rs.next()) {
+            if (rs.next()) {
+                return mapRowToPG(rs);
+            }
 
-            PG pg = new PG();
-
-            pg.setId(rs.getInt("id"));
-            pg.setOwnerId(rs.getInt("owner_id"));
-            pg.setName(rs.getString("name"));
-            pg.setAddress(rs.getString("address"));
-            pg.setArea(rs.getString("area"));
-            pg.setCity(rs.getString("city"));
-
-            return pg;
         }
 
     } catch (SQLException e) {
@@ -171,7 +163,7 @@ public class PGDAO {
     }
 
     return null;
-}
+} 
 
     public PG insert(PG pg) {
         String sql = "INSERT INTO pgs (owner_id, name, address, city, area, description, gender_preference, food_available, wifi_available, ac_available, laundry_available, gym_available, parking_available) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
